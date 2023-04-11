@@ -15,14 +15,14 @@ Nico Malamug 
 Bennett Taylor 
 - [ ] Backend - 40%  
 - [ ] Frontend - 1%  
-- [ ] Project Lead 50%
+- [ ] Project Lead 50%  
 Maiko Lum  
 - [ ] Backend - 20%
 - [ ] Frontend - 33%
-- [ ] Documentation - 50%
+- [ ] Documentation - 50%  
 Joscelynn Palen  
 - [ ] Front-end - 33%
-- [ ] Tester - 50%
+- [ ] Tester - 50%  
 
 ## Names
 The names of each member of your group, added by that group member. For example, if your group has user Jon Smith, then Jon Smith should add and commit this name to the README.md file. All told, there should be at least as many commits as members of your group.
