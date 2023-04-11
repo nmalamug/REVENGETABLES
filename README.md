@@ -16,11 +16,11 @@ Bennett Taylor 
 - [ ] Backend - 40%  
 - [ ] Frontend - 1%  
 - [ ] Project Lead 50%
-Maiko Lum
+Maiko Lum  
 - [ ] Backend - 20%
 - [ ] Frontend - 33%
 - [ ] Documentation - 50%
-Joscelynn Palen
+Joscelynn Palen  
 - [ ] Front-end - 33%
 - [ ] Tester - 50%
 
