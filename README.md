@@ -28,3 +28,4 @@ User plays as a knight whose job is to protect a castle from waves of attacking 
 The names of each member of your group, added by that group member. For example, if your group has user Jon Smith, then Jon Smith should add and commit this name to the README.md file. All told, there should be at least as many commits as members of your group.
 - [ ] Harman Singh
 - [ ] Joscelynn Palen
+- [ ] Nicolas Malamug
