@@ -5,22 +5,22 @@ Tetris-like Game
 ## A brief description of your project (at most 140 characters).
 User plays as a knight whose job is to protect a castle from waves of attacking monsters.
 ## A list of who is satisfying each role, and at what percentage.
-Harman Singh 
+###### Harman Singh 
 - [ ] BackEnd- 40%  
 - [ ] Project Lead 50%    
-Nico Malamug 
+###### Nico Malamug 
 - [ ] Tester - 50%  
 - [ ] Frontend - 33%  
 - [ ] Documentation - 50%  
-Bennett Taylor 
+###### Bennett Taylor 
 - [ ] Backend - 40%  
 - [ ] Frontend - 1%  
 - [ ] Project Lead 50%  
-Maiko Lum  
+###### Maiko Lum  
 - [ ] Backend - 20%
 - [ ] Frontend - 33%
 - [ ] Documentation - 50%  
-Joscelynn Palen  
+###### Joscelynn Palen  
 - [ ] Front-end - 33%
 - [ ] Tester - 50%  
 
