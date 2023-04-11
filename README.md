@@ -29,3 +29,4 @@ The names of each member of your group, added by that group member. For example,
 - [ ] Harman Singh
 - [ ] Joscelynn Palen
 - [ ] Nicolas Malamug
+- [ ] Maiko Lum
