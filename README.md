@@ -30,3 +30,4 @@ The names of each member of your group, added by that group member. For example,
 - [ ] Joscelynn Palen
 - [ ] Nicolas Malamug
 - [ ] Maiko Lum
+- [ ] Bennett Taylor
