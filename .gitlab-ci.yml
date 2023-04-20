@@ -23,7 +23,7 @@ CompileJava:
     - echo "Compiling Java code..."
     - cd app/src/main/java; javac com/example/knightsslabyrinth/MainActivity.java
     #- ls -l com/example/knightsslabyrinth/MainActivity.class
-  tags: [java]
+  #tags: [java]
 
 JunitTestGradle:
   stage: test
