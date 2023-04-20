@@ -17,13 +17,13 @@ builder:
     - echo "I am building something"
   tags: [android30]
 
-CompileJava:
+CompileCPP:
   stage: test
   script:
-    - echo "Compiling Java code..."
-    - cd app/src/main/java; javac com/example/knightsslabyrinth/MainActivity.java
+    - echo "Compiling C++ code..."
+    - cd app/src/main/cpp; g++ main.cpp
     #- ls -l com/example/knightsslabyrinth/MainActivity.class
-  tags: [java]
+  tags: [c++-17]
 
 JunitTestGradle:
   stage: test
