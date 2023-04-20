@@ -11,11 +11,18 @@ stages:
   - build
   - test
 
-builder:
+lintDebug:
   stage: build
   script:
-    - echo "I am building something"
-  tags: [android30]
+    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+
+assembleDebug:
+  stage: build
+  script:
+    - ./gradlew assembleDebug
+  artifacts:
+    paths:
+    - app/build/outputs/
 
 CompileCPP:
   stage: test
