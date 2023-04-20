@@ -21,7 +21,7 @@ CompileCPP:
   stage: test
   script:
     - echo "Compiling C++ code..."
-    - cd app/src/main/cpp; g++ main.cpp
+    - cd app/src/main/cpp; g++ add2Nums.cpp
     #- ls -l com/example/knightsslabyrinth/MainActivity.class
   tags: [c++-17]
 
