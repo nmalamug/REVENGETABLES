@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "EC327FinalProject"
+rootProject.name = "Knights's Labyrinth"
 include ':app'
