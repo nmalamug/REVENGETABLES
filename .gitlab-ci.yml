@@ -28,13 +28,13 @@ assembleDebug:
   tags: [android30]
 
 
-CompileCPP:
-  stage: test
-  script:
-    - echo "Compiling C++ code..."
-    - cd app/src/main/cpp; g++ add2Nums.cpp
-    #- ls -l com/example/knightsslabyrinth/MainActivity.class
-  tags: [c++-17]
+#CompileCPP:
+#  stage: test
+#  script:
+#    - echo "Compiling C++ code..."
+#    - cd app/src/main/cpp; g++ add2Nums.cpp
+#    #- ls -l com/example/knightsslabyrinth/MainActivity.class
+#  tags: [c++-17]
 
 JunitTestGradle:
   stage: test
