@@ -1,0 +1,49 @@
+variables:
+  ANDROID_COMPILE_SDK: "28"
+  ANDROID_BUILD_TOOLS: "28.0.2"
+  ANDROID_SDK_TOOLS:   "4333796"
+
+before_script:
+  - echo "Run this before every script."
+
+  
+stages:
+  - build
+  - test
+
+lintDebug:
+  stage: build
+  script:
+    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
+  tags: [android30]
+
+
+assembleDebug:
+  stage: build
+  script:
+    - ./gradlew assembleDebug
+  artifacts:
+    paths:
+    - app/build/outputs/
+  tags: [android30]
+
+
+#CompileCPP:
+#  stage: test
+#  script:
+#    - echo "Compiling C++ code..."
+#    - cd app/src/main/cpp; g++ add2Nums.cpp
+#    #- ls -l com/example/knightsslabyrinth/MainActivity.class
+#  tags: [c++-17]
+
+JunitTestGradle:
+  stage: test
+  script:
+    - echo "Using gradle to run JUnit tests..."
+    - ./gradlew -Pci --console=plain :app:testDebugUnitTest --tests "com.example.knightsslabyrinth.*"
+  artifacts:
+    paths:
+      - app/build/test-results/testDebugUnitTest
+    reports:
+      junit: app/build/test-results/testDebugUnitTest/TEST-*.xml
+  tags: [android30]
