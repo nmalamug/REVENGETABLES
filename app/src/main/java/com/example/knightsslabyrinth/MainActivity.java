@@ -21,7 +21,7 @@ public class MainActivity extends GameActivity {
         super.onStart();
         makeToast("onStart()");
     }
-
+//Hello
     @Override
     protected void onResume() {
         super.onResume();
