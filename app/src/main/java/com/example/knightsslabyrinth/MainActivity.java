@@ -85,8 +85,5 @@ public class MainActivity extends GameActivity {
         runOnUiThread(() -> Toast.makeText(this, str, Toast.LENGTH_LONG).show());
     }
 
-    public static <T extends Number> boolean amIPositive(T num) {
-        return num.doubleValue() > 0;
-    }
 }
 

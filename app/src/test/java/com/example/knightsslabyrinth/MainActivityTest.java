@@ -1,7 +1,7 @@
 package com.example.knightsslabyrinth;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static com.example.knightsslabyrinth.MainActivity.amIPositive;
+import static com.example.knightsslabyrinth.amIPositiveFunction.amIPositive;
 import org.junit.Test;
 
 
