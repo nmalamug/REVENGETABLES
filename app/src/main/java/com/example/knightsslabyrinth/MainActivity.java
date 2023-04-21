@@ -11,48 +11,6 @@ public class MainActivity extends GameActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        makeToast("onCreate()");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        makeToast("onStart()");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        makeToast("onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        makeToast("onPause()");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        makeToast("onStop()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        makeToast("onDestroy()");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        makeToast("onRestart()");
-    }
-
-    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
