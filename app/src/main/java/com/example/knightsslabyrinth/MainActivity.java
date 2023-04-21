@@ -1,5 +1,5 @@
 package com.example.knightsslabyrinth;
-
+import android.os.Handler;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -14,13 +14,21 @@ public class MainActivity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         makeToast("onCreate()");
-    }
 
+    }
+    private Handler handler = new Handler();
+    private Runnable showToastRunnable;
     @Override
     protected void onStart() {
         super.onStart();
         makeToast("onStart()");
+        showToastRunnable = () -> {
+            makeToast("Hi");
+            handler.postDelayed(showToastRunnable, 5000);
+        };
+        handler.postDelayed(showToastRunnable, 5000);
     }
+
 
     @Override
     protected void onResume() {
@@ -76,4 +84,9 @@ public class MainActivity extends GameActivity {
     public void makeToast(String str) {
         runOnUiThread(() -> Toast.makeText(this, str, Toast.LENGTH_LONG).show());
     }
+
+    public static <T extends Number> boolean amIPositive(T num) {
+        return num.doubleValue() > 0;
+    }
 }
+
