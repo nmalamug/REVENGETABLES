@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/HomeScreenFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
@@ -24,5 +24,51 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HomeScreenFragment"
+        android:name="com.example.knightslabyrinth.HomeScreenFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_home_screen">
+
+        <action
+            android:id="@+id/action_play_button"
+            app:destination="@id/GameScreenFragment" />
+        <action
+            android:id="@+id/action_settings_button"
+            app:destination="@id/SettingsFragment" />
+        <action
+            android:id="@+id/action_manual_button"
+            app:destination="@id/UserManualFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/GameScreenFragment"
+        android:name="com.example.knightslabyrinth.GameScreenFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_game_screen">
+
+        <action
+            android:id="@+id/action_GameScreenFragment_to_HomeScreenFragment"
+            app:destination="@id/HomeScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.example.knightslabyrinth.SettingsFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_settings">
+
+        <action
+            android:id="@+id/action_Settings_to_HomeScreenFragment"
+            app:destination="@id/HomeScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/UserManualFragment"
+        android:name="com.example.knightslabyrinth.UserManualFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_user_manual">
+
+        <action
+            android:id="@+id/action_Manual_to_HomeScreenFragment"
+            app:destination="@id/HomeScreenFragment" />
     </fragment>
 </navigation>
