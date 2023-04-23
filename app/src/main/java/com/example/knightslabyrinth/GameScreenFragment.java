@@ -10,11 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Handler;
+
 import com.example.knightslabyrinth.databinding.FragmentGameScreenBinding;
 
 public class GameScreenFragment extends Fragment {
     public native String getNativeMessage();
     private FragmentGameScreenBinding binding;
+
+    //Variables for handler in game ticks
+    private Handler handler = new Handler();
+    private Runnable runTicks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,6 +31,14 @@ public class GameScreenFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //Code for updating game ticks
+        //Tick time currently 20 ms
+        runTicks = () -> {
+            gameTick();
+            handler.postDelayed(runTicks, 20);
+        };
+        handler.postDelayed(runTicks, 20);
 
         binding.buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +59,7 @@ public class GameScreenFragment extends Fragment {
                     float y = motionEvent.getY();
 
                     // Move the knight to the touched position
-                    binding.knightView.moveKnight(x, y);
+                    binding.knightView.setTarget(x, y);
                 }
                 return true;
             }
@@ -56,5 +70,12 @@ public class GameScreenFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        handler.removeCallbacks(runTicks);
+
+    }
+
+    //Runs code to go to next game tick
+    public void gameTick(){
+        binding.knightView.moveKnight();
     }
 }

@@ -19,7 +19,7 @@
 
 #include <jni.h>
 #include <string>
-
+#include <cmath>
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_example_knightslabyrinth_GameScreenFragment_getNativeMessage(JNIEnv *env, jobject ) {
