@@ -17,16 +17,21 @@ import com.example.knightslabyrinth.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    private Handler handler = new Handler();
+    private Runnable showToastRunnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        makeToast("onCreate()");
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -73,4 +78,25 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        makeToast("onStart()");
+        showToastRunnable = () -> {
+            makeToast("Hi");
+            handler.postDelayed(showToastRunnable, 5000);
+        };
+        handler.postDelayed(showToastRunnable, 5000);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    public void makeToast(String str) {
+        runOnUiThread(() -> Toast.makeText(this, str, Toast.LENGTH_LONG).show());
+    }
+
 }
