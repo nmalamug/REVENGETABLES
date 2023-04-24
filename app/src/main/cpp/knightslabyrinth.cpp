@@ -20,6 +20,8 @@
 #include <jni.h>
 #include <string>
 #include <cmath>
+#include "monster/monster.h"
+
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_example_knightslabyrinth_GameScreenFragment_getNativeMessage(JNIEnv *env, jobject ) {
@@ -34,5 +36,4 @@ Java_com_example_knightslabyrinth_GameScreenFragment_getNewTick(JNIEnv *env, job
 {
     return;
 }
-
 
