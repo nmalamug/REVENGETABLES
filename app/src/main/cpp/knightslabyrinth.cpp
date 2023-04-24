@@ -26,3 +26,13 @@ Java_com_example_knightslabyrinth_GameScreenFragment_getNativeMessage(JNIEnv *en
     std::string message = "Hello from C++!";
     return env->NewStringUTF(message.c_str());
 }
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_knightslabyrinth_GameScreenFragment_getNewTick(JNIEnv *env, jobject thisObject)
+{
+    return;
+}
+
+

@@ -1,21 +1,20 @@
 package com.example.knightslabyrinth;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
 import android.os.Handler;
-
 import com.example.knightslabyrinth.databinding.FragmentGameScreenBinding;
+
 
 public class GameScreenFragment extends Fragment {
     public native String getNativeMessage();
+    public native void getNewTick();
+
     private FragmentGameScreenBinding binding;
 
     //Variables for handler in game ticks
@@ -76,6 +75,8 @@ public class GameScreenFragment extends Fragment {
 
     //Runs code to go to next game tick
     public void gameTick(){
+        getNewTick();
         binding.knightView.moveKnight();
     }
+
 }
