@@ -35,7 +35,7 @@ void Monster::moveToObjective(float objective_x, float objective_y) {
 }
 
 // JNI functions
-extern "C" {
+extern "C"
 // Create a new Monster object and return its pointer
 JNIEXPORT jlong JNICALL
 Java_com_example_knightslabyrinth_GameScreenFragment_createMonster(JNIEnv *env, jobject thiz,
@@ -43,7 +43,7 @@ Java_com_example_knightslabyrinth_GameScreenFragment_createMonster(JNIEnv *env, 
     Monster *monster = new Monster(x, y, speed);
     return reinterpret_cast<jlong>(monster);
 }
-
+extern "C"
 // Update the monster using its pointer
 JNIEXPORT void JNICALL
 Java_com_example_knightslabyrinth_GameScreenFragment_updateMonster(JNIEnv *env, jobject thiz,
@@ -53,7 +53,7 @@ Java_com_example_knightslabyrinth_GameScreenFragment_updateMonster(JNIEnv *env, 
     Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
     monster->update(delta_time, objective_x, objective_y);
 }
-
+extern "C"
 // Get the monster's x position using its pointer
 JNIEXPORT jfloat JNICALL
 Java_com_example_knightslabyrinth_GameScreenFragment_getMonsterX(JNIEnv *env, jobject thiz,
@@ -63,7 +63,7 @@ Java_com_example_knightslabyrinth_GameScreenFragment_getMonsterX(JNIEnv *env, jo
 }
 
 // Get the monster's y position using its pointer
-JNIEXPORT jfloat JNICALL
+extern "C" JNIEXPORT jfloat JNICALL
 Java_com_example_knightslabyrinth_GameScreenFragment_getMonsterY(JNIEnv *env, jobject thiz,
                                                                  jlong monster_ptr) {
     Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
@@ -71,16 +71,16 @@ Java_com_example_knightslabyrinth_GameScreenFragment_getMonsterY(JNIEnv *env, jo
 }
 
 // Get the monster's x position using its pointer for KnightView
-JNIEXPORT jfloat JNICALL
+extern "C" JNIEXPORT jfloat JNICALL
 Java_com_example_knightslabyrinth_KnightView_getMonsterX(JNIEnv *env, jobject thiz, jlong monster_ptr) {
     Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
     return static_cast<jfloat>(monster->x);
 }
 
 // Get the monster's y position using its pointer for KnightView
-JNIEXPORT jfloat JNICALL
+extern "C" JNIEXPORT jfloat JNICALL
 Java_com_example_knightslabyrinth_KnightView_getMonsterY(JNIEnv *env, jobject thiz, jlong monster_ptr) {
     Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
     return static_cast<jfloat>(monster->y);
 }
-}
+

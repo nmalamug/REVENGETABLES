@@ -101,6 +101,7 @@ public class GameScreenFragment extends Fragment {
     }
 
     public void gameTick() {
+        getNewTick();
         binding.knightWrapper.moveKnight();
 
         // Spawn monsters randomly
@@ -111,5 +112,18 @@ public class GameScreenFragment extends Fragment {
             long monsterPtr = createMonster(x, y, speed);
             monsterPtrs.add(monsterPtr);
         }
+
+        // Update monsters
+        float objectiveX = binding.monsterView.getWidth() / 2;
+        float objectiveY = binding.monsterView.getHeight();
+        for (long monsterPtr : monsterPtrs) {
+            updateMonster(monsterPtr, 0.02f, objectiveX, objectiveY);
+        }
+        // Use getMonsterX(monsterPtr) and getMonsterY(monsterPtr) to get the updated monster positions
+        // and update the monster positions in the UI
+
+        // Update monster positions in the UI
+        binding.monsterView.setMonsterPtrs(monsterPtrs);
+    }
 
 }
