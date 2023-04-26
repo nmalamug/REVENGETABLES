@@ -8,11 +8,28 @@
 
 class Point {
 public:
+    Point(){
+        x = 0;
+        y = 0;
+    }
     Point(double theX, double theY){
         x = theX;
         y = theY;
     }
-private:
+    Point set(Point val){
+        Point out;
+        out.x = val.x;
+        out.y = val.y;
+        return out;
+    }
+
+    Point set(float theX, float theY){
+        Point out;
+        out.x = theX;
+        out.y = theY;
+        return out;
+    }
+
     double x,y;
 };
 

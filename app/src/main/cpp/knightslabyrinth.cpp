@@ -20,6 +20,8 @@
 #include <jni.h>
 #include <string>
 #include <cmath>
+#include "Knight/Knight.h"
+
 extern "C"
 JNIEXPORT jstring JNICALL
 Java_com_example_knightslabyrinth_GameScreenFragment_getNativeMessage(JNIEnv *env, jobject ) {
@@ -27,12 +29,10 @@ Java_com_example_knightslabyrinth_GameScreenFragment_getNativeMessage(JNIEnv *en
     return env->NewStringUTF(message.c_str());
 }
 
-
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_knightslabyrinth_GameScreenFragment_getNewTick(JNIEnv *env, jobject thisObject)
 {
-    return;
 }
 
 

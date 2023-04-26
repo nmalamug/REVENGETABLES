@@ -20,6 +20,7 @@ add_library( # Sets the name of the library.
 
              # Sets the library as a shared library.
              SHARED
+             Knight/Knight.cpp
 
              # Provides a relative path to your source file(s).
              knightslabyrinth.cpp )

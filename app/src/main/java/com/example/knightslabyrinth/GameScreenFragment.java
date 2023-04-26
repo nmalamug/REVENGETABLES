@@ -10,7 +10,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.os.Handler;
 import com.example.knightslabyrinth.databinding.FragmentGameScreenBinding;
 
-
 public class GameScreenFragment extends Fragment {
     public native String getNativeMessage();
     public native void getNewTick();
@@ -21,9 +20,15 @@ public class GameScreenFragment extends Fragment {
     private Handler handler = new Handler();
     private Runnable runTicks;
 
+    //Code to start and end the game
+    private void gameEnd(){
+        //binding.knightWrapper.killKnight();
+        //Make deleting things work - Memory leak??
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGameScreenBinding.inflate(inflater, container, false);
+
         return binding.getRoot();
     }
 
@@ -50,16 +55,19 @@ public class GameScreenFragment extends Fragment {
         binding.textView.setText(nativeMessage);
 
         // Set up touch listener for the KnightView
-        binding.knightView.setOnTouchListener(new View.OnTouchListener() {
+        binding.knightWrapper.setOnTouchListener(new View.OnTouchListener() {
+            private int mActivePointerId;
+
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    float x = motionEvent.getX();
-                    float y = motionEvent.getY();
+                //Joscie's mActive Pointer Stuff
+                mActivePointerId = motionEvent.getPointerId(0);
+                int pointerIndex = motionEvent.findPointerIndex(mActivePointerId);
 
-                    // Move the knight to the touched position
-                    binding.knightView.setTarget(x, y);
-                }
+                float x = motionEvent.getX(pointerIndex);
+                float y = motionEvent.getY(pointerIndex);
+
+                binding.knightWrapper.setTarget(x, y);
                 return true;
             }
         });
@@ -70,13 +78,12 @@ public class GameScreenFragment extends Fragment {
         super.onDestroyView();
         binding = null;
         handler.removeCallbacks(runTicks);
-
+        gameEnd();
     }
 
     //Runs code to go to next game tick
     public void gameTick(){
-        getNewTick();
-        binding.knightView.moveKnight();
+        binding.knightWrapper.moveKnight();
     }
 
 }

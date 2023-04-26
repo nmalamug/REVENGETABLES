@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.View;
-import java.lang.Math;
+
 
 public class KnightView extends View {
     private Paint paint;
@@ -41,6 +41,8 @@ public class KnightView extends View {
         canvas.drawCircle(knightPosition.x, knightPosition.y, 50, paint);
     }
 
+    public native void setTarget(float x, float y);
+/*
     public void setTarget(float x, float y){
         knightTarget.set(x,y);
     }
@@ -65,4 +67,5 @@ public class KnightView extends View {
         }
         invalidate();
     }
+*/
 }
