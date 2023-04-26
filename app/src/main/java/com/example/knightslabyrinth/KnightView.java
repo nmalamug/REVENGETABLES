@@ -12,18 +12,22 @@ public class KnightView extends View {
     private Paint paint;
     private PointF knightPosition;
     private PointF knightTarget;
+
     public KnightView(Context context) {
         super(context);
         init();
     }
+
     public KnightView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
+
     public KnightView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
+
     private void init() {
         paint = new Paint();
         paint.setColor(0xFFFF0000); // Red color
@@ -56,11 +60,9 @@ public class KnightView extends View {
         if(dist <= speed){
             knightPosition.set(knightTarget);
         } else{
-            
+
             knightPosition.set((float)(x + speed*Math.cos(ang)), (float)(y + speed*Math.sin(ang)));
         }
         invalidate();
     }
-
-
 }
