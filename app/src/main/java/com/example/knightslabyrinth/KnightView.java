@@ -62,7 +62,7 @@ public class KnightView extends View {
         if(dist <= speed){
             knightPosition.set(knightTarget);
         } else{
-            
+
             knightPosition.set((float)(x + speed*Math.cos(ang)), (float)(y + speed*Math.sin(ang)));
         }
         invalidate();

@@ -35,3 +35,4 @@ public:
 
 
 #endif //KNIGHTSLABYRINTH_POINT_H
+
