@@ -31,16 +31,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        makeToast("onCreate()");
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setSupportActionBar(binding.toolbar);
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        // Load the C++ library
+        System.loadLibrary("knightslabyrinth");
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,25 +77,4 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        makeToast("onStart()");
-        showToastRunnable = () -> {
-            makeToast("Hi");
-            handler.postDelayed(showToastRunnable, 5000);
-        };
-        handler.postDelayed(showToastRunnable, 5000);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    public void makeToast(String str) {
-        runOnUiThread(() -> Toast.makeText(this, str, Toast.LENGTH_LONG).show());
-    }
-
 }
