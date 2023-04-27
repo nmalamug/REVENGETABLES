@@ -17,11 +17,16 @@ import com.example.knightslabyrinth.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+
+    private Handler handler = new Handler();
+    private Runnable showToastRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
