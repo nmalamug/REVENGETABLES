@@ -7,12 +7,36 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import android.graphics.PointF;
 
 public class MonsterView extends View {
     private Paint paint;
-    private List<Long> monsterPtrs;
+    //private List<Long> monsterPtrs;
+    private List<Long> monsterPtrs = new ArrayList<>();
     private GameScreenFragment gameScreenFragment;
+    private int windowWidth, windowHeight;
+    private Random random = new Random();
+    private PointF knightPosition;
+
+    //Set the window width and height here
+    public void setWindowWidth (int width){
+        windowWidth = width;
+    }
+    public void setWindowHeight (int height){
+        windowHeight = height;
+    }
+    public void setKnightPosition(PointF position){
+        knightPosition = position;
+    }
+
+    //NDK Functions
+    public native long createMonster(float x, float y, float speed, int windowWidth, int windoHeight);
+    public native void updateMonster(long monsterPtr, float objectiveX, float objectiveY, float knightX, float knightY, int knightRad, float knightSpeed);
+    public native float getMonsterX(long monsterPtr);
+    public native float getMonsterY(long monsterPtr);
 
     // Constructors
     public MonsterView(Context context, AttributeSet attrs, GameScreenFragment gameScreenFragment) {
@@ -37,11 +61,6 @@ public class MonsterView extends View {
         paint.setColor(Color.BLUE);
     }
 
-    // Set the monster pointers list and invalidate the view to trigger a redraw
-    public void setMonsterPtrs(List<Long> monsterPtrs) {
-        this.monsterPtrs = monsterPtrs;
-        invalidate();
-    }
 
     // Override the onDraw method to draw the monsters on the canvas
     @Override
@@ -57,15 +76,36 @@ public class MonsterView extends View {
         this.gameScreenFragment = gameScreenFragment;
     }
 
+    public void moveMonsters(PointF knightPosition, int knightRadius, float knightSpeed){
+        // Update monsters
+        float objectiveX = windowWidth / 2;
+        float objectiveY = windowHeight-100;
+        for (long monsterPtr : monsterPtrs) {
+            updateMonster(monsterPtr, objectiveX, objectiveY, knightPosition.x, knightPosition.y, knightRadius, knightSpeed);
+        }
+        // Use getMonsterX(monsterPtr) and getMonsterY(monsterPtr) to get the updated monster positions
+        // and update the monster positions in the UI
+        invalidate();
+    }
+    public void spawnMonsters(){
+        if (random.nextInt(100) < 1) { // 1% chance to spawn a monster each tick
+            float x = random.nextFloat() * windowWidth;
+            float y = 0;
+            float speed = 5; //random.nextFloat() * 10 + 5; // Random speed between 5 and 15
+            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight);
+            monsterPtrs.add(monsterPtr);
+        }
+    }
+
     // Draw monsters on the canvas using the list of monster pointers
     private void drawMonsters(Canvas canvas) {
         Paint monsterPaint = new Paint();
         monsterPaint.setColor(Color.BLUE);
 
         for (long monsterPtr : monsterPtrs) {
-            float x = gameScreenFragment.getMonsterX(monsterPtr);
-            float y = gameScreenFragment.getMonsterY(monsterPtr);
-            float radius = 20; // Adjust the size of the monster as needed
+            float x = getMonsterX(monsterPtr);
+            float y = getMonsterY(monsterPtr);
+            float radius = 50; // Adjust the size of the monster as needed
             canvas.drawCircle(x, y, radius, monsterPaint);
         }
     }

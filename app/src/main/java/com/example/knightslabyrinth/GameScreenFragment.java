@@ -1,4 +1,5 @@
 package com.example.knightslabyrinth;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -13,18 +14,11 @@ import android.os.Handler;
 
 import com.example.knightslabyrinth.databinding.FragmentGameScreenBinding;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class GameScreenFragment extends Fragment {
     // Native methods
     public native String getNativeMessage();
     public native void getNewTick();
-    public native long createMonster(float x, float y, float speed);
-    public native void updateMonster(long monsterPtr, float deltaTime, float objectiveX, float objectiveY);
-    public native float getMonsterX(long monsterPtr);
-    public native float getMonsterY(long monsterPtr);
+
 
     // Binding and handler
     private FragmentGameScreenBinding binding;
@@ -33,24 +27,35 @@ public class GameScreenFragment extends Fragment {
     private Handler handler = new Handler();
     private Runnable runTicks;
 
-    // Monster management
-    private List<Long> monsterPtrs = new ArrayList<>();
-    private Random random = new Random();
+    //Knight and monster management
+    private PointF knightPosition;
+    private int knightRadius;
+    private float knightSpeed;
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentGameScreenBinding.inflate(inflater, container, false);
+        //Calls stuff that needs to be called on game start.
+
+
+        return binding.getRoot();
+    }
 
     //Code to start and end the game
+    /*
+    private void gameStart(){
+
+    }
     private void gameEnd(){
         //binding.knightWrapper.killKnight();
         //Make deleting things work - Memory leak??
     }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentGameScreenBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
-
-
+    */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //Setup the Game
+        //gameStart();
 
         //Code for updating game ticks
         //Tick time currently 20 ms
@@ -90,6 +95,7 @@ public class GameScreenFragment extends Fragment {
 
         // Set reference to GameScreenFragment in MonsterView
         binding.monsterView.setGameScreenFragment(this);
+
     }
 
     @Override
@@ -97,33 +103,26 @@ public class GameScreenFragment extends Fragment {
         super.onDestroyView();
         binding = null;
         handler.removeCallbacks(runTicks);
-        gameEnd();
+        //gameEnd();
     }
 
     public void gameTick() {
         getNewTick();
+        //Move the knight and get position/radius
         binding.knightWrapper.moveKnight();
+        knightPosition = binding.knightWrapper.getKnightPosition();
+        knightRadius = binding.knightWrapper.getRadius();
+        knightSpeed = binding.knightWrapper.getSpeed();
 
-        // Spawn monsters randomly
-        if (random.nextInt(100) < 5) { // 5% chance to spawn a monster each tick
-            float x = random.nextFloat() * binding.monsterView.getWidth();
-            float y = 0;
-            float speed = random.nextFloat() * 10 + 5; // Random speed between 5 and 15
-            long monsterPtr = createMonster(x, y, speed);
-            monsterPtrs.add(monsterPtr);
-        }
-
-        // Update monsters
-        float objectiveX = binding.monsterView.getWidth() / 2;
-        float objectiveY = binding.monsterView.getHeight();
-        for (long monsterPtr : monsterPtrs) {
-            updateMonster(monsterPtr, 0.02f, objectiveX, objectiveY);
-        }
-        // Use getMonsterX(monsterPtr) and getMonsterY(monsterPtr) to get the updated monster positions
-        // and update the monster positions in the UI
+        //Spawn and move the monsters
+        //For some reason, you have to give the window width and height every time.
+        binding.monsterView.setWindowWidth(binding.monsterView.getWidth());
+        binding.monsterView.setWindowHeight(binding.monsterView.getHeight());
+        binding.monsterView.spawnMonsters();
 
         // Update monster positions in the UI
-        binding.monsterView.setMonsterPtrs(monsterPtrs);
+        binding.monsterView.setKnightPosition(knightPosition);
+        binding.monsterView.moveMonsters(knightPosition, knightRadius, knightSpeed);
     }
 
 }

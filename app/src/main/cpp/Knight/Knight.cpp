@@ -11,6 +11,7 @@ Knight::Knight(double theX, double theY){
     pos.y = theY;
     target.x = theX;
     target.y = theY;
+    speed = 0;
 }
 
 void Knight::setTargetK(float theX, float theY){
@@ -22,7 +23,7 @@ void Knight::move(){
     float x = pos.x;
     float y = pos.y;
     float distance = sqrt(pow(target.x-x,2)+pow(target.y-y,2));
-    float speed = distance/3 + 20;
+    speed = distance/3 + 20;
     float xdist = target.x-x;
     float ydist = target.y-y;
     xdist = xdist/distance*speed;
@@ -34,7 +35,6 @@ void Knight::move(){
         pos.x = pos.x + xdist;
         pos.y = pos.y + ydist;
     }
-
 }
 
 void Knight::update(){
@@ -47,6 +47,10 @@ float Knight::getX() const {
 
 float Knight::getY() const {
     return pos.y;
+}
+
+float Knight::getSpeed() const{
+    return speed;
 }
 
 //Knight Controls
@@ -88,4 +92,11 @@ JNIEXPORT jfloat JNICALL
 Java_com_example_knightslabyrinth_KnightWrapper_getYC(JNIEnv *env, jobject, jlong ptr) {
     Knight *obj = (Knight *)ptr;
     return obj->getY();
+}
+
+extern"C"
+JNIEXPORT jfloat JNICALL
+Java_com_example_knightslabyrinth_KnightWrapper_getSpeedC(JNIEnv *env, jobject, jlong ptr) {
+    Knight *obj = (Knight *)ptr;
+    return obj->getSpeed();
 }

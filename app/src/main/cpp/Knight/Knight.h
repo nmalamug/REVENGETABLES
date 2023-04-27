@@ -13,10 +13,10 @@ public:
     void update();
     float getX()const ;
     float getY()const ;
-
+    float getSpeed() const;
     Point pos;
     Point target;
-
+    float speed;
 };
 
 

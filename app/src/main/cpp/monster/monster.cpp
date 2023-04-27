@@ -4,11 +4,54 @@
 #include <memory>
 
 // Monster class constructor
-Monster::Monster(float x, float y, float speed) : x(x), y(y), speed(speed) {}
+Monster::Monster(float x, float y, float speed, int windowWidth, int windowHt)
+    : x(x), y(y), speed(speed), windowWidth(windowWidth), windowHeight(windowHt)
+    {
+    collisionCounter = 0;
+    }
 
 // Update the monster's position
-void Monster::update(float deltaTime, float objectiveX, float objectiveY) {
-    moveToObjective(objectiveX, objectiveY);
+void Monster::update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed) {
+    if(colliding(knightX, knightY, knightRadius)){
+        //Get the x and y directions of collision
+        directionX = knightX - x;
+        directionY = knightY - y;
+        collisionSpeed = knightSpeed + 5;
+        collisionCounter = 20;
+    }
+    if(collisionCounter > 1){
+        doCollision();
+        collisionCounter -=1;
+    }else{
+        moveToObjective(objectiveX, objectiveY);
+    }
+}
+
+bool Monster::colliding(float kx, float ky, int rad){
+    float dist = sqrt(pow(kx-x,2)+pow(ky-y,2));
+    if(dist< (rad+monsterRadius)){
+        return true;
+    }
+    return false;
+}
+
+void Monster::doCollision(){
+    //If about to bounce off a wall move focal point to switch x direction
+    if(x<monsterRadius ){
+        x = 51;
+        directionX = -directionX;
+    }else if(x>(windowWidth-monsterRadius)){
+        x = windowWidth-monsterRadius-1;
+        directionX = -directionX;
+    }
+
+    float distance = std::sqrt(directionX * directionX + directionY * directionY);
+    float normalized_x = directionX / distance;
+    float normalized_y = directionY / distance;
+
+    x -= normalized_x * collisionSpeed;
+    y -= normalized_y * collisionSpeed;
+    collisionSpeed = collisionSpeed*.90;
 }
 
 // Getter for the monster's x position
@@ -38,25 +81,31 @@ void Monster::moveToObjective(float objective_x, float objective_y) {
 extern "C"
 // Create a new Monster object and return its pointer
 JNIEXPORT jlong JNICALL
-Java_com_example_knightslabyrinth_GameScreenFragment_createMonster(JNIEnv *env, jobject thiz,
-                                                                   jfloat x, jfloat y, jfloat speed) {
-    Monster *monster = new Monster(x, y, speed);
+Java_com_example_knightslabyrinth_MonsterView_createMonster(JNIEnv *env, jobject thiz,
+                                                                   jfloat x, jfloat y, jfloat speed,
+                                                                   jint windowWidth, jint windowHeight) {
+    Monster *monster = new Monster(x, y, speed, windowWidth, windowHeight);
     return reinterpret_cast<jlong>(monster);
 }
 extern "C"
 // Update the monster using its pointer
 JNIEXPORT void JNICALL
-Java_com_example_knightslabyrinth_GameScreenFragment_updateMonster(JNIEnv *env, jobject thiz,
-                                                                   jlong monster_ptr, jfloat delta_time,
+Java_com_example_knightslabyrinth_MonsterView_updateMonster(JNIEnv *env, jobject thiz,
+                                                                   jlong monster_ptr,
                                                                    jfloat objective_x,
-                                                                   jfloat objective_y) {
+                                                                   jfloat objective_y,
+                                                                   jfloat knightX,
+                                                                   jfloat knightY,
+                                                                   jint radius,
+                                                                   jfloat knightSpeed) {
     Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
-    monster->update(delta_time, objective_x, objective_y);
+    monster->update(objective_x, objective_y, knightX, knightY, radius, knightSpeed);
 }
+
 extern "C"
 // Get the monster's x position using its pointer
 JNIEXPORT jfloat JNICALL
-Java_com_example_knightslabyrinth_GameScreenFragment_getMonsterX(JNIEnv *env, jobject thiz,
+Java_com_example_knightslabyrinth_MonsterView_getMonsterX(JNIEnv *env, jobject thiz,
                                                                  jlong monster_ptr) {
     Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
     return monster->getX();
@@ -64,7 +113,7 @@ Java_com_example_knightslabyrinth_GameScreenFragment_getMonsterX(JNIEnv *env, jo
 
 // Get the monster's y position using its pointer
 extern "C" JNIEXPORT jfloat JNICALL
-Java_com_example_knightslabyrinth_GameScreenFragment_getMonsterY(JNIEnv *env, jobject thiz,
+Java_com_example_knightslabyrinth_MonsterView_getMonsterY(JNIEnv *env, jobject thiz,
                                                                  jlong monster_ptr) {
     Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
     return monster->getY();

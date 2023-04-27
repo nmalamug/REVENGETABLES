@@ -11,6 +11,18 @@ public class KnightWrapper extends View{
     private Paint paint;
     private PointF knightPosition;
     private long knight;
+    private int radius = 100;
+
+    public int getRadius(){
+        return radius;
+    }
+    public PointF getKnightPosition() {
+        return knightPosition;
+    }
+
+    public float getSpeed(){
+        return getSpeedC(knight);
+    }
 
     public KnightWrapper(Context context) {
         super(context);
@@ -44,7 +56,7 @@ public class KnightWrapper extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawCircle(knightPosition.x, knightPosition.y, 50, paint);
+        canvas.drawCircle(knightPosition.x, knightPosition.y, radius, paint);
     }
     public void moveKnight(){
         updateC(knight);
@@ -65,4 +77,5 @@ public class KnightWrapper extends View{
     public native void updateC(long knight);
     public native float getXC(long knight);
     public native float getYC(long knight);
+    public native float getSpeedC(long knight);
 }
