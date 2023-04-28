@@ -6,16 +6,20 @@
 
 class Monster {
 public:
-    Monster(float x, float y, float speed, int windowWidth, int windowHeight);
+    Monster(float x, float y, float speed, int windowWidth, int windowHeight, int color, int movementType);
     void update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed);
     bool colliding(float kx, float ky, int rad);
     void doCollision();
-
+    int getMovementType() const;
     float getX() const;
     float getY() const;
-
+    void hop(float objectiveX, float objectiveY);
+    void diagonal();
     float y;
     float x;
+    int color;
+    float initialDirectionX;
+    float initialDirectionY ;
 private:
     float speed;
     int type;
@@ -30,6 +34,9 @@ private:
     float directionX;
     float directionY;
     void moveToObjective(float objective_x, float objective_y);
+    int movementType;
+    bool hopState;
+
 };
 
 

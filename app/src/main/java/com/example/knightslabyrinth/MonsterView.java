@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -33,10 +32,13 @@ public class MonsterView extends View {
     }
 
     //NDK Functions
-    public native long createMonster(float x, float y, float speed, int windowWidth, int windoHeight);
+    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int color, int movementType);
     public native void updateMonster(long monsterPtr, float objectiveX, float objectiveY, float knightX, float knightY, int knightRad, float knightSpeed);
     public native float getMonsterX(long monsterPtr);
     public native float getMonsterY(long monsterPtr);
+    public native int getMonsterColor(long monsterPtr);
+    public native int getMovementType(long monsterPtr);
+
 
     // Constructors
     public MonsterView(Context context, AttributeSet attrs, GameScreenFragment gameScreenFragment) {
@@ -87,12 +89,26 @@ public class MonsterView extends View {
         // and update the monster positions in the UI
         invalidate();
     }
-    public void spawnMonsters(){
+    private int getMonsterColor(int movementType) {
+        switch (movementType) {
+            case 1:
+                //
+                return Color.BLUE;
+            case 2:
+                return Color.RED;
+            default:
+                return Color.BLACK;
+        }
+    }
+    public void spawnMonsters() {
         if (random.nextInt(100) < 1) { // 1% chance to spawn a monster each tick
             float x = random.nextFloat() * windowWidth;
             float y = 0;
             float speed = 5; //random.nextFloat() * 10 + 5; // Random speed between 5 and 15
-            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight);
+
+            int movementType = random.nextInt(3);
+            int monsterColor = getMonsterColor(movementType);
+            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight, monsterColor, movementType);
             monsterPtrs.add(monsterPtr);
         }
     }
@@ -100,13 +116,19 @@ public class MonsterView extends View {
     // Draw monsters on the canvas using the list of monster pointers
     private void drawMonsters(Canvas canvas) {
         Paint monsterPaint = new Paint();
-        monsterPaint.setColor(Color.BLUE);
 
         for (long monsterPtr : monsterPtrs) {
             float x = getMonsterX(monsterPtr);
             float y = getMonsterY(monsterPtr);
-            float radius = 50; // Adjust the size of the monster as needed
+            // Get the monster's movement type
+            int movementType = getMovementType(monsterPtr);
+            // Get the monster's color
+            int monsterColor = getMonsterColor(monsterPtr);
+            monsterPaint.setColor(monsterColor);
+
+            float radius = 20; // Adjust the size of the monster as needed
             canvas.drawCircle(x, y, radius, monsterPaint);
         }
     }
+
 }
