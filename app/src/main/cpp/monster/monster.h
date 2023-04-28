@@ -10,6 +10,8 @@ public:
     void update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed);
     bool colliding(float kx, float ky, int rad);
     void doCollision();
+    int inObjective(float obj_x, float obj_y);
+    int kickedOut();
 
     float getX() const;
     float getY() const;
@@ -29,6 +31,8 @@ private:
     const int windowHeight;
     float directionX;
     float directionY;
+    int reachedCastle;
+    int kicked;
     void moveToObjective(float objective_x, float objective_y);
 };
 

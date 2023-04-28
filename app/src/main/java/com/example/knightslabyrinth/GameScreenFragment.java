@@ -31,6 +31,11 @@ public class GameScreenFragment extends Fragment {
     private PointF knightPosition;
     private int knightRadius;
     private float knightSpeed;
+    private int noLives;
+
+    private int maxLives = 7;
+    private int currLives = maxLives;// changes based on difficulty
+    // private int lives = maxLives - noLives;
 
 
     @Override
@@ -42,7 +47,7 @@ public class GameScreenFragment extends Fragment {
         return binding.getRoot();
     }
 
-    //Code to start and end the game
+    //Code to start and end the game3
     /*
     private void gameStart(){
 
@@ -56,6 +61,9 @@ public class GameScreenFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //Setup the Game
         //gameStart();
+
+        // Set reference to GameScreenFragment in LifeView
+        binding.lifeView.setGameScreenFragment(this);
 
         //Code for updating game ticks
         //Tick time currently 20 ms
@@ -81,7 +89,7 @@ public class GameScreenFragment extends Fragment {
 
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                //Joscie's mActive Pointer Stuff
+                // Joscie's mActive Pointer Stuff
                 mActivePointerId = motionEvent.getPointerId(0);
                 int pointerIndex = motionEvent.findPointerIndex(mActivePointerId);
 
@@ -114,6 +122,11 @@ public class GameScreenFragment extends Fragment {
         knightRadius = binding.knightWrapper.getRadius();
         knightSpeed = binding.knightWrapper.getSpeed();
 
+        // Delete monsters if they reach castle
+        noLives = binding.monsterView.deleteMonsters();
+        currLives = currLives-noLives;
+        binding.lifeView.getLivesLost(noLives, currLives, maxLives);
+
         //Spawn and move the monsters
         //For some reason, you have to give the window width and height every time.
         binding.monsterView.setWindowWidth(binding.monsterView.getWidth());
@@ -123,6 +136,7 @@ public class GameScreenFragment extends Fragment {
         // Update monster positions in the UI
         binding.monsterView.setKnightPosition(knightPosition);
         binding.monsterView.moveMonsters(knightPosition, knightRadius, knightSpeed);
+
     }
 
 }

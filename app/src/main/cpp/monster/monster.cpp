@@ -8,6 +8,8 @@ Monster::Monster(float x, float y, float speed, int windowWidth, int windowHt)
     : x(x), y(y), speed(speed), windowWidth(windowWidth), windowHeight(windowHt)
     {
     collisionCounter = 0;
+    reachedCastle = 0;
+    kicked = 0;
     }
 
 // Update the monster's position
@@ -77,6 +79,22 @@ void Monster::moveToObjective(float objective_x, float objective_y) {
     y += normalized_y * speed;
 }
 
+// Counters for how many monsters reached objective or got kicked out
+int Monster::inObjective(float obj_x, float obj_y) {
+    float xBound1 = 0, xBound2 = obj_x * 2;
+    if (getX() < xBound2 && getX() > xBound1 && getY() > obj_y) {
+        reachedCastle++;
+    }
+    return reachedCastle;
+}
+
+int Monster::kickedOut() {
+    if (getY() < 0) {
+        kicked++;
+    }
+    return kicked;
+}
+
 // JNI functions
 extern "C"
 // Create a new Monster object and return its pointer
@@ -111,6 +129,13 @@ Java_com_example_knightslabyrinth_MonsterView_getMonsterX(JNIEnv *env, jobject t
     return monster->getX();
 }
 
+// Delete the monster
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_knightslabyrinth_MonsterView_deleteC(JNIEnv *env, jobject,jlong ptr){
+    delete (Monster *)(ptr);
+}
+
 // Get the monster's y position using its pointer
 extern "C" JNIEXPORT jfloat JNICALL
 Java_com_example_knightslabyrinth_MonsterView_getMonsterY(JNIEnv *env, jobject thiz,
@@ -133,3 +158,19 @@ Java_com_example_knightslabyrinth_KnightView_getMonsterY(JNIEnv *env, jobject th
     return static_cast<jfloat>(monster->y);
 }
 
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_example_knightslabyrinth_MonsterView_inObj(JNIEnv *env, jobject thiz, jfloat obj_x,
+                                                    jfloat obj_y, jlong monster_ptr) {
+    // TODO: implement inObj()
+    Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
+    return monster -> inObjective(obj_x, obj_y);
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_example_knightslabyrinth_MonsterView_kick(JNIEnv *env, jobject thiz, jlong monster_ptr) {
+    Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
+    return monster -> kickedOut();
+}
