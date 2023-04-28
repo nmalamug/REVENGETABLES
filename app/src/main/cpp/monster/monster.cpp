@@ -93,26 +93,37 @@ void Monster::update(float objectiveX, float objectiveY, float knightX, float kn
         x += normalized_x * speed;
         y += normalized_y * speed;
     }
-    void Monster::hop(float objective_x, float objective_y) {
-        float direction_x = objective_x - x;
-        float direction_y = objective_y - y;
-        float distance = std::sqrt(direction_x * direction_x + direction_y * direction_y);
-        float normalized_x = direction_x / distance;
-        float normalized_y = direction_y / distance;
-        int hop_distance = 10;
-        if (hopState) {
-            x += normalized_x * hop_distance;
-            y += normalized_y * hop_distance;
-            hopState = !hopState;
-        } else {
-            x += normalized_x * speed;
-            y += normalized_y * speed;
 
-            if (distance <= speed) {
-                hopState = !hopState;
-            }
-        }
+// Add this to the private members of the Monster class
+
+// Add this line to the Monster constructor
+
+
+
+void Monster::hop(float objective_x, float objective_y) {
+    hopCounter++;
+
+    float direction_x = objective_x - x;
+    float direction_y = objective_y - y;
+    float distance = std::sqrt(direction_x * direction_x + direction_y * direction_y);
+    float normalized_x = direction_x / distance;
+    float normalized_y = direction_y / distance;
+
+    float bounceHeight = 10.0f;
+    float bounceFrequency = 0.1f;
+    int pauseDuration = 30; // Adjust this value to change the pause duration
+    int pauseStart = pauseDuration / 2;
+
+    if (hopCounter % (pauseDuration * 2) < pauseDuration) {
+        x += normalized_x * speed;
+        y += normalized_y * speed + bounceHeight * sin(hopCounter * bounceFrequency);
+    } else if (hopCounter % (pauseDuration * 2) >= pauseDuration + pauseStart) {
+        x += normalized_x * speed;
+        y += normalized_y * speed;
     }
+}
+
+
 
 void Monster::diagonal() {
     x += initialDirectionX * speed;

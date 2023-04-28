@@ -21,6 +21,7 @@ public:
     float initialDirectionX;
     float initialDirectionY ;
 private:
+    int hopCounter=0;
     float speed;
     int type;
     int frame;
