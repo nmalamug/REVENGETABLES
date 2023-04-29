@@ -35,16 +35,15 @@ public class MonsterView extends View {
     }
 
     //NDK Functions
-    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int color, int movementType);
+    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType);
     public native void updateMonster(long monsterPtr, float objectiveX, float objectiveY, float knightX, float knightY, int knightRad, float knightSpeed);
     public native float getMonsterX(long monsterPtr);
     public native float getMonsterY(long monsterPtr);
-    public native int getMonsterColor(long monsterPtr);
     public native int getMovementType(long monsterPtr);
     public native int inObj(float obj_x, float obj_y, long monsterPtr);
     public native int kick(long monsterPtr);
     public native void deleteC(long monsterPtr);
-
+    public native int getMonsterFrameC(long monsterPtr);
     // Constructors
     public MonsterView(Context context, AttributeSet attrs, GameScreenFragment gameScreenFragment) {
         super(context, attrs);
@@ -94,17 +93,6 @@ public class MonsterView extends View {
         // and update the monster positions in the UI
         invalidate();
     }
-    private int getMonsterColor(int movementType) {
-        switch (movementType) {
-            case 1:
-                //
-                return Color.BLUE;
-            case 2:
-                return Color.RED;
-            default:
-                return Color.BLACK;
-        }
-    }
     public void spawnMonsters() {
         if (random.nextInt(100) < 1) { // 1% chance to spawn a monster each tick
             float x = random.nextFloat() * windowWidth;
@@ -112,8 +100,7 @@ public class MonsterView extends View {
             float speed = 5; //random.nextFloat() * 10 + 5; // Random speed between 5 and 15
 
             int movementType = random.nextInt(3);
-            int monsterColor = getMonsterColor(movementType);
-            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight, monsterColor, movementType);
+            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight, movementType);
             monsterPtrs.add(monsterPtr);
         }
     }
@@ -121,17 +108,55 @@ public class MonsterView extends View {
     // Draw monsters on the canvas using the list of monster pointers
     private void drawMonsters(Canvas canvas) {
         Paint monsterPaint = new Paint();
-        monsterPaint.setColor(Color.BLUE);
-
+        monsterPaint.setColor(Color.RED);
         for (long monsterPtr : monsterPtrs) {
             float x = getMonsterX(monsterPtr);
             float y = getMonsterY(monsterPtr);
             // Get the monster's movement type
             int movementType = getMovementType(monsterPtr);
-            // Get the monster's color
-            int monsterColor = getMonsterColor(monsterPtr);
-            monsterPaint.setColor(monsterColor);
-
+            // Get the monster's frame
+            int monsterFrame = getMonsterFrameC(monsterPtr);
+            switch(movementType){
+                case(0):
+                    switch(monsterFrame){
+                        case(0):
+                            monsterPaint.setColor(Color.BLACK);
+                            break;
+                        case(1):
+                            monsterPaint.setColor(Color.BLUE);
+                            break;
+                        case(2):
+                            monsterPaint.setColor(Color.RED);
+                            break;
+                    }
+                    break;
+                case(1):
+                    switch(monsterFrame){
+                        case(0):
+                            monsterPaint.setColor(Color.GRAY);
+                            break;
+                        case(1):
+                            monsterPaint.setColor(Color.DKGRAY);
+                            break;
+                        case(2):
+                            monsterPaint.setColor(Color.LTGRAY);
+                            break;
+                    }
+                    break;
+                case(2):
+                    switch(monsterFrame){
+                        case(0):
+                            monsterPaint.setColor(Color.MAGENTA);
+                            break;
+                        case(1):
+                            monsterPaint.setColor(Color.GREEN);
+                            break;
+                        case(2):
+                            monsterPaint.setColor(Color.YELLOW);
+                            break;
+                    }
+                    break;
+            }
             float radius = 20; // Adjust the size of the monster as needed
             canvas.drawCircle(x, y, radius, monsterPaint);
         }

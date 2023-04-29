@@ -10,7 +10,7 @@ public:
     Knight(double theX, double theY);
     void setTargetK(float theX, float theY);
     void move();
-    void update();
+    void update(int moveOpt);
     float getX()const ;
     float getY()const ;
     float getSpeed() const;

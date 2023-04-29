@@ -37,7 +37,7 @@ void Knight::move(){
     }
 }
 
-void Knight::update(){
+void Knight::update(int moveop){
     move();
 }
 
@@ -75,9 +75,9 @@ Java_com_example_knightslabyrinth_KnightWrapper_setTargetC(JNIEnv *env, jobject,
 
 extern"C"
 JNIEXPORT void JNICALL
-Java_com_example_knightslabyrinth_KnightWrapper_updateC(JNIEnv *env, jobject, jlong ptr) {
+Java_com_example_knightslabyrinth_KnightWrapper_updateC(JNIEnv *env, jobject, jlong ptr, jint moveopt) {
     Knight *obj = (Knight *)ptr;
-    obj->update();
+    obj->update(moveopt);
 }
 
 extern"C"

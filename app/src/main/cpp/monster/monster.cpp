@@ -3,8 +3,8 @@
 #include <jni.h>
 #include <memory>
 // Monster class constructor
-Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeight, int color, int movementType)
-        : x(x), y(y), speed(speed), windowWidth(windowWidth), windowHeight(windowHeight), color(color), movementType(movementType), hopState(false) {
+Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType)
+        : x(x), y(y), speed(speed), windowWidth(windowWidth), windowHeight(windowHeight), movementType(movementType), hopState(false) {
     collisionCounter = 0;
     initialDirectionX = 1.0;
     initialDirectionY = 1.0;
@@ -14,7 +14,9 @@ Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeigh
 
 // Update the monster's position
 void Monster::update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed) {
+    timeAlive++;
     if (colliding(knightX, knightY, knightRadius)) {
+        frame = 2;
         //Get the x and y directions of collision
         directionX = knightX - x;
         directionY = knightY - y;
@@ -25,6 +27,15 @@ void Monster::update(float objectiveX, float objectiveY, float knightX, float kn
         doCollision();
         collisionCounter -= 1;
     } else {
+        if(timeAlive%25==0){
+            if(frame == walkingFramesUpTo+1){
+                frame = 0;
+            }else if(frame == walkingFramesUpTo){
+                frame = 0;
+            }else{
+                frame++;
+            }
+        }
         switch (movementType) {
             case 0:
                 //black
@@ -142,6 +153,7 @@ void Monster::hop(float objective_x, float objective_y) {
             initialDirectionY = -initialDirectionY; // Reverse the direction
         }
     }
+
 // Counters for how many monsters reached objective or got kicked out
 int Monster::inObjective(float obj_x, float obj_y) {
     float xBound1 = 0, xBound2 = obj_x * 2;
@@ -158,3 +170,6 @@ int Monster::kickedOut() {
     return kicked;
 }
 
+int Monster::getMonsterFrame(){
+    return frame;
+}

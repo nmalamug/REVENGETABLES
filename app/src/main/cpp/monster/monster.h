@@ -6,7 +6,7 @@
 
 class Monster {
 public:
-    Monster(float x, float y, float speed, int windowWidth, int windowHeight, int color, int movementType);
+    Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType);
     void update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed);
     bool colliding(float kx, float ky, int rad);
     void doCollision();
@@ -17,19 +17,19 @@ public:
     float getY() const;
     void hop(float objectiveX, float objectiveY);
     void diagonal();
+    int getMonsterFrame();
     float y;
     float x;
-    int color;
     float initialDirectionX;
     float initialDirectionY ;
 private:
     int hopCounter=0;
     float speed;
     int type;
-    int frame;
+    int walkingFramesUpTo = 1;
+    int frame = 0;
+    int timeAlive = 0;
     int collisionCounter;
-    int collisionFocalX;
-    int collisionFocalY;
     const int monsterRadius = 50;
     int collisionSpeed;
     const int windowWidth;
