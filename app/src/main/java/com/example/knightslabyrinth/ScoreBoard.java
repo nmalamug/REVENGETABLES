@@ -22,7 +22,7 @@ public class ScoreBoard {
     // Method to save a score for a specific player
     public void saveScore(String playerName, int score) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        Set<String> highScores = sharedPreferences.getStringSet("high_scores", new TreeSet<>());
+        Set<String> highScores = new TreeSet<>(sharedPreferences.getStringSet("high_scores", new TreeSet<>()));
 
         if (highScores.size() < MAX_HIGH_SCORES) {
             highScores.add(score + "_" + playerName);
@@ -38,6 +38,7 @@ public class ScoreBoard {
         editor.putStringSet("high_scores", highScores);
         editor.apply();
     }
+
 
     // Method to retrieve all high scores from the scoreboard
     public List<String> getHighScores() {
