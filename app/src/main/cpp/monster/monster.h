@@ -11,6 +11,8 @@ public:
     bool colliding(float kx, float ky, int rad);
     void doCollision();
     int getMovementType() const;
+    int inObjective(float obj_x, float obj_y);
+    int kickedOut();
     float getX() const;
     float getY() const;
     void hop(float objectiveX, float objectiveY);
@@ -34,6 +36,8 @@ private:
     const int windowHeight;
     float directionX;
     float directionY;
+    int reachedCastle;
+    int kicked;
     void moveToObjective(float objective_x, float objective_y);
     int movementType;
     bool hopState;

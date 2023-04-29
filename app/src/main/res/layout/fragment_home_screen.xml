@@ -83,6 +83,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="36dp"
+        android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="Settings"
         android:textAlignment="center"
@@ -99,6 +100,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="108dp"
 
+        android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="Play"
         android:textAlignment="center"
@@ -116,6 +118,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="48dp"
 
+        android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="User Manual"
         android:textAlignment="center"
@@ -130,6 +133,7 @@
         android:layout_height="164dp"
         android:layout_marginStart="4dp"
 
+        android:fontFamily="@font/press_start_2p"
         android:text="Knight's Labyrinth"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

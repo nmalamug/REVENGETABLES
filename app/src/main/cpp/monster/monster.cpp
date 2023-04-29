@@ -8,8 +8,9 @@ Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeigh
     collisionCounter = 0;
     initialDirectionX = 1.0;
     initialDirectionY = 1.0;
-}
-
+    reachedCastle = 0;
+    kicked = 0;
+    }
 
 // Update the monster's position
 void Monster::update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed) {
@@ -121,31 +122,42 @@ void Monster::hop(float objective_x, float objective_y) {
         x += normalized_x * speed;
         y += normalized_y * speed;
     }
-}
 
 
+    void Monster::diagonal() {
+        x += initialDirectionX * speed;
+        y += initialDirectionY * speed;
 
-void Monster::diagonal() {
-    x += initialDirectionX * speed;
-    y += initialDirectionY * speed;
-
-    if (x < monsterRadius) {
-        x = monsterRadius;
-        initialDirectionX = -initialDirectionX; // Reverse the direction
-    } else if (x > (windowWidth - monsterRadius)) {
-        x = windowWidth - monsterRadius - 1;
-        initialDirectionX = -initialDirectionX; // Reverse the direction
-    }
-
-    if (y < monsterRadius) {
-        y = monsterRadius;
-        initialDirectionY = -initialDirectionY; // Reverse the direction
-    } else if (y > (windowHeight - monsterRadius)) {
-        y = windowHeight - monsterRadius - 1;
-        initialDirectionY = -initialDirectionY; // Reverse the direction
+        if (x < monsterRadius) {
+            x = monsterRadius;
+            initialDirectionX = -initialDirectionX; // Reverse the direction
+        } else if (x > (windowWidth - monsterRadius)) {
+            x = windowWidth - monsterRadius - 1;
+            initialDirectionX = -initialDirectionX; // Reverse the direction
+        }
+        if (y < monsterRadius) {
+            y = monsterRadius;
+            initialDirectionY = -initialDirectionY; // Reverse the direction
+        } else if (y > (windowHeight - monsterRadius)) {
+            y = windowHeight - monsterRadius - 1;
+            initialDirectionY = -initialDirectionY; // Reverse the direction
+        }
     }
 }
 
+// Counters for how many monsters reached objective or got kicked out
+int Monster::inObjective(float obj_x, float obj_y) {
+    float xBound1 = 0, xBound2 = obj_x * 2;
+    if (getX() < xBound2 && getX() > xBound1 && getY() > obj_y) {
+        reachedCastle++;
+    }
+    return reachedCastle;
+}
 
-
+int Monster::kickedOut() {
+    if (getY() < 0) {
+        kicked++;
+    }
+    return kicked;
+}
 

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +16,8 @@ public class MonsterView extends View {
     private Paint paint;
     //private List<Long> monsterPtrs;
     private List<Long> monsterPtrs = new ArrayList<>();
+    private List<Long> killedMonsters = new ArrayList<>();
+
     private GameScreenFragment gameScreenFragment;
     private int windowWidth, windowHeight;
     private Random random = new Random();
@@ -38,7 +41,9 @@ public class MonsterView extends View {
     public native float getMonsterY(long monsterPtr);
     public native int getMonsterColor(long monsterPtr);
     public native int getMovementType(long monsterPtr);
-
+    public native int inObj(float obj_x, float obj_y, long monsterPtr);
+    public native int kick(long monsterPtr);
+    public native void deleteC(long monsterPtr);
 
     // Constructors
     public MonsterView(Context context, AttributeSet attrs, GameScreenFragment gameScreenFragment) {
@@ -116,6 +121,7 @@ public class MonsterView extends View {
     // Draw monsters on the canvas using the list of monster pointers
     private void drawMonsters(Canvas canvas) {
         Paint monsterPaint = new Paint();
+        monsterPaint.setColor(Color.BLUE);
 
         for (long monsterPtr : monsterPtrs) {
             float x = getMonsterX(monsterPtr);
@@ -131,4 +137,25 @@ public class MonsterView extends View {
         }
     }
 
+    // Delete monsters from array when they reach castle
+    public int deleteMonsters() {
+        List<Long> deadMonsters = new ArrayList<>();
+        for (long monsterPtr : monsterPtrs) {
+            if (inObj(windowWidth/2, windowHeight - 200, monsterPtr) > 0) {
+                deadMonsters.add(monsterPtr);
+                deleteC(monsterPtr);
+            } else if (kick(monsterPtr) > 0) {
+                killedMonsters.add(monsterPtr);
+                deleteC(monsterPtr);
+            }
+        }
+
+        for (long monsterPtr : deadMonsters) {
+            monsterPtrs.remove(monsterPtr);
+        }
+        for (long monsterPtr : killedMonsters) {
+            monsterPtrs.remove(monsterPtr);
+        }
+        return deadMonsters.size();
+    }
 }
