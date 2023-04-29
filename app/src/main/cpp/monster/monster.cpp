@@ -122,8 +122,7 @@ void Monster::hop(float objective_x, float objective_y) {
         x += normalized_x * speed;
         y += normalized_y * speed;
     }
-
-
+}
     void Monster::diagonal() {
         x += initialDirectionX * speed;
         y += initialDirectionY * speed;
@@ -143,8 +142,6 @@ void Monster::hop(float objective_x, float objective_y) {
             initialDirectionY = -initialDirectionY; // Reverse the direction
         }
     }
-}
-
 // Counters for how many monsters reached objective or got kicked out
 int Monster::inObjective(float obj_x, float obj_y) {
     float xBound1 = 0, xBound2 = obj_x * 2;

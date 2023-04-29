@@ -71,3 +71,29 @@ extern "C" JNIEXPORT jint JNICALL
 Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
 return monster->getMovementType();
 }
+
+
+// Delete the monster
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_knightslabyrinth_MonsterView_deleteC(JNIEnv *env, jobject,jlong ptr) {
+    delete (Monster *) (ptr);
+}
+
+
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_example_knightslabyrinth_MonsterView_inObj(JNIEnv *env, jobject thiz, jfloat obj_x,
+                                                    jfloat obj_y, jlong monster_ptr) {
+    // TODO: implement inObj()
+    Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
+    return monster -> inObjective(obj_x, obj_y);
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_example_knightslabyrinth_MonsterView_kick(JNIEnv *env, jobject thiz, jlong monster_ptr) {
+    Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
+    return monster -> kickedOut();
+}
