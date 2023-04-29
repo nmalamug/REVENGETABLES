@@ -12,7 +12,7 @@ public class LifeView extends View {
     private float xx;
     public int livesLost;
     public int maxLives = 7;
-    public int currLives = 7;
+    public int currLives = maxLives;
     public GameScreenFragment gameScreenFragment;
 
     public LifeView(Context context, AttributeSet attrs, GameScreenFragment gameScreenFragment) {
@@ -36,6 +36,7 @@ public class LifeView extends View {
         paint = new Paint();
         paint.setColor(Color.MAGENTA);
     }
+
     public void setGameScreenFragment(GameScreenFragment gameScreenFragment) {
         this.gameScreenFragment = gameScreenFragment;
     }
@@ -50,12 +51,15 @@ public class LifeView extends View {
     }
 
     @Override
-    public void onDraw(Canvas canvas)
-    {
+    public void onDraw(Canvas canvas) {
         drawLives(canvas);
         super.onDraw(canvas);
     }
 
+    public void setMaxLives(int lives){
+        maxLives = lives;
+        currLives = maxLives;
+    }
     // draw lives on top right of screen
     public void drawLives(Canvas canvas) {
         Paint lifePaint = new Paint();
@@ -63,38 +67,24 @@ public class LifeView extends View {
         lifePaint.setColor(Color.MAGENTA);
         noLife.setColor(Color.GREEN);
 
-        float x = getWidth() / 2 + 20;
+        float x = getWidth() - 100;
         float y = 100;
         float radius = 23;
-        for (int i = 1; i <= maxLives; i++)
-        {
-            if (i>currLives) {
+        for (int i = 1; i <= maxLives; i++) {
+            if (i > currLives) {
                 canvas.drawCircle(x, y, radius, noLife);
             } else {
                 canvas.drawCircle(x, y, radius, lifePaint);
             }
-            x += 100;
+            x -= 100;
         }
     }
-/*
-    // lose 1 life every time 1 monster reaches bottom portion of screen
-    public void loseLife(Canvas canvas) {
 
-        Paint noLife = new Paint();
-        noLife.setColor(Color.GREEN);
-
-        float yy = 100;
-        float radius = 25; // bigger than size of "heart"
-
-        if (livesLost > 0)
-        {
-            for (int i = 1; i <= livesLost; i++) {
-                canvas.drawCircle(xx, yy, radius, noLife);
-                xx += 100;
-            }
+    public boolean updateScore(long tick){
+        if(tick%5 == 0){
+            return true;
+        }else{
+            return false;
         }
-
-
-        invalidate();
-    }*/
+    }
 }

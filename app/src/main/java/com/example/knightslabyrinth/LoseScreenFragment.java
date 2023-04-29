@@ -29,7 +29,7 @@ public class LoseScreenFragment extends Fragment{
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        binding.textView2.setText(String.valueOf(MainActivity.settings.getLastScore()));
         binding.buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

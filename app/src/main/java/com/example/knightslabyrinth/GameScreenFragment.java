@@ -14,6 +14,8 @@ import android.os.Handler;
 
 import com.example.knightslabyrinth.databinding.FragmentGameScreenBinding;
 
+import java.util.Set;
+
 public class GameScreenFragment extends Fragment {
     // Native methods
     public native String getNativeMessage();
@@ -33,30 +35,40 @@ public class GameScreenFragment extends Fragment {
     private float knightSpeed;
     private int noLives;
 
+    private int score;
     private int maxLives = 7;
-    private int currLives = maxLives;// changes based on difficulty
+    private int currLives;// changes based on difficulty
     // private int lives = maxLives - noLives;
-
+    private long numticks = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGameScreenBinding.inflate(inflater, container, false);
-        //Calls stuff that needs to be called on game start.
-
-
+        //Calls stuff that needs to be called on game start
+        gameStart();
         return binding.getRoot();
     }
 
     //Code to start and end the game3
-    /*
-    private void gameStart(){
 
+    private void gameStart(){
+        int difficulty = MainActivity.settings.getDifficulty();
+        if(difficulty == 0){
+            maxLives = 7;
+        }else if(difficulty == 1){
+            maxLives = 5;
+        }else{
+            maxLives = 3;
+        }
+        currLives = maxLives;
+        binding.lifeView.setMaxLives(maxLives);
     }
     private void gameEnd(){
+        //Store the most recent score here.
         //binding.knightWrapper.killKnight();
         //Make deleting things work - Memory leak??
     }
-    */
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //Setup the Game
@@ -80,8 +92,6 @@ public class GameScreenFragment extends Fragment {
                         .navigate(R.id.action_GameScreenFragment_to_HomeScreenFragment);
             }
         });
-        String nativeMessage = getNativeMessage();
-        binding.textView.setText(nativeMessage);
 
         // Set up touch listener for the KnightView
         binding.knightWrapper.setOnTouchListener(new View.OnTouchListener() {
@@ -111,21 +121,26 @@ public class GameScreenFragment extends Fragment {
         super.onDestroyView();
         binding = null;
         handler.removeCallbacks(runTicks);
-        //gameEnd();
+        gameEnd();
     }
 
     public void gameTick() {
-        getNewTick();
+        numticks++;
+
         //Move the knight and get position/radius
         binding.knightWrapper.moveKnight();
         knightPosition = binding.knightWrapper.getKnightPosition();
         knightRadius = binding.knightWrapper.getRadius();
         knightSpeed = binding.knightWrapper.getSpeed();
 
-        // Delete monsters if they reach castle
+        // Check lives lost then delete monsters if they reach castle, update score
         noLives = binding.monsterView.deleteMonsters();
         currLives = currLives-noLives;
         binding.lifeView.getLivesLost(noLives, currLives, maxLives);
+        if(binding.lifeView.updateScore(numticks)){
+            score++;
+        }
+        binding.textView.setText(String.valueOf(score));
 
         //Spawn and move the monsters
         //For some reason, you have to give the window width and height every time.
@@ -137,6 +152,7 @@ public class GameScreenFragment extends Fragment {
         binding.monsterView.setKnightPosition(knightPosition);
         binding.monsterView.moveMonsters(knightPosition, knightRadius, knightSpeed);
         if(currLives <= 0){
+            MainActivity.settings.setLastScore(score);
             NavHostFragment.findNavController(GameScreenFragment.this)
                     .navigate(R.id.action_GameScreenFragment_to_LoseScreenFragment);
         }

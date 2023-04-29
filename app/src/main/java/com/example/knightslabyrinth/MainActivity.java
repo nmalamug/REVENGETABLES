@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler handler = new Handler();
     private Runnable showToastRunnable;
+    public static SettingsManager settings = new SettingsManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

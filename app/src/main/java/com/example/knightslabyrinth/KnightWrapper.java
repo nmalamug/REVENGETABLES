@@ -12,6 +12,7 @@ public class KnightWrapper extends View{
     private PointF knightPosition;
     private long knight;
     private int radius = 100;
+    private int moveOption;
 
     public int getRadius(){
         return radius;
@@ -41,10 +42,17 @@ public class KnightWrapper extends View{
 
     private void init() {
         paint = new Paint();
-        paint.setColor(0xFFFF0000); // Red color
         knightPosition = new PointF(0, 0);
         //Code for creating c++ knight object
         knight = mkNew();
+        moveOption = MainActivity.settings.getKnight();
+        if(moveOption == 1){
+            paint.setColor(0xFFFF0000); // Red color
+        }else if(moveOption == 2){
+            paint.setColor(0xffffff00); // Yellow color
+        }else{
+            paint.setColor(0xff0000ff ); // Blue Color
+        }
     }
 
 
