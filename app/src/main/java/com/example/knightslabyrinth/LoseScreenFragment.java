@@ -15,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import java.util.List;
 public class LoseScreenFragment extends Fragment {
 
+
     private TextView textView2;
     private Button buttonMenu;
     private Button buttonGame;

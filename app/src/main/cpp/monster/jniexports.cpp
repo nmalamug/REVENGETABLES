@@ -86,7 +86,6 @@ extern "C"
 JNIEXPORT jint JNICALL
 Java_com_example_knightslabyrinth_MonsterView_inObj(JNIEnv *env, jobject thiz, jfloat obj_x,
                                                     jfloat obj_y, jlong monster_ptr) {
-    // TODO: implement inObj()
     Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
     return monster -> inObjective(obj_x, obj_y);
 }

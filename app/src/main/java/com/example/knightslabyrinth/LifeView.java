@@ -65,7 +65,7 @@ public class LifeView extends View {
         Paint lifePaint = new Paint();
         Paint noLife = new Paint();
         lifePaint.setColor(Color.MAGENTA);
-        noLife.setColor(Color.GREEN);
+        noLife.setColor(Color.GRAY);
 
         float x = getWidth() - 100;
         float y = 100;
@@ -80,11 +80,8 @@ public class LifeView extends View {
         }
     }
 
-    public boolean updateScore(long tick){
-        if(tick%5 == 0){
-            return true;
-        }else{
-            return false;
-        }
+    public boolean updateScore(long tick) {
+        if (tick%40 == 0) { return true; }
+        else { return false; }
     }
 }

@@ -16,7 +16,6 @@ public class MonsterView extends View {
     private Paint paint;
     //private List<Long> monsterPtrs;
     private List<Long> monsterPtrs = new ArrayList<>();
-    private List<Long> killedMonsters = new ArrayList<>();
 
     private GameScreenFragment gameScreenFragment;
     private int windowWidth, windowHeight;
@@ -139,6 +138,7 @@ public class MonsterView extends View {
     // Delete monsters from array when they reach castle
     public int deleteMonsters() {
         List<Long> deadMonsters = new ArrayList<>();
+        List<Long> killedMonsters = new ArrayList<>();
         for (long monsterPtr : monsterPtrs) {
             if (inObj(windowWidth/2, windowHeight - 200, monsterPtr) > 0) {
                 deadMonsters.add(monsterPtr);
@@ -156,5 +156,27 @@ public class MonsterView extends View {
             monsterPtrs.remove(monsterPtr);
         }
         return deadMonsters.size();
+    }
+
+    public int getNormKicked() { // normal monster
+        int k = 0;
+        for (long monsterPtr : monsterPtrs) {
+            if (kick(monsterPtr) > 0 && getMovementType(monsterPtr) == 0) { k++; }
+        }
+        return k;
+    }
+    public int getHopKicked() { // hop monster
+        int k = 0;
+        for (long monsterPtr : monsterPtrs) {
+            if (kick(monsterPtr) > 0 && getMovementType(monsterPtr) == 1) { k++; }
+        }
+        return k;
+    }
+    public int getDiagKicked() { // diagonal monster
+        int k = 0;
+        for (long monsterPtr : monsterPtrs) {
+            if (kick(monsterPtr) > 0 && getMovementType(monsterPtr) == 2) { k++; }
+        }
+        return k;
     }
 }
