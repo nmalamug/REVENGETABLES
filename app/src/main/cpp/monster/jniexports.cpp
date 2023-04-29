@@ -12,8 +12,8 @@ extern "C"
 jlong JNIEXPORT
 Java_com_example_knightslabyrinth_MonsterView_createMonster(JNIEnv *env, jobject ,
                                                             jfloat x, jfloat y, jfloat speed,
-                                                            jint windowWidth, jint windowHeight, jint color, jint movementType) {
-    Monster *monster = new Monster(x, y, speed, windowWidth, windowHeight, color, movementType);
+                                                            jint windowWidth, jint windowHeight, jint movementType) {
+    Monster *monster = new Monster(x, y, speed, windowWidth, windowHeight, movementType);
     return reinterpret_cast<jlong>(monster);
 }
 extern "C"
@@ -61,17 +61,18 @@ extern "C" JNIEXPORT jfloat JNICALL
 Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
 return static_cast<jfloat>(monster->y);
 }
-extern "C" JNIEXPORT jint JNICALL
-        Java_com_example_knightslabyrinth_MonsterView_getMonsterColor(JNIEnv *env, jobject thiz, jlong monster_ptr) {
-Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
-return monster->color;
-}
+
 extern "C" JNIEXPORT jint JNICALL
         Java_com_example_knightslabyrinth_MonsterView_getMovementType(JNIEnv *env, jobject thiz, jlong monster_ptr) {
 Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
 return monster->getMovementType();
 }
 
+extern "C" JNIEXPORT jint JNICALL
+Java_com_example_knightslabyrinth_MonsterView_getMonsterFrameC(JNIEnv *env, jobject thiz, jlong monster_ptr) {
+    Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
+    return monster->getMonsterFrame();
+}
 
 // Delete the monster
 extern "C"

@@ -67,7 +67,7 @@ public class KnightWrapper extends View{
         canvas.drawCircle(knightPosition.x, knightPosition.y, radius, paint);
     }
     public void moveKnight(){
-        updateC(knight);
+        updateC(knight, moveOption);
         knightPosition.x = getXC(knight);
         knightPosition.y = getYC(knight);
         invalidate();
@@ -82,7 +82,7 @@ public class KnightWrapper extends View{
     public native long mkNew();
     public native void deleteC(long knight);
     public native void setTargetC(long knight, float x,float y);
-    public native void updateC(long knight);
+    public native void updateC(long knight, int move);
     public native float getXC(long knight);
     public native float getYC(long knight);
     public native float getSpeedC(long knight);
