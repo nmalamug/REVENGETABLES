@@ -37,8 +37,7 @@ public class GameScreenFragment extends Fragment {
 
     private int score;
     private int maxLives = 7;
-    private int currLives;// changes based on difficulty
-    // private int lives = maxLives - noLives;
+    private int currLives;
     private long numticks = 0;
 
     @Override
@@ -134,12 +133,22 @@ public class GameScreenFragment extends Fragment {
         knightSpeed = binding.knightWrapper.getSpeed();
 
         // Check lives lost then delete monsters if they reach castle, update score
-        noLives = binding.monsterView.deleteMonsters();
-        currLives = currLives-noLives;
-        binding.lifeView.getLivesLost(noLives, currLives, maxLives);
-        if(binding.lifeView.updateScore(numticks)){
-            score++;
+        if (binding.monsterView.getNormKicked() > 0) {
+            score += 50 * binding.monsterView.getNormKicked();
         }
+        else if (binding.monsterView.getHopKicked() > 0) {
+            score += 150 * binding.monsterView.getHopKicked();
+        }
+        else if (binding.monsterView.getDiagKicked() > 0) {
+            score += 300 * binding.monsterView.getDiagKicked();
+        }
+        noLives = binding.monsterView.deleteMonsters();
+        currLives = currLives - noLives;
+        binding.lifeView.getLivesLost(noLives, currLives, maxLives);
+        if (binding.lifeView.updateScore(numticks)) {
+            score += 5;
+        }
+
         binding.textView.setText(String.valueOf(score));
 
         //Spawn and move the monsters

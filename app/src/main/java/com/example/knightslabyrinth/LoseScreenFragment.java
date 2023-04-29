@@ -12,7 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.knightslabyrinth.databinding.FragmentLoseScreenBinding;
 
-public class LoseScreenFragment extends Fragment{
+public class LoseScreenFragment extends Fragment {
 
     private FragmentLoseScreenBinding binding;
 
