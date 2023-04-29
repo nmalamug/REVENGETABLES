@@ -127,6 +127,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
 
+    <Button
+        android:id="@+id/buttonHighScore"
+        android:layout_width="309dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="48dp"
+
+        android:fontFamily="@font/press_start_2p"
+        android:onClick="move"
+        android:text="High Score"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonManual" />
+
     <TextView
         android:id="@+id/simpleTextView"
         android:layout_width="440dp"

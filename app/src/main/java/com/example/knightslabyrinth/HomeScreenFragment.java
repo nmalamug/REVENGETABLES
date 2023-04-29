@@ -50,6 +50,13 @@ public class HomeScreenFragment extends Fragment {
                         .navigate(R.id.action_manual_button);
             }
         });
+        binding.buttonHighScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(HomeScreenFragment.this)
+                        .navigate(R.id.action_Home_HighScore);
+            }
+        });
     }
 
     @Override

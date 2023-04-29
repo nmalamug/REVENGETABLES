@@ -136,7 +136,9 @@ public class GameScreenFragment extends Fragment {
         // Update monster positions in the UI
         binding.monsterView.setKnightPosition(knightPosition);
         binding.monsterView.moveMonsters(knightPosition, knightRadius, knightSpeed);
-
+        if(currLives <= 0){
+            NavHostFragment.findNavController(GameScreenFragment.this)
+                    .navigate(R.id.action_GameScreenFragment_to_LoseScreenFragment);
+        }
     }
-
 }
