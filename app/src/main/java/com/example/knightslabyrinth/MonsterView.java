@@ -1,6 +1,8 @@
 package com.example.knightslabyrinth;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -13,6 +15,7 @@ import java.util.Random;
 import android.graphics.PointF;
 
 public class MonsterView extends View {
+    private static int pic;
     private Paint paint;
     //private List<Long> monsterPtrs;
     private List<Long> monsterPtrs = new ArrayList<>();
@@ -73,7 +76,7 @@ public class MonsterView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (monsterPtrs != null) {
-            drawMonsters(canvas);
+            drawMonsters(canvas, getContext());
         }
     }
 
@@ -106,9 +109,12 @@ public class MonsterView extends View {
     }
 
     // Draw monsters on the canvas using the list of monster pointers
-    private void drawMonsters(Canvas canvas) {
+    private void drawMonsters(Canvas canvas, Context current) {
+
+        Context context = current;
         Paint monsterPaint = new Paint();
         monsterPaint.setColor(Color.RED);
+
         for (long monsterPtr : monsterPtrs) {
             float x = getMonsterX(monsterPtr);
             float y = getMonsterY(monsterPtr);
@@ -120,12 +126,15 @@ public class MonsterView extends View {
                 case(0):
                     switch(monsterFrame){
                         case(0):
+                            pic = R.drawable.potato;
                             monsterPaint.setColor(Color.BLACK);
                             break;
                         case(1):
+                            pic = R.drawable.potato_m;
                             monsterPaint.setColor(Color.BLUE);
                             break;
                         case(2):
+                            pic = R.drawable.potato_dead;
                             monsterPaint.setColor(Color.RED);
                             break;
                     }
@@ -133,12 +142,15 @@ public class MonsterView extends View {
                 case(1):
                     switch(monsterFrame){
                         case(0):
+                            pic = R.drawable.tomato;
                             monsterPaint.setColor(Color.GRAY);
                             break;
                         case(1):
+                            pic = R.drawable.tomato_m;
                             monsterPaint.setColor(Color.DKGRAY);
                             break;
                         case(2):
+                            pic = R.drawable.tomato_dead;
                             monsterPaint.setColor(Color.LTGRAY);
                             break;
                     }
@@ -146,19 +158,23 @@ public class MonsterView extends View {
                 case(2):
                     switch(monsterFrame){
                         case(0):
+                            pic = R.drawable.carrot;
                             monsterPaint.setColor(Color.MAGENTA);
                             break;
                         case(1):
+                            pic = R.drawable.carrot_m;
                             monsterPaint.setColor(Color.GREEN);
                             break;
                         case(2):
+                            pic = R.drawable.carrot_dead;
                             monsterPaint.setColor(Color.YELLOW);
                             break;
                     }
                     break;
             }
+            Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),pic);
             float radius = 20; // Adjust the size of the monster as needed
-            canvas.drawCircle(x, y, radius, monsterPaint);
+            canvas.drawBitmap(bitmap, x, y, monsterPaint);
         }
     }
 
