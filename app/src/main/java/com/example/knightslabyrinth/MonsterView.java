@@ -110,7 +110,6 @@ public class MonsterView extends View {
             float x = random.nextFloat() * windowWidth;
             float y = 0;
             float speed = 5; //random.nextFloat() * 10 + 5; // Random speed between 5 and 15
-
             int movementType = random.nextInt(3);
             int monsterColor = getMonsterColor(movementType);
             long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight, monsterColor, movementType);

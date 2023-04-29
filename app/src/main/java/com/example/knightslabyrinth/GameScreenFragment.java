@@ -157,4 +157,13 @@ public class GameScreenFragment extends Fragment {
                     .navigate(R.id.action_GameScreenFragment_to_LoseScreenFragment);
         }
     }
+    private void endGame(int currentGameScore) {
+        // Save the score to the scoreboard
+        ScoreBoard scoreBoard = new ScoreBoard(getContext());
+        scoreBoard.saveScore("Player", currentGameScore);
+
+        // Navigate to the LoseScreenFragment
+        NavHostFragment.findNavController(GameScreenFragment.this)
+                .navigate(R.id.action_GameScreenFragment_to_LoseScreenFragment);
+    }
 }
