@@ -40,9 +40,10 @@ public class GameScreenFragment extends Fragment {
     private int maxLives = 7;
     private int currLives;
     private long numticks = 0;
+    boolean Paused = false;
 
     MediaPlayer GameOverSound;
-    MediaPlayer GameMusic;
+    static MediaPlayer GameMusic;
     MediaPlayer buttonClick;
 
     @Override
@@ -81,7 +82,9 @@ public class GameScreenFragment extends Fragment {
         GameMusic.setLooping(true);
         GameMusic.setVolume(0, 0.2f);
         GameOverSound.setVolume(0, 0.5f);
-        GameMusic.start();
+        if (SettingsFragment.getAudioSetting()) {
+            GameMusic.start();
+        }
         //Setup the Game
         //gameStart();
         // Set reference to GameScreenFragment in LifeView
@@ -90,7 +93,9 @@ public class GameScreenFragment extends Fragment {
         //Code for updating game ticks
         //Tick time currently 20 ms
         runTicks = () -> {
-            gameTick();
+            if (!Paused) {
+                gameTick();
+            }
             handler.postDelayed(runTicks, 20);
         };
         handler.postDelayed(runTicks, 20);
@@ -101,7 +106,9 @@ public class GameScreenFragment extends Fragment {
                 GameMusic.stop();
                 GameMusic.release();
                 GameMusic = null;
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(GameScreenFragment.this)
                         .navigate(R.id.action_GameScreenFragment_to_HomeScreenFragment);
             }
@@ -156,6 +163,11 @@ public class GameScreenFragment extends Fragment {
         super.onDestroyView();
         binding = null;
         handler.removeCallbacks(runTicks);
+        if (GameMusic != null) {
+            GameMusic.stop();
+            GameMusic.release();
+            GameMusic = null;
+        }
         gameEnd();
     }
 
@@ -200,12 +212,16 @@ public class GameScreenFragment extends Fragment {
             GameMusic.stop();
             GameMusic.release();
             GameMusic = null;
-            GameOverSound.start();
+            if (SettingsFragment.getAudioSetting()) {
+                GameOverSound.start();
+            }
             MainActivity.settings.setLastScore(score);
             NavHostFragment.findNavController(GameScreenFragment.this)
                     .navigate(R.id.action_GameScreenFragment_to_LoseScreenFragment);
         }
     }
+
+
     private void endGame(int currentGameScore) {
         // Save the score to the scoreboard
         ScoreBoard scoreBoard = new ScoreBoard(getContext());
@@ -213,7 +229,9 @@ public class GameScreenFragment extends Fragment {
         GameMusic.stop();
         GameMusic.release();
         GameMusic = null;
-        GameOverSound.start();
+        if (SettingsFragment.getAudioSetting()) {
+            GameOverSound.start();
+        }
         // Navigate to the LoseScreenFragment
         NavHostFragment.findNavController(GameScreenFragment.this)
                 .navigate(R.id.action_GameScreenFragment_to_LoseScreenFragment);

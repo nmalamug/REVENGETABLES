@@ -2,10 +2,12 @@ package com.example.knightslabyrinth;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import android.media.AudioManager;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,7 @@ import com.example.knightslabyrinth.databinding.FragmentSettingsBinding;
 public class SettingsFragment extends Fragment  {
 
     private FragmentSettingsBinding binding;
+    private static boolean AudioSetting = true;
     MediaPlayer buttonClick;
     @Override
     public View onCreateView(
@@ -43,10 +46,17 @@ public class SettingsFragment extends Fragment  {
         } else if (MainActivity.settings.getDifficulty() == 2) {
             binding.radioHard.setChecked(true);
         }
+        if (AudioSetting) {
+            binding.radioSoundOn.setChecked(true);
+        } else {
+            binding.radioSoundOff.setChecked(true);
+        }
         binding.buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(SettingsFragment.this)
                         .navigate(R.id.action_Settings_to_HomeScreenFragment);
             }
@@ -80,6 +90,20 @@ public class SettingsFragment extends Fragment  {
                 }
             }
         });
+
+        RadioGroup radioGroupAudio = (RadioGroup) binding.audioSettings;
+        radioGroupAudio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+                if (binding.radioSoundOn.isChecked()) {
+                    AudioSetting = true;
+                } else if (binding.radioSoundOff.isChecked()) {
+                    AudioSetting = false;
+                }
+            }
+        });
         buttonClick.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
@@ -90,6 +114,12 @@ public class SettingsFragment extends Fragment  {
                 }
             }
         });
+    }
+    public static boolean getAudioSetting() {
+        return AudioSetting;
+    }
+    public static void setAudioSetting(boolean bool) {
+        AudioSetting = bool;
     }
 
     @Override

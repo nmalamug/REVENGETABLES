@@ -34,7 +34,9 @@ public class UserManualFragment extends Fragment {
         binding.buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(UserManualFragment.this)
                         .navigate(R.id.action_Manual_to_HomeScreenFragment);
             }

@@ -1,9 +1,11 @@
 package com.example.knightslabyrinth;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.provider.MediaStore;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Runnable showToastRunnable;
     public static SettingsManager settings = new SettingsManager();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         // Load the C++ library
         System.loadLibrary("knightslabyrinth");
+        SettingsFragment.setAudioSetting(true);
 
     }
 
@@ -68,5 +72,29 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        //Pause your player
+        if (GameScreenFragment.GameMusic != null) {
+            GameScreenFragment.GameMusic.pause();
+        }
+        if (HomeScreenFragment.mediaPlayer != null) {
+            HomeScreenFragment.mediaPlayer.pause();
+        }
+        //do more stuff
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Play again
+        if (GameScreenFragment.GameMusic != null) {
+            GameScreenFragment.GameMusic.start();
+        }
+        if (HomeScreenFragment.mediaPlayer != null) {
+            HomeScreenFragment.mediaPlayer.start();
+        }
+        //do more stuff
     }
 }

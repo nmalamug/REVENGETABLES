@@ -42,7 +42,9 @@ public class HighScoreFragment extends Fragment{
         binding.buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(HighScoreFragment.this)
                         .navigate(R.id.action_HighScore_to_Home);
             }

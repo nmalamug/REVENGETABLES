@@ -14,7 +14,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.knightslabyrinth.databinding.FragmentHomeScreenBinding;
 
 public class HomeScreenFragment extends Fragment {
-    MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer;
     MediaPlayer buttonClick;
 
     private FragmentHomeScreenBinding binding;
@@ -33,14 +33,18 @@ public class HomeScreenFragment extends Fragment {
         buttonClick = MediaPlayer.create(getContext(), R.raw.buttonclick);
         mediaPlayer.setLooping(true);
         mediaPlayer.setVolume(0, 0.2f);
-        mediaPlayer.start();
+        if (SettingsFragment.getAudioSetting()) {
+            mediaPlayer.start();
+        }
         binding.buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 mediaPlayer = null;
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(HomeScreenFragment.this)
                         .navigate(R.id.action_play_button);
             }
@@ -51,7 +55,9 @@ public class HomeScreenFragment extends Fragment {
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 mediaPlayer = null;
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(HomeScreenFragment.this)
                         .navigate(R.id.action_settings_button);
             }
@@ -62,7 +68,9 @@ public class HomeScreenFragment extends Fragment {
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 mediaPlayer = null;
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(HomeScreenFragment.this)
                         .navigate(R.id.action_manual_button);
             }
@@ -73,7 +81,9 @@ public class HomeScreenFragment extends Fragment {
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 mediaPlayer = null;
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(HomeScreenFragment.this)
                         .navigate(R.id.action_Home_HighScore);
             }
@@ -94,6 +104,11 @@ public class HomeScreenFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
 }

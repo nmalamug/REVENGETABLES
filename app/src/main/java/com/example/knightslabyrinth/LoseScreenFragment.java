@@ -50,7 +50,9 @@ public class LoseScreenFragment extends Fragment {
         buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(LoseScreenFragment.this)
                         .navigate(R.id.action_Lose_screen_to_Home);
             }
@@ -58,7 +60,9 @@ public class LoseScreenFragment extends Fragment {
         buttonGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonClick.start();
+                if (SettingsFragment.getAudioSetting()) {
+                    buttonClick.start();
+                }
                 NavHostFragment.findNavController(LoseScreenFragment.this)
                         .navigate(R.id.action_Lose_screen_to_Game);
             }
