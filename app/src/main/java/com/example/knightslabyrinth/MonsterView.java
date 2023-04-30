@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 import android.graphics.PointF;
 
-public class MonsterView extends View {
+public class MonsterView extends View implements MonsterAPI{
     private static int pic;
     private Paint paint;
     //private List<Long> monsterPtrs;
