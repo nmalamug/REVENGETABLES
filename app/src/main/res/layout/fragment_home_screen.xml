@@ -149,14 +149,15 @@
         android:id="@+id/simpleTextView"
         android:layout_width="440dp"
         android:layout_height="164dp"
-        android:layout_marginStart="0dp"
 
+        android:layout_marginStart="-10dp"
+        android:layout_marginBottom="80dp"
         android:fontFamily="@font/press_start_2p"
-        android:text="Revengtable"
+        android:text="Revengtables"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textColor="#100A0A"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonStart"
         app:layout_constraintStart_toStartOf="parent" />
 
