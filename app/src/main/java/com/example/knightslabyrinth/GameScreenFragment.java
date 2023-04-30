@@ -40,6 +40,7 @@ public class GameScreenFragment extends Fragment {
     private int currLives;
     private long numticks = 0;
     private int knightAbilityActive;
+    private int difficulty;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class GameScreenFragment extends Fragment {
     //Code to start and end the game3
 
     private void gameStart(){
-        int difficulty = MainActivity.settings.getDifficulty();
+        difficulty = MainActivity.settings.getDifficulty();
         if(difficulty == 0){
             maxLives = 7;
         }else if(difficulty == 1){
@@ -129,19 +130,19 @@ public class GameScreenFragment extends Fragment {
 
         // Check lives lost then delete monsters if they reach castle, update score
         if (binding.monsterView.getNormKicked() > 0) {
-            score += 50 * binding.monsterView.getNormKicked();
+            score += 50 * (difficulty+1) * binding.monsterView.getNormKicked();
         }
         else if (binding.monsterView.getHopKicked() > 0) {
-            score += 150 * binding.monsterView.getHopKicked();
+            score += 150 * (difficulty+1) * binding.monsterView.getHopKicked();
         }
         else if (binding.monsterView.getDiagKicked() > 0) {
-            score += 300 * binding.monsterView.getDiagKicked();
+            score += 300 * (difficulty+1) * binding.monsterView.getDiagKicked();
         }
         noLives = binding.monsterView.deleteMonsters();
         currLives = currLives - noLives;
         binding.lifeView.getLivesLost(noLives, currLives, maxLives);
         if (binding.lifeView.updateScore(numticks)) {
-            score += 5;
+            score += 5 * (difficulty+1);
         }
 
         binding.textView.setText(String.valueOf(score));
@@ -150,7 +151,7 @@ public class GameScreenFragment extends Fragment {
         //For some reason, you have to give the window width and height every time.
         binding.monsterView.setWindowWidth(binding.monsterView.getWidth());
         binding.monsterView.setWindowHeight(binding.monsterView.getHeight());
-        binding.monsterView.spawnMonsters();
+        binding.monsterView.spawnMonsters(numticks);
 
         // Update monster positions in the UI
         //binding.monsterView.setKnightPosition(knightPosition);

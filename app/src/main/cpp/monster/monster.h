@@ -6,7 +6,7 @@
 
 class Monster {
 public:
-    Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int knightType);
+    Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int knightType, int difficulty);
     void update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed, int knightAbility);
     bool colliding(float kx, float ky, int rad);
     void doCollision();
@@ -42,6 +42,7 @@ private:
     int kicked;
     void moveToObjective(float objective_x, float objective_y);
     int movementType;
+    int difficulty;
     bool hopState;
 
 };

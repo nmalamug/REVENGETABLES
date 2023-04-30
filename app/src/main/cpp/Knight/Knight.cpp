@@ -52,9 +52,9 @@ void Knight::moveBomber(){
     if(cooldown>0){
         cooldown--;
     }
-    speed = distance/3 + 20;
-    if(speed>75){
-        speed = 75;
+    speed = distance/3;
+    if(speed>50){
+        speed = 50;
     }
     float xdist = target.x-x;
     float ydist = target.y-y;
@@ -70,7 +70,7 @@ void Knight::moveBomber(){
 }
 
 bool Knight::bomberAbilityReady(){
-    if(cooldown == 0 && distance>200+speed*8){
+    if(cooldown == 0 && distance>200+speed*50){
         return true;
     }else{
         return false;
@@ -104,8 +104,8 @@ void Knight::moveDasher(){
         cooldown--;
     }
     speed = distance/3+10;
-    if(speed>125){
-        speed = 125;
+    if(speed>75){
+        speed = 75;
     }
     float xdist = target.x-x;
     float ydist = target.y-y;
@@ -121,7 +121,7 @@ void Knight::moveDasher(){
 }
 
 bool Knight::dasherAbilityReady(){
-    if(cooldown == 0 && distance>400+speed*4){
+    if(cooldown == 0 && distance>400+speed*20){
         return true;
     }else{
         return false;

@@ -25,6 +25,7 @@ public class MonsterView extends View {
     private Random random = new Random();
     private PointF knightPosition;
     private int knightType = MainActivity.settings.getKnight();
+    private int difficulty = MainActivity.settings.getDifficulty();
 
     //Set the window width and height here
     public void setWindowWidth (int width){
@@ -38,7 +39,7 @@ public class MonsterView extends View {
     }
 
     //NDK Functions
-    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int knightType);
+    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int knightType, int difficulty);
     public native void updateMonster(long monsterPtr, float objectiveX, float objectiveY, float knightX, float knightY, int knightRad, float knightSpeed, int knightAbilityActive);
     public native float getMonsterX(long monsterPtr);
     public native float getMonsterY(long monsterPtr);
@@ -87,22 +88,33 @@ public class MonsterView extends View {
 
     public void moveMonsters(PointF knightPosition, int knightRadius, float knightSpeed, int knightAbility){
         // Update monsters
-        float objectiveX = windowWidth / 2;
-        float objectiveY = windowHeight-100;
+        float objectiveY = windowHeight;
         for (long monsterPtr : monsterPtrs) {
+            float objectiveX = random.nextFloat()*windowWidth;
             updateMonster(monsterPtr, objectiveX, objectiveY, knightPosition.x, knightPosition.y, knightRadius, knightSpeed, knightAbility);
         }
         // Use getMonsterX(monsterPtr) and getMonsterY(monsterPtr) to get the updated monster positions
         // and update the monster positions in the UI
         invalidate();
     }
-    public void spawnMonsters() {
-        if (random.nextInt(100) < 1) { // 1% chance to spawn a monster each tick
+    public void spawnMonsters(long ticknum) {
+        switch(difficulty){
+            case 0:
+                ticknum = ticknum/2;
+                break;
+            case 1:
+                ticknum = ticknum + 5000;
+                break;
+            default:
+                ticknum = ticknum*2 + 10000;
+                break;
+        }
+        if (random.nextInt(100) < (float)ticknum/100000+1) { // 1% chance to spawn a monster each tick
             float x = random.nextFloat() * windowWidth;
             float y = 0;
-            float speed = 5; //random.nextFloat() * 10 + 5; // Random speed between 5 and 15
+            float speed = random.nextFloat() * (4+(float)ticknum/80000) + 3*(float)ticknum/5000; // Random speed between 5 and 15
             int movementType = random.nextInt(3);
-            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight, movementType, knightType);
+            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight, movementType, knightType, difficulty);
             monsterPtrs.add(monsterPtr);
         }
     }

@@ -3,7 +3,7 @@
 #include <jni.h>
 #include <memory>
 // Monster class constructor
-Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int ktype)
+Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int ktype, int theDifficulty)
         : x(x), y(y), speed(speed), windowWidth(windowWidth), windowHeight(windowHeight), movementType(movementType), hopState(false) {
     collisionCounter = 0;
     initialDirectionX = 1.0;
@@ -11,6 +11,7 @@ Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeigh
     reachedCastle = 0;
     kicked = 0;
     knightType = ktype;
+    difficulty = theDifficulty;
     }
 
     void Monster::doBomberAbility(){
