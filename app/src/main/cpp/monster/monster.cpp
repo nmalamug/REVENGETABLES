@@ -180,12 +180,7 @@ void Monster::hop(float objective_x, float objective_y) {
         }
     }
 
-/**
- * Counts how many monsters reached the bottom of the screen
- * @param obj_x The x-coordinate of the objective
- * @param obj_y The y-coordinate of the objective
- * @return The number of monsters that reached the objective
- */
+
 int Monster::inObjective(float obj_x, float obj_y) {
     float xBound1 = 0, xBound2 = obj_x * 2;
     if (getX() < xBound2 && getX() > xBound1 && getY() > obj_y) {

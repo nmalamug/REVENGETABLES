@@ -9,7 +9,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class LifeView extends View {
+public class LifeView extends View implements LifeViewAPI {
     private Paint paint;
     private float xx;
     public int livesLost;
@@ -39,6 +39,7 @@ public class LifeView extends View {
         paint.setColor(Color.MAGENTA);
     }
 
+
     public void setGameScreenFragment(GameScreenFragment gameScreenFragment) {
         this.gameScreenFragment = gameScreenFragment;
     }
@@ -52,25 +53,26 @@ public class LifeView extends View {
         }
     }
 
+
     @Override
     public void onDraw(Canvas canvas) {
-        drawLives(canvas, getContext());
+        drawLives(canvas);
         super.onDraw(canvas);
     }
 
-    public void setMaxLives(int lives){
+
+    public void setMaxLives(int lives) {
         maxLives = lives;
         currLives = maxLives;
     }
-    // draw lives on top right of screen
-    public void drawLives(Canvas canvas, Context current) {
-        Context context = current;
+
+    public void drawLives(Canvas canvas) {
         Paint lifePaint = new Paint();
         Paint noLife = new Paint();
         lifePaint.setColor(Color.MAGENTA);
         noLife.setColor(Color.GRAY);
-        Bitmap red = BitmapFactory.decodeResource(context.getResources(),R.drawable.smaller_heart);
-        Bitmap grey = BitmapFactory.decodeResource(context.getResources(),R.drawable.smallgrey5);
+        Bitmap red = BitmapFactory.decodeResource(getResources(),R.drawable.smaller_heart);
+        Bitmap grey = BitmapFactory.decodeResource(getResources(),R.drawable.smallgrey5);
 
         float x = getWidth() - 100;
         float y = 100;
@@ -86,6 +88,7 @@ public class LifeView extends View {
             x -= 100;
         }
     }
+
 
     public boolean updateScore(long tick) {
         if (tick%40 == 0) { return true; }

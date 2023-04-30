@@ -1,8 +1,5 @@
 package com.example.knightslabyrinth;
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.PointF;
-import android.view.View;
 /**
  * Interface for interacting with the MonsterView.
  */

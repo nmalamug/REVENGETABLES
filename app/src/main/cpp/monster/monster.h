@@ -64,12 +64,11 @@ public:
 
 
     /**
-    * Checks if the monster is inside the objective.
-    *
-    * @param obj_x The x-coordinate of the objective.
-    * @param obj_y The y-coordinate of the objective.
-    * @return 1 if inside the objective, 0 otherwise.
-    */
+     * Counts how many monsters reached the bottom of the screen
+     * @param obj_x The x-coordinate of the objective
+     * @param obj_y The y-coordinate of the objective
+     * @return The number of monsters that reached the objective
+     */
     int inObjective(float obj_x, float obj_y);
 
 

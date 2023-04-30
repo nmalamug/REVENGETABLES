@@ -83,7 +83,7 @@ public class LoseScreenFragment extends Fragment {
     }
 
     private void displayHighScores() {
-        //Typeface tf = getResources().getFont(R.font.press_start_2p);
+        Typeface customFont = ResourcesCompat.getFont(getContext(), R.font.press_start_2p);
         List<String> highScores = scoreBoard.getHighScores();
         StringBuilder highScoresText = new StringBuilder("High Scores:\n");
         Typeface type = ResourcesCompat.getFont(getContext(), R.font.press_start_2p);
@@ -94,7 +94,7 @@ public class LoseScreenFragment extends Fragment {
 
         TextView textView = new TextView(getContext());
         textView.setText(highScoresText.toString());
-        textView.setTypeface(Typeface.SERIF);
+        textView.setTypeface(customFont);
         textView.setTextSize(24);
         textView.setTypeface(type);
         linearLayoutHighScores.addView(textView);
