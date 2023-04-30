@@ -53,12 +53,14 @@ public class ScoreBoard {
         });
 
         // Convert the high scores set to a more readable format
+        int playNum = 1;
         List<String> highScoreList = new ArrayList<>();
         for (String highScore : sortedHighScores) {
             String[] parts = highScore.split("_");
             int score = Integer.parseInt(parts[0]);
             String playerName = parts[1];
-            highScoreList.add(playerName + ": " + score);
+            highScoreList.add(playerName + " " + playNum + ": " + score);
+            playNum++;
         }
         return highScoreList;
     }

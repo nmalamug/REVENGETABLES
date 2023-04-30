@@ -1,5 +1,6 @@
 package com.example.knightslabyrinth;
 
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -64,11 +66,13 @@ public class HighScoreFragment extends Fragment{
     private void displayHighScores() {
         List<String> highScores = scoreBoard.getHighScores();
         LinearLayout linearLayoutHighScores = binding.linearLayoutHighScores;
+        Typeface type = ResourcesCompat.getFont(getContext(), R.font.press_start_2p);
 
         for (String highScore : highScores) {
             TextView textView = new TextView(getContext());
             textView.setText(highScore);
             textView.setTextSize(24);
+            textView.setTypeface(type);
             linearLayoutHighScores.addView(textView);
         }
     }

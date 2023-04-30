@@ -37,10 +37,20 @@ public class LifeView extends View {
         paint.setColor(Color.MAGENTA);
     }
 
+    /**
+     * Sets reference to GameScreenFragment
+     * @param gameScreenFragment The game screen
+     */
     public void setGameScreenFragment(GameScreenFragment gameScreenFragment) {
         this.gameScreenFragment = gameScreenFragment;
     }
 
+    /**
+     * Assigns values to current lives, lost lives, and max lives when lives are lost
+     * @param lost Number of lives lost while playing the game
+     * @param curr Number of current lives
+     * @param max Number of maximum lives depending on game difficulty
+     */
     public void getLivesLost(int lost, int curr, int max) {
         livesLost = lost;
         currLives = curr;
@@ -50,17 +60,29 @@ public class LifeView extends View {
         }
     }
 
+    /**
+     * Draws the lives on the game screen
+     * @param canvas The canvas to draw lives on
+     */
     @Override
     public void onDraw(Canvas canvas) {
         drawLives(canvas);
         super.onDraw(canvas);
     }
 
-    public void setMaxLives(int lives){
+    /**
+     * Sets values for both maximum and current lives
+     * @param lives Maximum amount of lives depending on game difficulty
+     */
+    public void setMaxLives(int lives) {
         maxLives = lives;
         currLives = maxLives;
     }
-    // draw lives on top right of screen
+
+    /**
+     * Draws the lives or deaths on game screen depending on current lives
+     * @param canvas The canvas to draw lives on
+     */
     public void drawLives(Canvas canvas) {
         Paint lifePaint = new Paint();
         Paint noLife = new Paint();
@@ -80,8 +102,13 @@ public class LifeView extends View {
         }
     }
 
+    /**
+     * Updates the score while user stays in game
+     * @param tick The signal for the game to continue as a long
+     * @return true only on the 40th tick, 80th tick, etc
+     */
     public boolean updateScore(long tick) {
-        if (tick%40 == 0) { return true; }
+        if (tick % 40 == 0) { return true; }
         else { return false; }
     }
 }
