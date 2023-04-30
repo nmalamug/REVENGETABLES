@@ -2,8 +2,6 @@ package com.example.knightslabyrinth;
 
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -12,7 +10,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.example.knightslabyrinth.databinding.ActivityMainBinding;
 
 import android.view.Menu;
@@ -21,7 +18,6 @@ import android.widget.Toast;
 import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
-
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -40,7 +36,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         // Load the C++ library
         System.loadLibrary("knightslabyrinth");
+
     }
+
 
 
     @Override

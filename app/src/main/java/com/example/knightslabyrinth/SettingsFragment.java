@@ -1,5 +1,6 @@
 package com.example.knightslabyrinth;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.example.knightslabyrinth.databinding.FragmentSettingsBinding;
 public class SettingsFragment extends Fragment  {
 
     private FragmentSettingsBinding binding;
-
+    MediaPlayer buttonClick;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -29,6 +30,7 @@ public class SettingsFragment extends Fragment  {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        buttonClick = MediaPlayer.create(getContext(), R.raw.buttonclick);
         if (MainActivity.settings.getKnight() == 1) {
             binding.radioDasher.setChecked(true);
         } else if (MainActivity.settings.getKnight() == 2) {
@@ -44,6 +46,7 @@ public class SettingsFragment extends Fragment  {
         binding.buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                buttonClick.start();
                 NavHostFragment.findNavController(SettingsFragment.this)
                         .navigate(R.id.action_Settings_to_HomeScreenFragment);
             }
@@ -74,6 +77,16 @@ public class SettingsFragment extends Fragment  {
                     MainActivity.settings.setDifficulty(1);
                 } else if (binding.radioHard.isChecked()) {
                     MainActivity.settings.setDifficulty(2);
+                }
+            }
+        });
+        buttonClick.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.stop();
+                if (mediaPlayer != null) {
+                    mediaPlayer.release();
+                    mediaPlayer = null;
                 }
             }
         });

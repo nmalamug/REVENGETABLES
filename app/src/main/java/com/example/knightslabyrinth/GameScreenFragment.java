@@ -1,5 +1,6 @@
 package com.example.knightslabyrinth;
 import android.graphics.PointF;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -40,6 +41,10 @@ public class GameScreenFragment extends Fragment {
     private int currLives;
     private long numticks = 0;
 
+    MediaPlayer GameOverSound;
+    MediaPlayer GameMusic;
+    MediaPlayer buttonClick;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGameScreenBinding.inflate(inflater, container, false);
@@ -70,9 +75,15 @@ public class GameScreenFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        GameMusic = MediaPlayer.create(getContext(), R.raw.gamescreen);
+        buttonClick = MediaPlayer.create(getContext(), R.raw.buttonclick);
+        GameOverSound = MediaPlayer.create(getContext(), R.raw.gameover);
+        GameMusic.setLooping(true);
+        GameMusic.setVolume(0, 0.2f);
+        GameOverSound.setVolume(0, 0.5f);
+        GameMusic.start();
         //Setup the Game
         //gameStart();
-
         // Set reference to GameScreenFragment in LifeView
         binding.lifeView.setGameScreenFragment(this);
 
@@ -87,8 +98,33 @@ public class GameScreenFragment extends Fragment {
         binding.buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                GameMusic.stop();
+                GameMusic.release();
+                GameMusic = null;
+                buttonClick.start();
                 NavHostFragment.findNavController(GameScreenFragment.this)
                         .navigate(R.id.action_GameScreenFragment_to_HomeScreenFragment);
+            }
+        });
+
+        buttonClick.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.stop();
+                if (mediaPlayer != null) {
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                }
+            }
+        });
+        GameOverSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.stop();
+                if (mediaPlayer != null) {
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                }
             }
         });
 
@@ -161,6 +197,10 @@ public class GameScreenFragment extends Fragment {
         binding.monsterView.setKnightPosition(knightPosition);
         binding.monsterView.moveMonsters(knightPosition, knightRadius, knightSpeed);
         if(currLives <= 0){
+            GameMusic.stop();
+            GameMusic.release();
+            GameMusic = null;
+            GameOverSound.start();
             MainActivity.settings.setLastScore(score);
             NavHostFragment.findNavController(GameScreenFragment.this)
                     .navigate(R.id.action_GameScreenFragment_to_LoseScreenFragment);
@@ -170,7 +210,10 @@ public class GameScreenFragment extends Fragment {
         // Save the score to the scoreboard
         ScoreBoard scoreBoard = new ScoreBoard(getContext());
         scoreBoard.saveScore("Player", currentGameScore);
-
+        GameMusic.stop();
+        GameMusic.release();
+        GameMusic = null;
+        GameOverSound.start();
         // Navigate to the LoseScreenFragment
         NavHostFragment.findNavController(GameScreenFragment.this)
                 .navigate(R.id.action_GameScreenFragment_to_LoseScreenFragment);

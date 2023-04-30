@@ -1,5 +1,6 @@
 package com.example.knightslabyrinth;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import java.util.List;
 public class LoseScreenFragment extends Fragment {
 
-
+    MediaPlayer buttonClick;
     private TextView textView2;
     private Button buttonMenu;
     private Button buttonGame;
@@ -31,6 +32,7 @@ public class LoseScreenFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        buttonClick = MediaPlayer.create(getContext(), R.raw.buttonclick);
 
         textView2 = view.findViewById(R.id.textView2);
         buttonMenu = view.findViewById(R.id.buttonMenu);
@@ -48,6 +50,7 @@ public class LoseScreenFragment extends Fragment {
         buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                buttonClick.start();
                 NavHostFragment.findNavController(LoseScreenFragment.this)
                         .navigate(R.id.action_Lose_screen_to_Home);
             }
@@ -55,8 +58,19 @@ public class LoseScreenFragment extends Fragment {
         buttonGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                buttonClick.start();
                 NavHostFragment.findNavController(LoseScreenFragment.this)
                         .navigate(R.id.action_Lose_screen_to_Game);
+            }
+        });
+        buttonClick.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.stop();
+                if (mediaPlayer != null) {
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                }
             }
         });
     }

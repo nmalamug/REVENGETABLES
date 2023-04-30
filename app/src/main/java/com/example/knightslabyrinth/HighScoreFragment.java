@@ -1,5 +1,6 @@
 package com.example.knightslabyrinth;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import java.util.List;
 public class HighScoreFragment extends Fragment{
     private FragmentHighScoreBinding binding;
     private ScoreBoard scoreBoard;
+    MediaPlayer buttonClick;
+
 
     @Override
     public View onCreateView(
@@ -32,15 +35,26 @@ public class HighScoreFragment extends Fragment{
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        buttonClick = MediaPlayer.create(getContext(), R.raw.buttonclick);
         scoreBoard = new ScoreBoard(getContext());
         displayHighScores();
 
         binding.buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                buttonClick.start();
                 NavHostFragment.findNavController(HighScoreFragment.this)
                         .navigate(R.id.action_HighScore_to_Home);
+            }
+        });
+        buttonClick.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.stop();
+                if (mediaPlayer != null) {
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                }
             }
         });
     }
