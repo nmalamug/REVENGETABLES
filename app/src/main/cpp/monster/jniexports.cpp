@@ -12,8 +12,8 @@ extern "C"
 jlong JNIEXPORT
 Java_com_example_knightslabyrinth_MonsterView_createMonster(JNIEnv *env, jobject ,
                                                             jfloat x, jfloat y, jfloat speed,
-                                                            jint windowWidth, jint windowHeight, jint movementType) {
-    Monster *monster = new Monster(x, y, speed, windowWidth, windowHeight, movementType);
+                                                            jint windowWidth, jint windowHeight, jint movementType, jint knightType) {
+    Monster *monster = new Monster(x, y, speed, windowWidth, windowHeight, movementType, knightType);
     return reinterpret_cast<jlong>(monster);
 }
 extern "C"
@@ -26,9 +26,9 @@ jfloat objective_x,
 jfloat knightX,
         jfloat knightY,
 jint radius,
-        jfloat knightSpeed) {
+        jfloat knightSpeed, jint knightAbility) {
 Monster *monster = reinterpret_cast<Monster *>(monster_ptr);
-monster->update(objective_x, objective_y, knightX, knightY, radius, knightSpeed);
+monster->update(objective_x, objective_y, knightX, knightY, radius, knightSpeed, knightAbility);
 }
 
 extern "C"

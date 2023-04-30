@@ -39,6 +39,7 @@ public class GameScreenFragment extends Fragment {
     private int maxLives = 7;
     private int currLives;
     private long numticks = 0;
+    private int knightAbilityActive;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,11 +62,6 @@ public class GameScreenFragment extends Fragment {
         }
         currLives = maxLives;
         binding.lifeView.setMaxLives(maxLives);
-    }
-    private void gameEnd(){
-        //Store the most recent score here.
-        //binding.knightWrapper.killKnight();
-        //Make deleting things work - Memory leak??
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -120,7 +116,6 @@ public class GameScreenFragment extends Fragment {
         super.onDestroyView();
         binding = null;
         handler.removeCallbacks(runTicks);
-        gameEnd();
     }
 
     public void gameTick() {
@@ -158,8 +153,9 @@ public class GameScreenFragment extends Fragment {
         binding.monsterView.spawnMonsters();
 
         // Update monster positions in the UI
-        binding.monsterView.setKnightPosition(knightPosition);
-        binding.monsterView.moveMonsters(knightPosition, knightRadius, knightSpeed);
+        //binding.monsterView.setKnightPosition(knightPosition);
+        knightAbilityActive = binding.knightWrapper.getAbilityActive();
+        binding.monsterView.moveMonsters(knightPosition, knightRadius, knightSpeed, knightAbilityActive);
         if(currLives <= 0){
             MainActivity.settings.setLastScore(score);
             NavHostFragment.findNavController(GameScreenFragment.this)

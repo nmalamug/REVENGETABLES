@@ -24,6 +24,7 @@ public class MonsterView extends View {
     private int windowWidth, windowHeight;
     private Random random = new Random();
     private PointF knightPosition;
+    private int knightType = MainActivity.settings.getKnight();
 
     //Set the window width and height here
     public void setWindowWidth (int width){
@@ -37,8 +38,8 @@ public class MonsterView extends View {
     }
 
     //NDK Functions
-    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType);
-    public native void updateMonster(long monsterPtr, float objectiveX, float objectiveY, float knightX, float knightY, int knightRad, float knightSpeed);
+    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int knightType);
+    public native void updateMonster(long monsterPtr, float objectiveX, float objectiveY, float knightX, float knightY, int knightRad, float knightSpeed, int knightAbilityActive);
     public native float getMonsterX(long monsterPtr);
     public native float getMonsterY(long monsterPtr);
     public native int getMovementType(long monsterPtr);
@@ -84,12 +85,12 @@ public class MonsterView extends View {
         this.gameScreenFragment = gameScreenFragment;
     }
 
-    public void moveMonsters(PointF knightPosition, int knightRadius, float knightSpeed){
+    public void moveMonsters(PointF knightPosition, int knightRadius, float knightSpeed, int knightAbility){
         // Update monsters
         float objectiveX = windowWidth / 2;
         float objectiveY = windowHeight-100;
         for (long monsterPtr : monsterPtrs) {
-            updateMonster(monsterPtr, objectiveX, objectiveY, knightPosition.x, knightPosition.y, knightRadius, knightSpeed);
+            updateMonster(monsterPtr, objectiveX, objectiveY, knightPosition.x, knightPosition.y, knightRadius, knightSpeed, knightAbility);
         }
         // Use getMonsterX(monsterPtr) and getMonsterY(monsterPtr) to get the updated monster positions
         // and update the monster positions in the UI
@@ -101,14 +102,15 @@ public class MonsterView extends View {
             float y = 0;
             float speed = 5; //random.nextFloat() * 10 + 5; // Random speed between 5 and 15
             int movementType = random.nextInt(3);
-            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight, movementType);
+            long monsterPtr = createMonster(x, y, speed, windowWidth, windowHeight, movementType, knightType);
             monsterPtrs.add(monsterPtr);
         }
     }
 
     // Draw monsters on the canvas using the list of monster pointers
     private void drawMonsters(Canvas canvas, Context current) {
-
+        int offsetx = 0;
+        int offsety = 0;
         Context context = current;
         Paint monsterPaint = new Paint();
         monsterPaint.setColor(Color.RED);
@@ -122,6 +124,8 @@ public class MonsterView extends View {
             int monsterFrame = getMonsterFrameC(monsterPtr);
             switch(movementType){
                 case(0):
+                    offsetx = -100;
+                    offsety = -125;
                     switch(monsterFrame){
                         case(0):
                             pic = R.drawable.potato;
@@ -132,12 +136,14 @@ public class MonsterView extends View {
                             monsterPaint.setColor(Color.BLUE);
                             break;
                         case(2):
-                            pic = R.drawable.potato_dead;
+                            pic = R.drawable.potato;
                             monsterPaint.setColor(Color.RED);
                             break;
                     }
                     break;
                 case(1):
+                    offsetx = -140;
+                    offsety = -100;
                     switch(monsterFrame){
                         case(0):
                             pic = R.drawable.tomato;
@@ -148,12 +154,14 @@ public class MonsterView extends View {
                             monsterPaint.setColor(Color.DKGRAY);
                             break;
                         case(2):
-                            pic = R.drawable.tomato_dead;
+                            pic = R.drawable.tomato;
                             monsterPaint.setColor(Color.LTGRAY);
                             break;
                     }
                     break;
                 case(2):
+                    offsetx = -100;
+                    offsety = -150;
                     switch(monsterFrame){
                         case(0):
                             pic = R.drawable.carrot;
@@ -164,15 +172,17 @@ public class MonsterView extends View {
                             monsterPaint.setColor(Color.GREEN);
                             break;
                         case(2):
-                            pic = R.drawable.carrot_dead;
+                            pic = R.drawable.carrot;
                             monsterPaint.setColor(Color.YELLOW);
                             break;
                     }
                     break;
             }
             Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),pic);
-            float radius = 20; // Adjust the size of the monster as needed
-            canvas.drawBitmap(bitmap, x, y, monsterPaint);
+
+            float radius = 100; // Adjust the size of the monster as needed
+            canvas.drawBitmap(bitmap, x+offsetx, y+offsety, monsterPaint);
+            //canvas.drawCircle((float)x,(float)y,(float)radius,monsterPaint);
         }
     }
 

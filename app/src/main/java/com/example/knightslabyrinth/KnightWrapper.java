@@ -24,7 +24,9 @@ public class KnightWrapper extends View{
     public float getSpeed(){
         return getSpeedC(knight);
     }
-
+    public int getAbilityActive(){
+        return getAbilityActiveC(knight);
+    }
     public KnightWrapper(Context context) {
         super(context);
         init();
@@ -55,7 +57,6 @@ public class KnightWrapper extends View{
         }
     }
 
-
     public void killKnight(){
         deleteC(knight);
         knight = 0;
@@ -64,6 +65,11 @@ public class KnightWrapper extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if(getCooldownC(knight) == 0){
+            paint.setColor(0xFFFF0000);
+        }else{
+            paint.setColor(0xffffff00); // Yellow color
+        }
         canvas.drawCircle(knightPosition.x, knightPosition.y, radius, paint);
     }
     public void moveKnight(){
@@ -86,4 +92,6 @@ public class KnightWrapper extends View{
     public native float getXC(long knight);
     public native float getYC(long knight);
     public native float getSpeedC(long knight);
+    public native int getAbilityActiveC(long knight);
+    public native int getCooldownC(long knight);
 }

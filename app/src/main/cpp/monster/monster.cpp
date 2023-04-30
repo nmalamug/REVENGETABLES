@@ -3,25 +3,50 @@
 #include <jni.h>
 #include <memory>
 // Monster class constructor
-Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType)
+Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int ktype)
         : x(x), y(y), speed(speed), windowWidth(windowWidth), windowHeight(windowHeight), movementType(movementType), hopState(false) {
     collisionCounter = 0;
     initialDirectionX = 1.0;
     initialDirectionY = 1.0;
     reachedCastle = 0;
     kicked = 0;
+    knightType = ktype;
     }
 
+    void Monster::doBomberAbility(){
+    frame = 2;
+    collisionCounter = 20;
+    directionX = 0;
+    directionY = 1;
+    collisionSpeed = 300;
+}
+
 // Update the monster's position
-void Monster::update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed) {
+void Monster::update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed, int knightAbility) {
     timeAlive++;
-    if (colliding(knightX, knightY, knightRadius)) {
+    switch(knightType){
+        case(1):
+            if(knightAbility > 1 && sqrt(pow(knightX - x, 2) + pow(knightY - y, 2))<200){
+                doBomberAbility();
+            }
+            break;
+        case(2):
+            if(knightAbility > 1 && sqrt(pow(knightX - x, 2) + pow(knightY - y, 2))<400){
+                doBomberAbility();
+            }
+            break;
+        default:
+            break;
+    }
+    if (colliding(knightX, knightY, knightRadius) && knightAbility<1) {
         frame = 2;
         //Get the x and y directions of collision
         directionX = knightX - x;
         directionY = knightY - y;
         collisionSpeed = knightSpeed + 5;
         collisionCounter = 20;
+        doCollision();
+        return;
     }
     if (collisionCounter > 1) {
         doCollision();
@@ -67,7 +92,7 @@ void Monster::update(float objectiveX, float objectiveY, float knightX, float kn
     void Monster::doCollision() {
         //If about to bounce off a wall move focal point to switch x direction
         if (x < monsterRadius) {
-            x = 51;
+            x = monsterRadius;
             directionX = -directionX;
         } else if (x > (windowWidth - monsterRadius)) {
             x = windowWidth - monsterRadius - 1;

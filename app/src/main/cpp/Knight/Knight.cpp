@@ -12,6 +12,7 @@ Knight::Knight(double theX, double theY){
     target.x = theX;
     target.y = theY;
     speed = 0;
+    cooldown = 0;
 }
 
 void Knight::setTargetK(float theX, float theY){
@@ -22,7 +23,7 @@ void Knight::setTargetK(float theX, float theY){
 void Knight::move(){
     float x = pos.x;
     float y = pos.y;
-    float distance = sqrt(pow(target.x-x,2)+pow(target.y-y,2));
+    distance = sqrt(pow(target.x-x,2)+pow(target.y-y,2));
     speed = distance/3 + 20;
     float xdist = target.x-x;
     float ydist = target.y-y;
@@ -37,8 +38,114 @@ void Knight::move(){
     }
 }
 
+void Knight::moveBomber(){
+    float x = pos.x;
+    float y = pos.y;
+    if(abilityActive>0){
+        abilityActive--;
+    }
+    distance = sqrt(pow(target.x-x,2)+pow(target.y-y,2));
+    if(bomberAbilityReady()){
+        doBomberAbility();
+        return;
+    }
+    if(cooldown>0){
+        cooldown--;
+    }
+    speed = distance/3 + 20;
+    if(speed>75){
+        speed = 75;
+    }
+    float xdist = target.x-x;
+    float ydist = target.y-y;
+    xdist = xdist/distance*speed;
+    ydist = ydist/distance*speed;
+    if(distance <= speed){
+        pos.x = target.x;
+        pos.y = target.y;
+    }else{
+        pos.x = pos.x + xdist;
+        pos.y = pos.y + ydist;
+    }
+}
+
+bool Knight::bomberAbilityReady(){
+    if(cooldown == 0 && distance>200+speed*8){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+void Knight::doBomberAbility(){
+    pos.x = target.x;
+    pos.y = target.y;
+    cooldown = 250;
+    abilityActive = 3;
+}
+
+void Knight::moveDasher(){
+    float x = pos.x;
+    float y = pos.y;
+    if(abilityActive>0){
+        abilityActive--;
+        doDasherAbility();
+    }
+    distance = sqrt(pow(target.x-x,2)+pow(target.y-y,2));
+    if(dasherAbilityReady()){
+        abilityActive = 10;
+        cooldown = 250;
+        dashStepX = (target.x-pos.x)/10;
+        dashStepY = (target.y-pos.y)/10;
+        doDasherAbility();
+        return;
+    }
+    if(cooldown>0){
+        cooldown--;
+    }
+    speed = distance/3+10;
+    if(speed>125){
+        speed = 125;
+    }
+    float xdist = target.x-x;
+    float ydist = target.y-y;
+    xdist = xdist/distance*speed;
+    ydist = ydist/distance*speed;
+    if(distance <= speed){
+        pos.x = target.x;
+        pos.y = target.y;
+    }else{
+        pos.x = pos.x + xdist;
+        pos.y = pos.y + ydist;
+    }
+}
+
+bool Knight::dasherAbilityReady(){
+    if(cooldown == 0 && distance>400+speed*4){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+void Knight::doDasherAbility(){
+    pos.x += dashStepX;
+    pos.y += dashStepY;
+}
+
 void Knight::update(int moveop){
-    move();
+
+    switch(moveop) {
+        case (2):
+            moveBomber();
+            break;
+        case (1):
+            moveDasher();
+            break;
+        default:
+            move();
+            break;
+    }
 }
 
 float Knight::getX() const {
@@ -51,6 +158,14 @@ float Knight::getY() const {
 
 float Knight::getSpeed() const{
     return speed;
+}
+
+int Knight::getAbilityActive() const{
+    return abilityActive;
+}
+
+int Knight::getCooldown()const{
+    return cooldown;
 }
 
 //Knight Controls
@@ -99,4 +214,18 @@ JNIEXPORT jfloat JNICALL
 Java_com_example_knightslabyrinth_KnightWrapper_getSpeedC(JNIEnv *env, jobject, jlong ptr) {
     Knight *obj = (Knight *)ptr;
     return obj->getSpeed();
+}
+
+extern"C"
+JNIEXPORT jint JNICALL
+Java_com_example_knightslabyrinth_KnightWrapper_getAbilityActiveC(JNIEnv *env, jobject, jlong ptr) {
+    Knight *obj = (Knight *)ptr;
+    return obj->getAbilityActive();
+}
+
+extern"C"
+JNIEXPORT jint JNICALL
+Java_com_example_knightslabyrinth_KnightWrapper_getCooldownC(JNIEnv *env, jobject, jlong ptr) {
+    Knight *obj = (Knight *)ptr;
+    return obj->getCooldown();
 }
