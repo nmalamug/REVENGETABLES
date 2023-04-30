@@ -36,6 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
+        android:background="@color/transparent"
+        android:textSize="20sp"
+        android:fontFamily="@font/press_start_2p"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

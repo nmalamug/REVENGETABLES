@@ -180,7 +180,12 @@ void Monster::hop(float objective_x, float objective_y) {
         }
     }
 
-// Counters for how many monsters reached objective or got kicked out
+/**
+ * Counts how many monsters reached the bottom of the screen
+ * @param obj_x The x-coordinate of the objective
+ * @param obj_y The y-coordinate of the objective
+ * @return The number of monsters that reached the objective
+ */
 int Monster::inObjective(float obj_x, float obj_y) {
     float xBound1 = 0, xBound2 = obj_x * 2;
     if (getX() < xBound2 && getX() > xBound1 && getY() > obj_y) {
@@ -188,7 +193,10 @@ int Monster::inObjective(float obj_x, float obj_y) {
     }
     return reachedCastle;
 }
-
+/**
+ * Counts how many monsters with y-position < 0
+ * @return The number of monsters that were "kicked out" by knight
+ */
 int Monster::kickedOut() {
     if (getY() < 0) {
         kicked++;

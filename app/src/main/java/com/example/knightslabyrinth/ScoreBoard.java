@@ -54,6 +54,7 @@ public class ScoreBoard {
 
         int playNum = 1;
         // Convert the high scores set to a more readable format
+        int playNum = 1;
         List<String> highScoreList = new ArrayList<>();
         for (String highScore : sortedHighScores) {
             String[] parts = highScore.split("_");
