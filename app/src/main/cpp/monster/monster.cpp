@@ -3,28 +3,65 @@
 #include <jni.h>
 #include <memory>
 // Monster class constructor
-Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeight, int color, int movementType)
-        : x(x), y(y), speed(speed), windowWidth(windowWidth), windowHeight(windowHeight), color(color), movementType(movementType), hopState(false) {
+Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int ktype, int theDifficulty)
+        : x(x), y(y), speed(speed), windowWidth(windowWidth), windowHeight(windowHeight), movementType(movementType), hopState(false) {
     collisionCounter = 0;
     initialDirectionX = 1.0;
     initialDirectionY = 1.0;
     reachedCastle = 0;
     kicked = 0;
+    knightType = ktype;
+    difficulty = theDifficulty;
     }
 
+    void Monster::doBomberAbility(){
+    frame = 2;
+    collisionCounter = 20;
+    directionX = 0;
+    directionY = 1;
+    collisionSpeed = 300;
+}
+
 // Update the monster's position
-void Monster::update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed) {
-    if (colliding(knightX, knightY, knightRadius)) {
+void Monster::update(float objectiveX, float objectiveY, float knightX, float knightY, float knightRadius, float knightSpeed, int knightAbility) {
+    timeAlive++;
+    switch(knightType){
+        case(1):
+            if(knightAbility > 1 && sqrt(pow(knightX - x, 2) + pow(knightY - y, 2))<200){
+                doBomberAbility();
+            }
+            break;
+        case(2):
+            if(knightAbility > 1 && sqrt(pow(knightX - x, 2) + pow(knightY - y, 2))<400){
+                doBomberAbility();
+            }
+            break;
+        default:
+            break;
+    }
+    if (colliding(knightX, knightY, knightRadius) && knightAbility<1) {
+        frame = 2;
         //Get the x and y directions of collision
         directionX = knightX - x;
         directionY = knightY - y;
         collisionSpeed = knightSpeed + 5;
         collisionCounter = 20;
+        doCollision();
+        return;
     }
     if (collisionCounter > 1) {
         doCollision();
         collisionCounter -= 1;
     } else {
+        if(timeAlive%25==0){
+            if(frame == walkingFramesUpTo+1){
+                frame = 0;
+            }else if(frame == walkingFramesUpTo){
+                frame = 0;
+            }else{
+                frame++;
+            }
+        }
         switch (movementType) {
             case 0:
                 //black
@@ -56,7 +93,7 @@ void Monster::update(float objectiveX, float objectiveY, float knightX, float kn
     void Monster::doCollision() {
         //If about to bounce off a wall move focal point to switch x direction
         if (x < monsterRadius) {
-            x = 51;
+            x = monsterRadius;
             directionX = -directionX;
         } else if (x > (windowWidth - monsterRadius)) {
             x = windowWidth - monsterRadius - 1;
@@ -142,6 +179,7 @@ void Monster::hop(float objective_x, float objective_y) {
             initialDirectionY = -initialDirectionY; // Reverse the direction
         }
     }
+
 // Counters for how many monsters reached objective or got kicked out
 int Monster::inObjective(float obj_x, float obj_y) {
     float xBound1 = 0, xBound2 = obj_x * 2;
@@ -158,3 +196,6 @@ int Monster::kickedOut() {
     return kicked;
 }
 
+int Monster::getMonsterFrame(){
+    return frame;
+}
