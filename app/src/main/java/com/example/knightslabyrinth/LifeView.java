@@ -1,6 +1,8 @@
 package com.example.knightslabyrinth;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -52,7 +54,7 @@ public class LifeView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        drawLives(canvas);
+        drawLives(canvas, getContext());
         super.onDraw(canvas);
     }
 
@@ -61,11 +63,14 @@ public class LifeView extends View {
         currLives = maxLives;
     }
     // draw lives on top right of screen
-    public void drawLives(Canvas canvas) {
+    public void drawLives(Canvas canvas, Context current) {
+        Context context = current;
         Paint lifePaint = new Paint();
         Paint noLife = new Paint();
         lifePaint.setColor(Color.MAGENTA);
         noLife.setColor(Color.GRAY);
+        Bitmap red = BitmapFactory.decodeResource(context.getResources(),R.drawable.smaller_heart);
+        Bitmap grey = BitmapFactory.decodeResource(context.getResources(),R.drawable.smallgrey5);
 
         float x = getWidth() - 100;
         float y = 100;
@@ -73,8 +78,10 @@ public class LifeView extends View {
         for (int i = 1; i <= maxLives; i++) {
             if (i > currLives) {
                 canvas.drawCircle(x, y, radius, noLife);
+                canvas.drawBitmap(grey, x-55, y-40, noLife);
             } else {
                 canvas.drawCircle(x, y, radius, lifePaint);
+                canvas.drawBitmap(red, x-55, y-55, lifePaint);
             }
             x -= 100;
         }
