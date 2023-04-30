@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background = "#80DEEA"
+    android:background ="@color/sky"
 
 
 
@@ -86,6 +86,7 @@
         android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="Settings"
+        android:background="@color/transparent"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
@@ -99,7 +100,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="108dp"
-
+        android:background="@color/transparent"
         android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="Play"
@@ -117,7 +118,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="48dp"
-
+        android:background="@color/transparent"
         android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="User Manual"
@@ -134,7 +135,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="48dp"
-
+        android:background="@color/transparent"
         android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="High Score"
@@ -151,7 +152,7 @@
         android:layout_marginStart="4dp"
 
         android:fontFamily="@font/press_start_2p"
-        android:text="Knight's Labyrinth"
+        android:text="Revengtable"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#100A0A"

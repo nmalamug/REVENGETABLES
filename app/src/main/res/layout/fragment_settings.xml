@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="@font/press_start_2p"
-        android:text="Knight"
+        android:text="Farmer"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"

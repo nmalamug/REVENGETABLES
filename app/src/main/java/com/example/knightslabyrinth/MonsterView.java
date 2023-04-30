@@ -148,7 +148,7 @@ public class MonsterView extends View {
                             monsterPaint.setColor(Color.BLUE);
                             break;
                         case(2):
-                            pic = R.drawable.potato;
+                            pic = R.drawable.potato_dead;
                             monsterPaint.setColor(Color.RED);
                             break;
                     }
@@ -166,7 +166,7 @@ public class MonsterView extends View {
                             monsterPaint.setColor(Color.DKGRAY);
                             break;
                         case(2):
-                            pic = R.drawable.tomato;
+                            pic = R.drawable.tomato_dead;
                             monsterPaint.setColor(Color.LTGRAY);
                             break;
                     }
@@ -184,7 +184,7 @@ public class MonsterView extends View {
                             monsterPaint.setColor(Color.GREEN);
                             break;
                         case(2):
-                            pic = R.drawable.carrot;
+                            pic = R.drawable.carrot_dead;
                             monsterPaint.setColor(Color.YELLOW);
                             break;
                     }

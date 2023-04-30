@@ -1,6 +1,8 @@
 package com.example.knightslabyrinth;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
@@ -8,11 +10,14 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class KnightWrapper extends View{
+    private static int pic;
     private Paint paint;
     private PointF knightPosition;
     private long knight;
-    private int radius = 100;
+    private int radius = 110;
     private int moveOption;
+    private int offsetx = 0;
+    private int offsety = 0;
 
     public int getRadius(){
         return radius;
@@ -48,13 +53,6 @@ public class KnightWrapper extends View{
         //Code for creating c++ knight object
         knight = mkNew();
         moveOption = MainActivity.settings.getKnight();
-        if(moveOption == 1){
-            paint.setColor(0xFFFF0000); // Red color
-        }else if(moveOption == 2){
-            paint.setColor(0xffffff00); // Yellow color
-        }else{
-            paint.setColor(0xff0000ff ); // Blue Color
-        }
     }
 
     public void killKnight(){
@@ -64,13 +62,45 @@ public class KnightWrapper extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
+        //Context context = current;
         super.onDraw(canvas);
-        if(getCooldownC(knight) == 0){
-            paint.setColor(0xFFFF0000);
-        }else{
-            paint.setColor(0xffffff00); // Yellow color
+        //Farmer 1 and farmer 2
+        if(moveOption == 1){
+            offsetx = 200;
+            offsety = 170;
+            //Ability on cool-down or ability ready
+            if(getCooldownC(knight) == 0){
+                pic = R.drawable.dasher;
+                paint.setColor(0xFFFF0000);
+            }else{
+                pic = R.drawable.dasher_blue;
+                paint.setColor(0xffffff00); // Yellow color
+            }
+        }else if(moveOption == 2){
+            offsetx = 150;
+            offsety = 170;
+            //Ability on cool-down or ability ready
+            if(getCooldownC(knight) == 0){
+                pic = R.drawable.real_bomber;
+                paint.setColor(0xFFFF0000);
+            }else{
+                pic = R.drawable.real_bomber_blue;
+                paint.setColor(0xffffff00); // Yellow color
+            }
+        }else {
+            paint.setColor(0xff0000ff); // Blue Color
         }
-        canvas.drawCircle(knightPosition.x, knightPosition.y, radius, paint);
+        if(moveOption == 2)
+        {
+            if(getAbilityActive() != 0)
+            {
+                Bitmap explode = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.explo);
+                canvas.drawBitmap(explode, knightPosition.x-850, knightPosition.y-425, paint);
+            }
+        }
+        Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(),pic);
+        canvas.drawBitmap(bitmap, knightPosition.x-offsetx, knightPosition.y-offsety, paint);
+        //canvas.drawCircle(knightPosition.x, knightPosition.y, radius, paint);
     }
     public void moveKnight(){
         updateC(knight, moveOption);
