@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background = "#80DEEA"
+    android:background ="@color/sky"
 
 
 
@@ -15,19 +15,19 @@
         android:id="@+id/imageView1"
         android:layout_width="129dp"
         android:layout_height="69dp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSettings"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="-250dp"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/simpleTextView"
         app:srcCompat="@drawable/cloud" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="129dp"
         android:layout_height="69dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="-150dp"
-        app:layout_constraintEnd_toStartOf="@+id/simpleTextView"
+        app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cloud" />
 
@@ -35,7 +35,7 @@
         android:id="@+id/imageView3"
         android:layout_width="129dp"
         android:layout_height="69dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="75dp"
         android:layout_marginEnd="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -45,10 +45,10 @@
         android:id="@+id/imageView4"
         android:layout_width="129dp"
         android:layout_height="69dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="-100dp"
-        app:layout_constraintBottom_toTopOf="@+id/simpleTextView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView1"
+        android:layout_marginEnd="-265dp"
+        android:layout_marginBottom="-120dp"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
         app:srcCompat="@drawable/cloud" />
 
 
@@ -56,10 +56,10 @@
         android:id="@+id/imageView5"
         android:layout_width="129dp"
         android:layout_height="69dp"
-
-        android:layout_marginTop="-75dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/simpleTextView"
+        android:layout_marginEnd="-130dp"
+        android:layout_marginBottom="-150dp"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
         app:srcCompat="@drawable/cloud" />
 
     <ImageView
@@ -83,8 +83,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="36dp"
+        android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="Settings"
+        android:background="@color/transparent"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
@@ -98,7 +100,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="108dp"
-
+        android:background="@color/transparent"
+        android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="Play"
         android:textAlignment="center"
@@ -115,7 +118,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="48dp"
-
+        android:background="@color/transparent"
+        android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="User Manual"
         android:textAlignment="center"
@@ -124,17 +128,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
 
+    <Button
+        android:id="@+id/buttonHighScore"
+        android:layout_width="309dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="48dp"
+        android:background="@color/transparent"
+        android:fontFamily="@font/press_start_2p"
+        android:onClick="move"
+        android:text="High Score"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonManual" />
+
     <TextView
         android:id="@+id/simpleTextView"
         android:layout_width="440dp"
         android:layout_height="164dp"
-        android:layout_marginStart="4dp"
 
-        android:text="Knight's Labyrinth"
+        android:layout_marginStart="-10dp"
+        android:layout_marginBottom="80dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Revengtables"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#100A0A"
-        android:textSize="40sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonStart"
         app:layout_constraintStart_toStartOf="parent" />
 

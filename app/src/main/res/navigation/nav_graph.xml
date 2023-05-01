@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_manual_button"
             app:destination="@id/UserManualFragment" />
+        <action
+            android:id="@+id/action_Home_HighScore"
+            app:destination="@id/HighScoreFragment" />
     </fragment>
     <fragment
         android:id="@+id/GameScreenFragment"
@@ -50,6 +53,9 @@
         <action
             android:id="@+id/action_GameScreenFragment_to_HomeScreenFragment"
             app:destination="@id/HomeScreenFragment" />
+        <action
+            android:id="@+id/action_GameScreenFragment_to_LoseScreenFragment"
+            app:destination="@id/LoseScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/SettingsFragment"
@@ -69,6 +75,29 @@
 
         <action
             android:id="@+id/action_Manual_to_HomeScreenFragment"
+            app:destination="@id/HomeScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/LoseScreenFragment"
+        android:name="com.example.knightslabyrinth.LoseScreenFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_lose_screen">
+
+        <action
+            android:id="@+id/action_Lose_screen_to_Home"
+            app:destination="@id/HomeScreenFragment" />
+        <action
+            android:id="@+id/action_Lose_screen_to_Game"
+            app:destination="@id/GameScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HighScoreFragment"
+        android:name="com.example.knightslabyrinth.HighScoreFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_high_score">
+
+        <action
+            android:id="@+id/action_HighScore_to_Home"
             app:destination="@id/HomeScreenFragment" />
     </fragment>
 </navigation>

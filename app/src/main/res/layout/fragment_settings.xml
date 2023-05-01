@@ -5,27 +5,145 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="SettingsFragment"
-    android:background ="@color/green"
+    android:background ="@color/purple_500"
     >
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/press_start_2p"
         android:text="Settings"
+        android:textColor="#FFFFFF"
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/KnightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Farmer"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
+
+    <TextView
+        android:id="@+id/DifficultyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Difficulty"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/knightSettings" />
+    <TextView
+        android:id="@+id/SoundText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="Audio"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diffSettings" />
 
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/press_start_2p"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="85dp" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/knightSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-16dp"
+        app:layout_constraintTop_toBottomOf="@id/KnightText">
+
+        <RadioButton
+            android:id="@+id/radio_dasher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Dasher"
+            android:textColor="#C2E4FF" />
+
+        <RadioButton
+            android:id="@+id/radio_bomber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Bomber"
+            android:textColor="#C2E4FF" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/diffSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-16dp"
+        app:layout_constraintTop_toBottomOf="@id/DifficultyText">
+
+        <RadioButton
+            android:id="@+id/radio_easy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Easy"
+            android:textColor="#C2E4FF" />
+
+        <RadioButton
+            android:id="@+id/radio_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Medium"
+            android:textColor="#C2E4FF" />
+
+        <RadioButton
+            android:id="@+id/radio_hard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Hard"
+            android:textColor="#C2E4FF" />
+    </RadioGroup>
+    <RadioGroup
+        android:id="@+id/audioSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-16dp"
+        app:layout_constraintTop_toBottomOf="@id/SoundText">
+
+        <RadioButton
+            android:id="@+id/radio_sound_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Audio Off"
+            android:textColor="#C2E4FF" />
+
+        <RadioButton
+            android:id="@+id/radio_sound_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/press_start_2p"
+            android:text="Audio On"
+            android:textColor="#C2E4FF" />
+    </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>
