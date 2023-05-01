@@ -1,5 +1,12 @@
 # EC327 Final Project - Group [4] - [REVENGETABLES]
 ---
+## Download Instructions
+1. Create a new Android Studio project from VCS (Version Conrtrol)
+2. Copy and paste the HTTPS clone link of this reposiroty: https://agile.bu.edu/gitlab/ec327_projects/group4project.git
+3. Set up the emulator, reccomended settings are a pixel 6 with API 24 of later.
+4. When all files are loaded, build then run the app!
+5. Kick those Vegetables!!!
+
 ## Summary
 ### Category
 [Animated Game]
