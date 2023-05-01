@@ -72,8 +72,8 @@ public class GameScreenFragment extends Fragment implements GameScreenAPI {
         buttonClick = MediaPlayer.create(getContext(), R.raw.buttonclick);
         GameOverSound = MediaPlayer.create(getContext(), R.raw.gameover);
         GameMusic.setLooping(true);
-        GameMusic.setVolume(0, 0.2f);
-        GameOverSound.setVolume(0, 0.5f);
+        GameMusic.setVolume(0.2f, 0.2f);
+        GameOverSound.setVolume(0.5f, 0.5f);
         if (SettingsFragment.getAudioSetting()) {
             GameMusic.start();
         }

@@ -32,7 +32,7 @@ public class HomeScreenFragment extends Fragment {
         mediaPlayer = MediaPlayer.create(getContext(), R.raw.menuscreen);
         buttonClick = MediaPlayer.create(getContext(), R.raw.buttonclick);
         mediaPlayer.setLooping(true);
-        mediaPlayer.setVolume(0, 0.2f);
+        mediaPlayer.setVolume(0.2f, 0.2f);
         if (SettingsFragment.getAudioSetting()) {
             mediaPlayer.start();
         }
