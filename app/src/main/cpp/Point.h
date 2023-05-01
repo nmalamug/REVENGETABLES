@@ -57,6 +57,7 @@ public:
         return out;
     }
 
+    //x and y cords
     double x,y;
 };
 

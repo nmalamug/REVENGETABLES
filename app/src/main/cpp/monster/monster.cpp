@@ -12,9 +12,9 @@ Monster::Monster(float x, float y, float speed, int windowWidth, int windowHeigh
     kicked = 0;
     knightType = ktype;
     difficulty = theDifficulty;
-    }
+}
 
-    void Monster::doBomberAbility(){
+void Monster::doBomberAbility(){
     frame = 2;
     collisionCounter = 20;
     directionX = 0;
@@ -78,69 +78,62 @@ void Monster::update(float objectiveX, float objectiveY, float knightX, float kn
         }
     }
 }
-    int Monster::getMovementType() const {
-        return movementType;
+int Monster::getMovementType() const {
+    return movementType;
+}
+
+bool Monster::colliding(float kx, float ky, int rad) {
+    float dist = sqrt(pow(kx - x, 2) + pow(ky - y, 2));
+    if (dist < (rad + monsterRadius)) {
+        return true;
+    }
+    return false;
+}
+
+void Monster::doCollision() {
+    //If about to bounce off a wall move focal point to switch x direction
+    if (x < monsterRadius) {
+        x = monsterRadius;
+        directionX = -directionX;
+    } else if (x > (windowWidth - monsterRadius)) {
+        x = windowWidth - monsterRadius - 1;
+        directionX = -directionX;
     }
 
-    bool Monster::colliding(float kx, float ky, int rad) {
-        float dist = sqrt(pow(kx - x, 2) + pow(ky - y, 2));
-        if (dist < (rad + monsterRadius)) {
-            return true;
-        }
-        return false;
-    }
+    float distance = std::sqrt(directionX * directionX + directionY * directionY);
+    float normalized_x = directionX / distance;
+    float normalized_y = directionY / distance;
 
-    void Monster::doCollision() {
-        //If about to bounce off a wall move focal point to switch x direction
-        if (x < monsterRadius) {
-            x = monsterRadius;
-            directionX = -directionX;
-        } else if (x > (windowWidth - monsterRadius)) {
-            x = windowWidth - monsterRadius - 1;
-            directionX = -directionX;
-        }
-
-        float distance = std::sqrt(directionX * directionX + directionY * directionY);
-        float normalized_x = directionX / distance;
-        float normalized_y = directionY / distance;
-
-        x -= normalized_x * collisionSpeed;
-        y -= normalized_y * collisionSpeed;
-        collisionSpeed = collisionSpeed * .90;
-    }
+    x -= normalized_x * collisionSpeed;
+    y -= normalized_y * collisionSpeed;
+    collisionSpeed = collisionSpeed * .90;
+}
 
 // Getter for the monster's x position
-    float Monster::getX() const {
-        return x;
-    }
+float Monster::getX() const {
+    return x;
+}
 
 // Getter for the monster's y position
-    float Monster::getY() const {
-        return y;
-    }
+float Monster::getY() const {
+    return y;
+}
 
 // Move the monster towards the objective coordinates
-    void Monster::moveToObjective(float objective_x, float objective_y) {
-        float direction_x = objective_x - x;
-        float direction_y = objective_y - y;
+void Monster::moveToObjective(float objective_x, float objective_y) {
+    float direction_x = objective_x - x;
+    float direction_y = objective_y - y;
 
-        float distance = std::sqrt(direction_x * direction_x + direction_y * direction_y);
-        float normalized_x = direction_x / distance;
-        float normalized_y = direction_y / distance;
+    float distance = std::sqrt(direction_x * direction_x + direction_y * direction_y);
+    float normalized_x = direction_x / distance;
+    float normalized_y = direction_y / distance;
 
-        x += normalized_x * speed;
-        y += normalized_y * speed;
-    }
-
-// Add this to the private members of the Monster class
-
-// Add this line to the Monster constructor
-
-
+    x += normalized_x * speed;
+    y += normalized_y * speed;
+}
 
 void Monster::hop(float objective_x, float objective_y) {
     hopCounter++;
-
     float direction_x = objective_x - x;
     float direction_y = objective_y - y;
     float distance = std::sqrt(direction_x * direction_x + direction_y * direction_y);

@@ -123,31 +123,65 @@ public:
      */
     void doBomberAbility();
 
+    // The y-coordinate of the monster.
     float y;
 
+    // The x-coordinate of the monster.
     float x;
 
+    // The initial x-direction of the monster's movement.
     float initialDirectionX;
 
+    // The initial y-direction of the monster's movement.
     float initialDirectionY ;
 
+    // The type of the knight the monster is interacting with.
     int knightType;
-    private:
 
+    private:
+    // Counter for the number of hops the monster has performed.
     int hopCounter=0;
+
+    // The speed of the monster.
     float speed;
+
+    // The type of movement behavior for the monster.
     int type;
+
+    // The number of walking animation frames for the monster.
     int walkingFramesUpTo = 1;
+
+    // The current frame of the monster's animation.
     int frame = 0;
+
+    // The amount of time the monster has been alive.
     int timeAlive = 0;
+
+    // Counter for tracking the number of collisions.
     int collisionCounter;
+
+    // The radius of the monster.
     const int monsterRadius = 100;
+
+    // The speed of the monster during a collision.
     int collisionSpeed;
+
+    // The width of the game window.
     const int windowWidth;
+
+    // The height of the game window.
     const int windowHeight;
+
+    // The x-direction of the monster's movement.
     float directionX;
+
+    // The y-direction of the monster's movement.
     float directionY;
+
+    // Counter for tracking the number of times the monster reached the castle.
     int reachedCastle;
+
+    // Counter for tracking the number of times the monster has been kicked out of the objective.
     int kicked;
     /**
      * Moves the monster towards the objective coordinates.
@@ -156,13 +190,17 @@ public:
      * @param objective_y The y-coordinate of the objective.
      */
     void moveToObjective(float objective_x, float objective_y);
+
+    // The movement behavior type of the monster.
     int movementType;
+
+    // The difficulty level of the game.
     int difficulty;
+
+    // The current state of the hop action (true if the monster is hopping, false otherwise).
     bool hopState;
 
     };
-
-
 
 #endif //KNIGHTSLABYRINTH_MONSTER_H
 
