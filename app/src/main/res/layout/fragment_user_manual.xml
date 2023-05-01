@@ -5,110 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="UserManualFragment"
-    android:background ="@color/sky"
+    android:background ="@drawable/how_to_wallpaper"
     >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="-300dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="-150dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-265dp"
-        android:layout_marginBottom="-120dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
-
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-130dp"
-        android:layout_marginBottom="-150dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="-650dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="-150dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="375dp"
-        android:layout_marginEnd="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-265dp"
-        android:layout_marginBottom="-470dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
-
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-130dp"
-        android:layout_marginBottom="-400dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/in_cloud" />
 
 
     <TextView
@@ -171,7 +71,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="416dp"
         android:fontFamily="@font/press_start_2p"
-        android:text="Depending on your character, your special ability is different (changed in settings). With a dasher, you can tap at different locations of the screen and the character will jump to that location, killing any monster in your way. With a bomber, you can tap on any location and the vegetable monsters will fly away! After you use these special abilities, the character will turn blue. During this time, these attacks will be enabled so use them wisely."
+        android:text="Depending on your character, your special ability is different (changed in settings). With a dasher, you can tap at different locations of the screen and the character will jump to that location, killing any monster in your way. With a exploder, you can tap on any location and the vegetable monsters will fly away! After you use these special abilities, the character will turn blue. During this time, these attacks will be enabled so use them wisely."
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"

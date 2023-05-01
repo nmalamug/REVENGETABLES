@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="SettingsFragment"
-    android:background ="@color/purple_500"
+    android:background ="@drawable/how_to_wallpaper"
     >
 
     <TextView
@@ -16,7 +16,7 @@
         android:layout_marginTop="48dp"
         android:fontFamily="@font/press_start_2p"
         android:text="Settings"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,7 @@
         android:layout_marginStart="4dp"
         android:fontFamily="@font/press_start_2p"
         android:text="Farmer"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView" />
@@ -40,7 +40,7 @@
         android:layout_marginStart="4dp"
         android:fontFamily="@font/press_start_2p"
         android:text="Difficulty"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/knightSettings" />
@@ -51,7 +51,7 @@
         android:layout_marginStart="4dp"
         android:fontFamily="@font/press_start_2p"
         android:text="Audio"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/diffSettings" />
@@ -61,7 +61,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/press_start_2p"
+        android:background = "@color/transparent"
         android:text="Back"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,15 +81,15 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:text="Dasher"
-            android:textColor="#C2E4FF" />
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/radio_bomber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
-            android:text="Bomber"
-            android:textColor="#C2E4FF" />
+            android:text="Exploder"
+            android:textColor="@color/black" />
     </RadioGroup>
 
     <RadioGroup
@@ -104,7 +106,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:text="Easy"
-            android:textColor="#C2E4FF" />
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/radio_medium"
@@ -112,7 +114,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:text="Medium"
-            android:textColor="#C2E4FF" />
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/radio_hard"
@@ -120,7 +122,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:text="Hard"
-            android:textColor="#C2E4FF" />
+            android:textColor="@color/black" />
     </RadioGroup>
     <RadioGroup
         android:id="@+id/audioSettings"
@@ -136,7 +138,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:text="Audio Off"
-            android:textColor="#C2E4FF" />
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/radio_sound_on"
@@ -144,6 +146,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/press_start_2p"
             android:text="Audio On"
-            android:textColor="#C2E4FF" />
+            android:textColor="@color/black" />
     </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>
