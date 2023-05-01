@@ -9,17 +9,21 @@
 
 ## Summary
 ### Category
-[Animated Game]
+Animated Game
 
 ### TL;DR
-[Infectious vegetables have infiltrated the farm and it is your responsibility to protect the crops and the farm.]
+Infectious vegetables have infiltrated the farm and it is your responsibility to protect the crops and the farm!
 
 ### Description
 [longer description of the project]
 
 ## Authors
 ### Group members
-[list of group members, one per line, with WikiName and BU email address]
+HarmanSingh - hsingh2@bu.edu  
+NicolasMalamug - nmalamug@bu.edu  
+MaikoLum - mlum@bu.edu  
+JoscelynnPalen - joscie@bu.edu  
+BennettTaylor - betaylor@bu.edu
 
 ### Roles
 [list of roles and percentages for each group member]
@@ -28,12 +32,31 @@
 ## Accomplishments
 
 ### Minimum requirements
-[A list of minimum requirements that were completed entirely, one per line.]
-[A list of any minimum requirements not completed or only partially completed, each with a qualitative fraction of the requirement completed and a brief explanation of what was not completed.  Penalties for partially completed requirements will be halved if the instructor agrees with the self-acknowledged status.]
+##### Fully completed
+
+"Moving graphical pieces."  
+"The ability of the user to control some of the moving pieces through input."  
+"Include a score that is changed based on the user satisfying requirements."  
+"Have a simple-to-use, graphical user interface."  
+"Provide clear documentation of the rules of the game."  
+"Not require any Internet or network connectivity."  
+"Not violate the copyright of Tetris or any other game."  
+
+##### Partially Completed
+We believe that all of the minimum requirements have been fullfilled in their entirety.
+
 
 ### Possible features
-[A list of possible features that were completed entirely, one per line, together with the percentage credit that was assigned to them.]
-[A list of possible features that were only partially completed, together with a (i) the percentage credit originally assigned to them, (ii) the qualitative percentage of the feature completed, (iii) a brief explanation of what was not completed.  Penalties for partially completed requirements will be halved if the instructor agrees with the self-acknowledged status.]
+##### Fully completed
+"Provide a high-score list that persists when the app is closed and then reopened. [10%]"  
+"Allow the user to tweak the rules of the game being played. [10%]"  
+"Add sound effects for specific activities in the game. [10%]" (If Ben can make the abilities make sound)
+
+##### Partially Completed
+"Do all calculations in C++ and connect them to the app through Android's Native Development Kit. [20%]"  
+* 15%/20% Completed
+* Although a bulk majority of backend and heavy calculations were done in C++, some of the calculations, including management of enemies, were still done in java. 
+
 
 ---
 ## Execution
