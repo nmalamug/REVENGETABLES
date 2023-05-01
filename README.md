@@ -1,5 +1,5 @@
 # EC327 Final Project - Group [4] - [REVENGETABLES]
----
+
 ## Download Instructions
 1. Create a new Android Studio project from VCS (Version Conrtrol)
 2. Copy and paste the HTTPS clone link of this reposiroty: https://agile.bu.edu/gitlab/ec327_projects/group4project.git
