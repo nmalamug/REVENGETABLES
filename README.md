@@ -1,4 +1,4 @@
-# EC327 Final Project - Group [4] - [REVENGETABLES]
+# EC327 Final Project - Group [4] - REVENGETABLES
 
 ## Download Instructions
 1. Create a new Android Studio project from VCS (Version Conrtrol)
