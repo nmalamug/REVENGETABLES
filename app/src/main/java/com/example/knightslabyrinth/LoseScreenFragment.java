@@ -49,7 +49,7 @@ public class LoseScreenFragment extends Fragment {
 
         displayHighScores();
 
-        textView2.setText("Current Game Score: " + String.valueOf(currentScore));
+        textView2.setText("Current Game Score: " + String.valueOf(currentScore) +"\r\n");
         buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +95,7 @@ public class LoseScreenFragment extends Fragment {
         TextView textView = new TextView(getContext());
         textView.setText(highScoresText.toString());
         textView.setTypeface(customFont);
-        textView.setTextSize(24);
+        textView.setTextSize(20);
         textView.setTypeface(type);
         linearLayoutHighScores.addView(textView);
     }

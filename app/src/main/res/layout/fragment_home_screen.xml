@@ -5,76 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background ="@color/sky"
+    android:background ="@drawable/home"
 
 
 
     tools:context="HomeScreenFragment" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="-250dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="-150dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-265dp"
-        android:layout_marginBottom="-120dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-130dp"
-        android:layout_marginBottom="-150dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="338dp"
-        android:layout_height="281dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.643"
-        app:layout_constraintStart_toEndOf="@+id/buttonManual"
-        app:layout_constraintTop_toBottomOf="@+id/buttonManual"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/castle" />
 
     <Button
         android:id="@+id/buttonSettings"
@@ -88,7 +24,7 @@
         android:text="Settings"
         android:background="@color/transparent"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
@@ -96,17 +32,18 @@
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="194dp"
-        android:layout_height="66dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="108dp"
+        android:layout_marginTop="-25dp"
         android:background="@color/transparent"
         android:fontFamily="@font/press_start_2p"
         android:onClick="move"
         android:text="Play"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/simpleTextView" />
@@ -123,7 +60,7 @@
         android:onClick="move"
         android:text="User Manual"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
@@ -140,7 +77,7 @@
         android:onClick="move"
         android:text="High Score"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonManual" />
@@ -151,14 +88,14 @@
         android:layout_height="164dp"
 
         android:layout_marginStart="-10dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="-250dp"
         android:fontFamily="@font/press_start_2p"
-        android:text="Revengtables"
+        android:text="Revengetables"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#100A0A"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonStart"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 

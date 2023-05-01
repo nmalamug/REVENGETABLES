@@ -5,110 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="UserManualFragment"
-    android:background ="@color/sky"
+    android:background ="@drawable/how_to_wallpaper"
     >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="-300dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/cloud" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="-150dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-265dp"
-        android:layout_marginBottom="-120dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-130dp"
-        android:layout_marginBottom="-150dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="-650dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginEnd="-150dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="375dp"
-        android:layout_marginEnd="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-265dp"
-        android:layout_marginBottom="-470dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="129dp"
-        android:layout_height="69dp"
-        android:layout_marginEnd="-130dp"
-        android:layout_marginBottom="-400dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:srcCompat="@drawable/cloud" />
 
 
     <TextView
@@ -118,7 +18,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
         android:fontFamily="@font/press_start_2p"
-        android:text="Welcome to Revengtable!"
+        android:text="Welcome to Revengetable!"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15sp"
@@ -142,8 +42,8 @@
         android:id="@+id/para1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="148dp"
         android:fontFamily="@font/press_start_2p"
         android:text="Your goal is to protect the barn at the bottom of the screen. Tap and drag your character around to hit the incoming vegetable monsters. "
         android:textColor="@color/black"
@@ -156,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="248dp"
         android:fontFamily="@font/press_start_2p"
         android:text="As time goes by, the monsters increase in speed and number. At the upper right corner is the number of lives you have in total shown with red hearts. If a monster touches the barn, you will lose a life and the hearts will turn grey. Once all your lives are gone, you lose the game so be careful! "
         android:textColor="@color/black"
@@ -169,9 +69,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="376dp"
+        android:layout_marginTop="416dp"
         android:fontFamily="@font/press_start_2p"
-        android:text="Depending on your character, your special ability is different (changed in settings). With a dasher, you can tap at different locations of the screen and the character will jump to that location, killing any monster in your way. With a bomber, you can tap on any location and the vegetable monsters will fly away! After you use these special abilities, the character will turn blue. During this time, these attacks will be enabled so use them wisely."
+        android:text="Depending on your character, your special ability is different (changed in settings). With a dasher, you can tap at different locations of the screen and the character will jump to that location, killing any monster in your way. With a exploder, you can tap on any location and the vegetable monsters will fly away! After you use these special abilities, the character will turn blue. During this time, these attacks will be enabled so use them wisely."
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="592dp"
+        android:layout_marginTop="636dp"
         android:fontFamily="@font/press_start_2p"
         android:text="With different difficulty levels, the monsters’ speed and your number of lives vary (changed in settings). Have fun and protect your barn from the evil vegetables!"
         android:textColor="@color/black"

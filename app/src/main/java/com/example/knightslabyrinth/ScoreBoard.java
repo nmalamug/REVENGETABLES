@@ -61,10 +61,14 @@ public class ScoreBoard implements ScoreBoardAPI {
             return Integer.compare(score2, score1);
         });
 
+
         int playNum = 1;
         // Convert high scores to a readable format
         List<String> highScoreList = new ArrayList<>();
+
+
         for (String highScore : sortedHighScores) {
+            //if(playNum>5)break;
             String[] parts = highScore.split("_");
             int score = Integer.parseInt(parts[0]);
             String playerName = parts[1];
