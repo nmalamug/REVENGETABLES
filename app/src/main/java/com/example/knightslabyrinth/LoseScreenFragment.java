@@ -1,5 +1,6 @@
 package com.example.knightslabyrinth;
 
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.graphics.Typeface;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -80,8 +83,10 @@ public class LoseScreenFragment extends Fragment {
     }
 
     private void displayHighScores() {
+        Typeface customFont = ResourcesCompat.getFont(getContext(), R.font.press_start_2p);
         List<String> highScores = scoreBoard.getHighScores();
         StringBuilder highScoresText = new StringBuilder("High Scores:\n");
+        Typeface type = ResourcesCompat.getFont(getContext(), R.font.press_start_2p);
 
         for (String highScore : highScores) {
             highScoresText.append(highScore).append("\n");
@@ -89,7 +94,9 @@ public class LoseScreenFragment extends Fragment {
 
         TextView textView = new TextView(getContext());
         textView.setText(highScoresText.toString());
+        textView.setTypeface(customFont);
         textView.setTextSize(24);
+        textView.setTypeface(type);
         linearLayoutHighScores.addView(textView);
     }
 

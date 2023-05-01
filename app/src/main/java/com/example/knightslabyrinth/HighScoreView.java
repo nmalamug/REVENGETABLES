@@ -8,7 +8,7 @@ import android.view.View;
 
 import java.util.List;
 
-public class HighScoreView extends View {
+public class HighScoreView extends View  implements HighScoreViewAPI{
     private Paint paint;
     private List<String> highScores;
 

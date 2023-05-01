@@ -6,26 +6,16 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
 import android.os.Handler;
-
 import com.example.knightslabyrinth.databinding.FragmentGameScreenBinding;
 
-import java.util.Set;
-
-public class GameScreenFragment extends Fragment {
+public class GameScreenFragment extends Fragment implements GameScreenAPI {
     // Native methods
-    public native String getNativeMessage();
-    public native void getNewTick();
-
-
     // Binding and handler
     private FragmentGameScreenBinding binding;
-
     //Variables for handler in game ticks
     private Handler handler = new Handler();
     private Runnable runTicks;

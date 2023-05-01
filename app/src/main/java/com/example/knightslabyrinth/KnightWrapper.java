@@ -9,7 +9,7 @@ import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class KnightWrapper extends View{
+public class KnightWrapper extends View implements KnightAPI{
     private static int pic;
     private Paint paint;
     private PointF knightPosition;

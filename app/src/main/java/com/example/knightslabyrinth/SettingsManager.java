@@ -1,6 +1,6 @@
 package com.example.knightslabyrinth;
 
-public class SettingsManager {
+public class SettingsManager implements SettingsAPI {
     SettingsManager(){
         knight = 1;
         difficulty = 1;

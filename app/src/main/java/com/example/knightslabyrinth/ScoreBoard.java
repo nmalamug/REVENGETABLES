@@ -1,4 +1,5 @@
 package com.example.knightslabyrinth;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -6,60 +7,72 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class ScoreBoard {
+public class ScoreBoard implements ScoreBoardAPI {
     private static final String PREFERENCES_KEY = "ScoreBoard_preferences";
     private static final int MAX_HIGH_SCORES = 10;
     private SharedPreferences sharedPreferences;
 
+    // Constructor
     public ScoreBoard(Context context) {
+        // Initialize sharedPreferences with the provided context
         sharedPreferences = context.getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
     }
 
-    // Method to save a score for a specific player
+    // Save a score for a specific player
     public void saveScore(String playerName, int score) {
+        // Create an editor to modify sharedPreferences
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        // Retrieve high scores from sharedPreferences
         Set<String> highScores = new TreeSet<>(sharedPreferences.getStringSet("high_scores", new TreeSet<>()));
-
+        // Check if there is room for a new high score
         if (highScores.size() < MAX_HIGH_SCORES) {
+            // Add the new score to highScores
             highScores.add(score + "_" + playerName);
         } else {
+            // Find the lowest score entry in highScores
             String lowestScoreEntry = Collections.min(highScores, Comparator.comparingInt(s -> Integer.parseInt(s.split("_")[0])));
             int lowestScore = Integer.parseInt(lowestScoreEntry.split("_")[0]);
+            // Check if the new score is higher than the lowest score
             if (score > lowestScore) {
+                // Remove the lowest score entry and add the new score entry
                 highScores.remove(lowestScoreEntry);
                 highScores.add(score + "_" + playerName);
             }
         }
 
+        // Save the updated highScores to sharedPreferences
         editor.putStringSet("high_scores", highScores);
         editor.apply();
     }
 
-
-    // Method to retrieve all high scores from the scoreboard
+    // Retrieve all high scores
     public List<String> getHighScores() {
-        // Get the high scores set from SharedPreferences
+        // Get high scores from sharedPreferences
         Set<String> highScores = sharedPreferences.getStringSet("high_scores", new TreeSet<>());
 
+        // Sort high scores in descending order
         List<String> sortedHighScores = new ArrayList<>(highScores);
-        Collections.sort(sortedHighScores, (o1, o2) -> {
-            int score1 = Integer.parseInt(o1.split("_")[0]);
-            int score2 = Integer.parseInt(o2.split("_")[0]);
+        Collections.sort(sortedHighScores, (string1, string2) -> {
+            int score1 = Integer.parseInt(string1.split("_")[0]);
+            int score2 = Integer.parseInt(string2.split("_")[0]);
             return Integer.compare(score2, score1);
         });
 
-        // Convert the high scores set to a more readable format
+        int playNum = 1;
+        // Convert high scores to a readable format
         List<String> highScoreList = new ArrayList<>();
         for (String highScore : sortedHighScores) {
             String[] parts = highScore.split("_");
             int score = Integer.parseInt(parts[0]);
             String playerName = parts[1];
-            highScoreList.add(playerName + ": " + score);
+            highScoreList.add(playerName + " " + playNum + ": " + score);
+            playNum++;
         }
+
+        // Return the formatted high scores list
         return highScoreList;
     }
 }
