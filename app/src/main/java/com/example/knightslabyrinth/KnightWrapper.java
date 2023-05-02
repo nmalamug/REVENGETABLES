@@ -12,12 +12,19 @@ import android.view.View;
 public class KnightWrapper extends View implements KnightAPI{
     private static int pic;
     private Paint paint;
-    private PointF knightPosition;
+    private PointF knightPosition; // Get the current position of the knight.
     private long knight;
-    private int radius = 110;
-    private int moveOption;
-    private int offsetx = 0;
-    private int offsety = 0;
+    private int radius = 110; // The radius of the circle representing the knight
+    private int moveOption;// The option for the knight's movement
+    private int offsetx = 0; // The X-axis offset for drawing the knight bitmap
+    private int offsety = 0; // The Y-axis offset for drawing the knight bitmap
+    private void init() {
+        paint = new Paint();
+        knightPosition = new PointF(0, 0);
+        //Code for creating c++ knight object
+        knight = mkNew();
+        moveOption = MainActivity.settings.getKnight();
+    }
 
     public int getRadius(){
         return radius;
@@ -45,14 +52,6 @@ public class KnightWrapper extends View implements KnightAPI{
     public KnightWrapper(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
-    }
-
-    private void init() {
-        paint = new Paint();
-        knightPosition = new PointF(0, 0);
-        //Code for creating c++ knight object
-        knight = mkNew();
-        moveOption = MainActivity.settings.getKnight();
     }
 
     public void killKnight(){

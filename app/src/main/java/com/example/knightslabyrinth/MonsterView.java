@@ -17,13 +17,13 @@ import android.graphics.PointF;
 public class MonsterView extends View implements MonsterAPI{
     private static int pic;
     private Paint paint;
-    private List<Long> monsterPtrs = new ArrayList<>();
+    private List<Long> monsterPtrs = new ArrayList<>();// List of pointers to the monsters
 
     private int windowWidth, windowHeight;
-    private Random random = new Random();
-    private PointF knightPosition;
-    private int knightType = MainActivity.settings.getKnight();
-    private int difficulty = MainActivity.settings.getDifficulty();
+    private Random random = new Random(); //Random object for generating random values
+    private PointF knightPosition;// Position of the knight on the screen
+    private int knightType = MainActivity.settings.getKnight();// Knight type from settings
+    private int difficulty = MainActivity.settings.getDifficulty();// Difficulty level from settings
 
     //Set the window width and height here
     public void setWindowWidth (int width){
@@ -36,16 +36,6 @@ public class MonsterView extends View implements MonsterAPI{
         knightPosition = position;
     }
 
-    //NDK Functions
-    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int knightType, int difficulty);
-    public native void updateMonster(long monsterPtr, float objectiveX, float objectiveY, float knightX, float knightY, int knightRad, float knightSpeed, int knightAbilityActive);
-    public native float getMonsterX(long monsterPtr);
-    public native float getMonsterY(long monsterPtr);
-    public native int getMovementType(long monsterPtr);
-    public native int inObj(float obj_x, float obj_y, long monsterPtr);
-    public native int kick(long monsterPtr);
-    public native void deleteC(long monsterPtr);
-    public native int getMonsterFrameC(long monsterPtr);
     // Constructors
     public MonsterView(Context context, AttributeSet attrs, GameScreenFragment gameScreenFragment) {
         super(context, attrs);
@@ -238,4 +228,15 @@ public class MonsterView extends View implements MonsterAPI{
         }
         return k;
     }
+
+    //NDK Functions documented in BACKENDAPI
+    public native long createMonster(float x, float y, float speed, int windowWidth, int windowHeight, int movementType, int knightType, int difficulty);
+    public native void updateMonster(long monsterPtr, float objectiveX, float objectiveY, float knightX, float knightY, int knightRad, float knightSpeed, int knightAbilityActive);
+    public native float getMonsterX(long monsterPtr);
+    public native float getMonsterY(long monsterPtr);
+    public native int getMovementType(long monsterPtr);
+    public native int inObj(float obj_x, float obj_y, long monsterPtr);
+    public native int kick(long monsterPtr);
+    public native void deleteC(long monsterPtr);
+    public native int getMonsterFrameC(long monsterPtr);
 }

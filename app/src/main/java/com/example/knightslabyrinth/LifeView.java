@@ -11,10 +11,10 @@ import android.view.View;
 
 public class LifeView extends View implements LifeViewAPI {
     private Paint paint;
-    private float xx;
-    public int livesLost;
-    public int maxLives = 7;
-    public int currLives = maxLives;
+    private float xx;// X position of the life view on the screen
+    public int livesLost; // Number of lives lost
+    public int maxLives = 7; // Maximum number of lives available
+    public int currLives = maxLives;// Current number of lives
     public GameScreenFragment gameScreenFragment;
 
     public LifeView(Context context, AttributeSet attrs, GameScreenFragment gameScreenFragment) {

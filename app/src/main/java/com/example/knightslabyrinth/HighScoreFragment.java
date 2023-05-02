@@ -20,6 +20,7 @@ import com.example.knightslabyrinth.databinding.FragmentHighScoreBinding;
 
 import java.util.List;
 
+// HighScoreFragment displays the high scores of the game.
 public class HighScoreFragment extends Fragment{
     private FragmentHighScoreBinding binding;
     private ScoreBoard scoreBoard;

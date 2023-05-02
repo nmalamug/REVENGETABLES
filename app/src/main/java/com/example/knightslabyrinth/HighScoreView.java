@@ -40,6 +40,7 @@ public class HighScoreView extends View  implements HighScoreViewAPI{
         }
     }
 
+    // Draws the high scores on the canvas at specified positions.
     private void drawHighScores(Canvas canvas) {
         float x = getWidth() / 2;
         float y = 100;

@@ -3,8 +3,8 @@ package com.example.knightslabyrinth;
 import android.graphics.PointF;
 
 /**
- * The KnightWrapperAPI interface provides a contract for managing and displaying
- * the knight character in the game.
+ * provides a location for managing and displaying the knight
+ * character in the game.
  */
 public interface KnightAPI {
 

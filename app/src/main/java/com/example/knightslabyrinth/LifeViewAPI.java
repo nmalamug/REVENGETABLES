@@ -17,7 +17,6 @@ public interface LifeViewAPI {
 
     /**
      * Updates the lives lost, current lives, and maximum lives values.
-     *
      * @param lost The number of lives lost.
      * @param curr The current number of lives.
      * @param max  The maximum number of lives.
@@ -26,21 +25,18 @@ public interface LifeViewAPI {
 
     /**
      * Sets the maximum number of lives.
-     *
      * @param lives The maximum number of lives.
      */
     void setMaxLives(int lives);
 
     /**
      * Draws the lives on the top-right corner of the screen.
-     *
      * @param canvas The Canvas object to draw the lives on.
      */
     void drawLives(Canvas canvas);
 
     /**
      * Updates the score based on the game tick.
-     *
      * @param tick The game tick.
      * @return True if the score should be updated, false otherwise.
      */

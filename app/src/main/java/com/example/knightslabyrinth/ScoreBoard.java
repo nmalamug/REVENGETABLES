@@ -11,9 +11,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class ScoreBoard implements ScoreBoardAPI {
-    private static final String PREFERENCES_KEY = "ScoreBoard_preferences";
-    private static final int MAX_HIGH_SCORES = 10;
-    private SharedPreferences sharedPreferences;
+    private static final String PREFERENCES_KEY = "ScoreBoard_preferences"; // Key for the shared preferences used to store score data
+    private static final int MAX_HIGH_SCORES = 10;// Maximum number of high scores to be saved
+    private SharedPreferences sharedPreferences;// SharedPreferences object for storing and retrieving score data
 
     // Constructor
     public ScoreBoard(Context context) {
