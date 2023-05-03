@@ -108,9 +108,13 @@ We believe that all of the minimum requirements have been fullfilled in their en
 ## Miscellaneous
 
 ### Extra features
+1. Visual effects when explosion is used 
+2. All illustrations are original
 [Any extra features provided by your app that were not mentioned in the minimum requirements or possible features.  Did you put your app on the Google App store?  Did you implement a half-baked idea that was not envisioned at the start of the project?]
 
 ### Challenges
+1. Adjust to the large scale of the project - created a system to keep git repo organized
+2. Learning the tools and levels of abstraction in Android Studio
 [Where there any specific challenges during the implementation of this project that deserve note.  Feel free to include ideas that you tried but failed to work, in terse fashion.]
 
 ### Supporting material
