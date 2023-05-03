@@ -90,9 +90,19 @@ We believe that all of the minimum requirements have been fullfilled in their en
 
 ### Installation
 [Clear, terse instructions on how to compile and run your app on lab machines.  Try this out on non-members, friends, etc.]
+1. Open up the terminal on your machine, type "androidstudio", and press enter.
+2. Create a new Android Studio project from VCS (Version Conrtrol).
+3. Copy and paste the HTTPS clone link of this reposiroty int the box labaled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
+4. Set up the emulator, reccomended settings are a pixel 6 with API 29 of later.
+5. When all files are loaded, build then run the app!
+6. Kick those Vegetables!!!
 
 ### Usage
 [Clear, terse instructions on how to use your app.  What do the different interface elements (buttons, menus, etc.) do?  How does one see the various requirements and features in action.]
+1. To change playing features (Player type, difficulty, sound) click on the "Settings" button and select your desired options.
+2. Click on the "User Manual" button to view detailed instructions on how to play.
+3. Click on the "High Scores" button to view the top ten scores.
+4. Click on "Play" to beat those veggies!
 
 ---
 ## Miscellaneous
