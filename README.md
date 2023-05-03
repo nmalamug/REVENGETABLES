@@ -15,7 +15,9 @@ Animated Game
 Infectious vegetables have infiltrated the farm and it is your responsibility to protect the crops and the farm!
 
 ### Description
-Watch out! Infected vegetables are attacking, and it is your mission is to safeguard the farm. To fend off the relentless vegetable monsters, tap and drag your farmer to strike them down. As the game progresses, these menacing creatures will grow both in quantity and speed. But don't lose hope! Each farmer possesses a unique and powerful special ability, hand-crafted for the task. Geraldo the Dasher can leap to any point on the screen with a single tap, vanquishing any monster in his path. Alternatively, Debbie the Demolitionist can trigger massive explosions to send those vegetables flying. After using these abilities, your character turns blue, indicating that the special attacks are inactive. Use them strategically! Also keep an eye on the red hearts in the upper right corner, as they represent your total number of lives. Beware! A grey heart signifies the loss of a life after a monster reaches the barn. Once all lives are depleted, the game ends. Modify the difficulty level in the settings to alter the vegetables' speed and your number of lives. Harder difficulty means higher score bonuses, but also more enemies! Embrace the challenge, have a blast, and defend your barn from the wicked vegetable invasion!
+Watch out! Infected vegetables are attacking, and it is your mission is to safeguard the farm. To fend off the relentless vegetable monsters, tap and drag your farmer to strike them down. As the game progresses, these menacing creatures will grow both in quantity and speed. 
+But don't lose hope! Each farmer possesses a unique and powerful special ability, hand-crafted for the task. Geraldo the Dasher can leap to any point on the screen with a single tap, vanquishing any monster in his path. Alternatively, Debbie the Demolitionist can trigger massive explosions to send those vegetables flying. After using these abilities, your character turns blue, indicating that the special attacks are inactive. Use them strategically! 
+Also keep an eye on the red hearts in the upper right corner, as they represent your total number of lives. Beware! A grey heart signifies the loss of a life after a monster reaches the barn. Once all lives are depleted, the game ends. Modify the difficulty level in the settings to alter the vegetables' speed and your number of lives. Harder difficulty means higher score bonuses, but also more enemies! Embrace the challenge, have a blast, and defend your barn from the wicked vegetable invasion!
 
 ## Authors
 ### Group members
@@ -26,7 +28,29 @@ JoscelynnPalen - joscie@bu.edu
 BennettTaylor - betaylor@bu.edu
 
 ### Roles
-[list of roles and percentages for each group member]
+###### BackEnd 
+- [ ] Harman Singh    - 40%  
+- [ ] Nicolas Malamug - 40%
+- [ ] Joscelynn Palen - 20%
+
+###### Frontend
+- [ ] Joscelynn Palen - 20%  
+- [ ] Maiko Lum       - 60% 
+- [ ] Bennett Taylor  - 20%  
+
+###### Tester
+- [ ] Joscelynn Palen - 30% 
+- [ ] Maiko Lum       - 20%
+- [ ] Bennett Taylor  - 30%
+- [ ] Nicolas Malamug - 10%
+- [ ] Harman Singh    - 10%
+###### Documentation 
+- [ ] Bennett Taylor  - 50%
+- [ ] Maiko Lum       - 20% 
+- [ ] Joscelynn Palen - 30% 
+###### Project Lead
+- [ ] Harman Singh    - 50%
+- [ ] Nicolas Malamug - 50% 
 
 ---
 ## Accomplishments
