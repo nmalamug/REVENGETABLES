@@ -81,8 +81,8 @@ We believe that all of the minimum requirements have been fullfilled in their en
 * Although a bulk majority of backend and heavy calculations were done in C++, some of the calculations, including management of enemies, were still done in java. 
 
 "Add sound effects for specific activities in the game. [10%]" 
-* We have sound effects in the game for the major aspects of the the game. Improving the game experience may be accomplished by adding distinct, creature-specific audio for every monster-farmer interaction that occurs.
 * 8/10 Completed
+* We have sound effects in the game for the major aspects of the the game. Improving the game experience may be accomplished by adding distinct, creature-specific audio for every monster-farmer interaction that occurs.
 
 
 ---
@@ -91,7 +91,6 @@ We believe that all of the minimum requirements have been fullfilled in their en
 ### Project source
 No External Libraries were utilized. We primarily imported local Android Studio libraries
 ### Installation
-[Clear, terse instructions on how to compile and run your app on lab machines.  Try this out on non-members, friends, etc.]
 1. Open up the terminal on your machine, type "androidstudio", and press enter.
 2. Create a new Android Studio project from VCS (Version Control).
 3. Copy and paste the HTTPS clone link of this repository int the box labeled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
@@ -100,7 +99,6 @@ No External Libraries were utilized. We primarily imported local Android Studio 
 6. Kick those Vegetables!!!
 
 ### Usage
-[Clear, terse instructions on how to use your app.  What do the different interface elements (buttons, menus, etc.) do?  How does one see the various requirements and features in action.]
 1. To change playing features (Player type, difficulty, sound) click on the "Settings" button and select your desired options.
 2. Click on the "User Manual" button to view detailed instructions on how to play.
 3. Click on the "High Scores" button to view the top ten scores.
@@ -112,9 +110,9 @@ No External Libraries were utilized. We primarily imported local Android Studio 
 ### Extra features
 1. Visual effects when explosion is used 
 2. All illustrations are original
-3. We haven't yet launched our app on the Google Play Store, but we're working on developing an enhanced version this summer to ensure we deliver the best possible user experience for our customers.
+3. Different monster types that follow a different movement pattern including: hopping (sinusoidal movement), diagonal movement, straight movement
+4. We haven't yet launched our app on the Google Play Store, but we're working on developing an enhanced version this summer to ensure we deliver the best possible user experience for our customers.
 
-[Any extra features provided by your app that were not mentioned in the minimum requirements or possible features.  Did you put your app on the Google App store?  Did you implement a half-baked idea that was not envisioned at the start of the project?]
 
 ### Challenges
 1. Adjust to the large scale of the project - created a system to keep GIT repo organized
@@ -122,15 +120,14 @@ No External Libraries were utilized. We primarily imported local Android Studio 
 3. Dealing with Java code and its minor differences from C++ code
 4. Dealing with android studio's security protocol when writing to files and extracting files
 5. Using GameFragments rather than Activities posed an issue when implementing sound into our game
+6. Initially, we aimed to display individual monster hit points, but due to a disconnect between the front and backend, the simplified monster class in the backend did not account for the individuality of each monster, preventing the front end from utilizing the desired feature.
 
-[Where there any specific challenges during the implementation of this project that deserve note.  Feel free to include ideas that you tried but failed to work, in terse fashion.]
 
 ### Supporting material
 1. [User Manual](https://docs.google.com/document/d/19Io7zJdGuWEEKzF4rUeU8P-vd8Ub-K8MtFWIdVDUoWU/edit?usp=sharing)
 2. [Demo Video](https://drive.google.com/file/d/1OVGnXJZQuWPhYetlUjdvDVafIMA1yicY/view?usp=share_link)
-[Any videos, slides, etc. that could help someone understand your project.]
+
 
 ### Release
-[Are you comfortable with having this project visible to the broader public?  This would allow you, for example, to put it on a resume or showcase to potential employers.  _All_ group members must agree to making the project public, or else it will remain private.]
-
+We have reached a consensus where we would all like for the project to be displayed publically. 
 ### 
