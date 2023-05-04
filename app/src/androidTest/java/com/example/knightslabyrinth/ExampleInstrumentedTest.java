@@ -21,6 +21,8 @@ public class ExampleInstrumentedTest {
     MonsterView testMon = new MonsterView(appContext, null);
     LifeView testLife = new LifeView(appContext, null);
     KnightWrapper testKnight = new KnightWrapper(appContext, null);
+    LoseScreenFragment testLose = new LoseScreenFragment();
+    ScoreBoard testScoreboard = new ScoreBoard(appContext);
 
     @Test
     public void useAppContext() {
@@ -94,8 +96,7 @@ public class ExampleInstrumentedTest {
 
     // KnightWrapper Tests
     @Test
-    public void testMoveKnight() { // doesnt work yet
-        System.loadLibrary("knightslabyrinth");
+    public void testMoveKnight() {
         testKnight.init();
         PointF target = new PointF(0,0);
         testKnight.setTarget(target.x, target.y);
@@ -110,5 +111,11 @@ public class ExampleInstrumentedTest {
         testKnight.init();
         int r = testKnight.getRadius();
         assertEquals(110, r);
+    }
+
+    // LoseScreenFragment Tests
+    @Test
+    public void testGetHighScores() {
+        assertNotNull(testScoreboard.getHighScores());
     }
 }

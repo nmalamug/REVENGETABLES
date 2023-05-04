@@ -18,4 +18,14 @@ public class UnitTests {
         assertFalse(LifeView.updateScore(260400543L));
     }
 
+    @Test
+    public void testGetAudioSetting() {
+        assertTrue(SettingsFragment.getAudioSetting());
+    }
+
+    @Test
+    public void testSetAudioSetting() {
+        SettingsFragment.setAudioSetting(true);
+        assertTrue(SettingsFragment.getAudioSetting());
+    }
 }

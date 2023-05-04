@@ -23,7 +23,7 @@ public class LoseScreenFragment extends Fragment {
     private TextView textView2;
     private Button buttonMenu;
     private Button buttonGame;
-    private LinearLayout linearLayoutHighScores;
+    public LinearLayout linearLayoutHighScores;
     private ScoreBoard scoreBoard;
 
     @Override
@@ -82,7 +82,7 @@ public class LoseScreenFragment extends Fragment {
         });
     }
 
-    private void displayHighScores() {
+    public void displayHighScores() {
         Typeface customFont = ResourcesCompat.getFont(getContext(), R.font.press_start_2p);
         List<String> highScores = scoreBoard.getHighScores();
         StringBuilder highScoresText = new StringBuilder("High Scores:\n");
