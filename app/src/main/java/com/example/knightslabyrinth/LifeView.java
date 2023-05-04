@@ -10,8 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class LifeView extends View implements LifeViewAPI {
-    private Paint paint;
-    private float xx;// X position of the life view on the screen
+    public Paint paint;
     public int livesLost; // Number of lives lost
     public int maxLives = 7; // Maximum number of lives available
     public int currLives = maxLives;// Current number of lives
@@ -20,7 +19,6 @@ public class LifeView extends View implements LifeViewAPI {
     public LifeView(Context context, AttributeSet attrs, GameScreenFragment gameScreenFragment) {
         super(context, attrs);
         this.gameScreenFragment = gameScreenFragment;
-        xx = getWidth() / 2 + 20;
         init();
     }
 
@@ -34,7 +32,7 @@ public class LifeView extends View implements LifeViewAPI {
         init();
     }
 
-    public void init() {
+    private void init() {
         paint = new Paint();
         paint.setColor(Color.MAGENTA);
     }
@@ -90,7 +88,7 @@ public class LifeView extends View implements LifeViewAPI {
     }
 
 
-    public boolean updateScore(long tick) {
+    public static boolean updateScore(long tick) {
         if (tick%40 == 0) { return true; }
         else { return false; }
     }
