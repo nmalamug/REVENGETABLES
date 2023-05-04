@@ -79,6 +79,7 @@ We believe that all of the minimum requirements have been fullfilled in their en
 "Do all calculations in C++ and connect them to the app through Android's Native Development Kit. [20%]"  
 * 15/20 Completed
 * Although a bulk majority of backend and heavy calculations were done in C++, some of the calculations, including management of enemies, were still done in java. 
+
 "Add sound effects for specific activities in the game. [10%]" 
 * We have sound effects in the game for the major aspects of the the game. Improving the game experience may be accomplished by adding distinct, creature-specific audio for every monster-farmer interaction that occurs.
 * 8/10 Completed
