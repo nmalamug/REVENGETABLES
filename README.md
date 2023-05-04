@@ -93,10 +93,10 @@ We believe that all of the minimum requirements have been fullfilled in their en
 ### Installation
 [Clear, terse instructions on how to compile and run your app on lab machines.  Try this out on non-members, friends, etc.]
 1. Open up the terminal on your machine, type "androidstudio", and press enter.
-2. Create a new Android Studio project from VCS (Version Conrtrol).
-3. Copy and paste the HTTPS clone link of this reposiroty int the box labaled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
-4. Set up the emulator, reccomended settings are a pixel 6 with API 29 of later.
-5. When all files are loaded, build then run the app!
+2. Create a new Android Studio project from VCS (Version Control).
+3. Copy and paste the HTTPS clone link of this repository int the box labeled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
+4. Set up the emulator, recommended settings are a pixel 6 with API 29 of later.
+5. When all files are loaded, build and then run the app!
 6. Kick those Vegetables!!!
 
 ### Usage
