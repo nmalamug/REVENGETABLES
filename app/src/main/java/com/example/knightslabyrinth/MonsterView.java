@@ -17,7 +17,7 @@ import android.graphics.PointF;
 public class MonsterView extends View implements MonsterAPI{
     private static int pic;
     private Paint paint;
-    private List<Long> monsterPtrs = new ArrayList<>();// List of pointers to the monsters
+    public List<Long> monsterPtrs = new ArrayList<>();// List of pointers to the monsters
 
     private int windowWidth, windowHeight;
     private Random random = new Random(); //Random object for generating random values
@@ -69,8 +69,7 @@ public class MonsterView extends View implements MonsterAPI{
     }
 
     // Set the GameScreenFragment reference
-    public void setGameScreenFragment(GameScreenFragment gameScreenFragment) {
-    }
+    public void setGameScreenFragment(GameScreenFragment gameScreenFragment) {}
 
     public void moveMonsters(PointF knightPosition, int knightRadius, float knightSpeed, int knightAbility){
         // Update monsters
