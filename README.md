@@ -12,7 +12,7 @@
 Animated Game
 
 ### TL;DR
-Infectious vegetables have infiltrated the farm and it is your responsibility to protect the crops and the farm!
+Infectious vegetables have infiltrated the farm and it is your responsibility to protect the crops and the farm.
 
 ### Description
 Watch out! Infected vegetables are attacking, and it is your mission is to safeguard the farm. To fend off the relentless vegetable monsters, tap and drag your farmer to strike them down. As the game progresses, these menacing creatures will grow both in quantity and speed. 
