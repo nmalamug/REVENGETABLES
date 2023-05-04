@@ -21,6 +21,7 @@ public class ExampleInstrumentedTest {
     MonsterView testMon = new MonsterView(appContext, null);
     LifeView testLife = new LifeView(appContext, null);
     KnightWrapper testKnight = new KnightWrapper(appContext, null);
+    SettingsManager testSettings = new SettingsManager();
 
     @Test
     public void useAppContext() {
@@ -65,10 +66,9 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void testMoveMonsters() {
-        PointF p = new PointF(1,1);
+        PointF p = new PointF(1, 1);
         testMon.moveMonsters(p, 50, 3, 2);
-        for (long monsPtr : testMon.monsterPtrs)
-        {
+        for (long monsPtr : testMon.monsterPtrs) {
             assertEquals(1, testMon.getMonsterX(monsPtr), 0.0);
             assertEquals(1, testMon.getMonsterY(monsPtr), 0.0);
         }
@@ -97,9 +97,9 @@ public class ExampleInstrumentedTest {
     public void testMoveKnight() { // doesnt work yet
         System.loadLibrary("knightslabyrinth");
         testKnight.init();
-        PointF target = new PointF(0,0);
+        PointF target = new PointF(0, 0);
         testKnight.setTarget(target.x, target.y);
-        for(int ii = 0;  ii<20; ii++){
+        for (int ii = 0; ii < 20; ii++) {
             testKnight.moveKnight();
         }
         assertEquals(testKnight.knightPosition, target);
@@ -111,4 +111,39 @@ public class ExampleInstrumentedTest {
         int r = testKnight.getRadius();
         assertEquals(110, r);
     }
+
+    //SettingsManager tests
+    //test setLastScore and getLastScore
+    @Test
+    public void testLastScore() {
+        testSettings.setLastScore(4);
+        assertEquals(4, testSettings.getLastScore());
+        testSettings.setLastScore(-2147483648);
+        assertEquals(-2147483648, testSettings.getLastScore());
+        testSettings.setLastScore(2147483647);
+        assertEquals(2147483647, testSettings.getLastScore());
+
+    }
+    //test setKnight and getKnight
+    @Test
+    public void testKnight() {
+        testSettings.setKnight(4);
+        assertEquals(4, testSettings.getKnight());
+        testSettings.setKnight(-2147483648);
+        assertEquals(-2147483648, testSettings.getKnight());
+        testSettings.setKnight(2147483647);
+        assertEquals(2147483647, testSettings.getKnight());
+    }
+    //test setDifficulty and getDifficulty
+    @Test
+    public void testDifficulty()
+    {
+        testSettings.setDifficulty(4);
+        assertEquals(4, testSettings.getDifficulty());
+        testSettings.setDifficulty(-2147483648);
+        assertEquals(-2147483648, testSettings.getDifficulty());
+        testSettings.setDifficulty(2147483647);
+        assertEquals(2147483647, testSettings.getDifficulty());
+    }
+
 }
