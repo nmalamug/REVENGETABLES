@@ -118,6 +118,8 @@ We believe that all of the minimum requirements have been fullfilled in their en
 [Where there any specific challenges during the implementation of this project that deserve note.  Feel free to include ideas that you tried but failed to work, in terse fashion.]
 
 ### Supporting material
+1. [User Manual](https://docs.google.com/document/d/19Io7zJdGuWEEKzF4rUeU8P-vd8Ub-K8MtFWIdVDUoWU/edit?usp=sharing)
+2. [Demo Video](https://drive.google.com/file/d/1OVGnXJZQuWPhYetlUjdvDVafIMA1yicY/view?usp=share_link)
 [Any videos, slides, etc. that could help someone understand your project.]
 
 ### Release
