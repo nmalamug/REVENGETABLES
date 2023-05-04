@@ -95,8 +95,20 @@ public class ExampleInstrumentedTest {
     // KnightWrapper Tests
     @Test
     public void testMoveKnight() { // doesnt work yet
-        //testKnight.moveKnight();
-        //assertEquals(testKnight.getXC(testKnight.knight), testKnight.knightPosition.x, 0.0);
-        assertEquals(1, 1);
+        System.loadLibrary("knightslabyrinth");
+        testKnight.init();
+        PointF target = new PointF(0,0);
+        testKnight.setTarget(target.x, target.y);
+        for(int ii = 0;  ii<20; ii++){
+            testKnight.moveKnight();
+        }
+        assertEquals(testKnight.knightPosition, target);
+    }
+
+    @Test
+    public void testGetRadius() {
+        testKnight.init();
+        int r = testKnight.getRadius();
+        assertEquals(110, r);
     }
 }

@@ -15,10 +15,11 @@ public class KnightWrapper extends View implements KnightAPI{
     public PointF knightPosition; // Get the current position of the knight.
     public long knight;
     private int radius = 110; // The radius of the circle representing the knight
-    private int moveOption;// The option for the knight's movement
+    private int moveOption; // The option for the knight's movement
     private int offsetx = 0; // The X-axis offset for drawing the knight bitmap
     private int offsety = 0; // The Y-axis offset for drawing the knight bitmap
     public void init() {
+        System.loadLibrary("knightslabyrinth");
         paint = new Paint();
         knightPosition = new PointF(0, 0);
         //Code for creating c++ knight object
@@ -52,11 +53,6 @@ public class KnightWrapper extends View implements KnightAPI{
     public KnightWrapper(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
-    }
-
-    public void killKnight(){
-        deleteC(knight);
-        knight = 0;
     }
 
     @Override
@@ -115,7 +111,6 @@ public class KnightWrapper extends View implements KnightAPI{
 
     //Function headers for ndk
     public native long mkNew();
-    public native void deleteC(long knight);
     public native void setTargetC(long knight, float x,float y);
     public native void updateC(long knight, int move);
     public native float getXC(long knight);
