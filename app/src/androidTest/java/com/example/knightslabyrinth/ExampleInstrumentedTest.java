@@ -23,6 +23,7 @@ public class ExampleInstrumentedTest {
     KnightWrapper testKnight = new KnightWrapper(appContext, null);
     LoseScreenFragment testLose = new LoseScreenFragment();
     ScoreBoard testScoreboard = new ScoreBoard(appContext);
+    SettingsManager testSettings = new SettingsManager();
 
     @Test
     public void useAppContext() {
@@ -98,9 +99,9 @@ public class ExampleInstrumentedTest {
     @Test
     public void testMoveKnight() {
         testKnight.init();
-        PointF target = new PointF(0,0);
+        PointF target = new PointF(0, 0);
         testKnight.setTarget(target.x, target.y);
-        for(int ii = 0;  ii<20; ii++){
+        for (int ii = 0; ii < 20; ii++) {
             testKnight.moveKnight();
         }
         assertEquals(testKnight.knightPosition, target);
@@ -118,4 +119,39 @@ public class ExampleInstrumentedTest {
     public void testGetHighScores() {
         assertNotNull(testScoreboard.getHighScores());
     }
+
+    //SettingsManager tests
+    //test setLastScore and getLastScore
+    @Test
+    public void testLastScore() {
+        testSettings.setLastScore(4);
+        assertEquals(4, testSettings.getLastScore());
+        testSettings.setLastScore(-2147483648);
+        assertEquals(-2147483648, testSettings.getLastScore());
+        testSettings.setLastScore(2147483647);
+        assertEquals(2147483647, testSettings.getLastScore());
+
+    }
+    //test setKnight and getKnight
+    @Test
+    public void testKnight() {
+        testSettings.setKnight(4);
+        assertEquals(4, testSettings.getKnight());
+        testSettings.setKnight(-2147483648);
+        assertEquals(-2147483648, testSettings.getKnight());
+        testSettings.setKnight(2147483647);
+        assertEquals(2147483647, testSettings.getKnight());
+    }
+    //test setDifficulty and getDifficulty
+    @Test
+    public void testDifficulty()
+    {
+        testSettings.setDifficulty(4);
+        assertEquals(4, testSettings.getDifficulty());
+        testSettings.setDifficulty(-2147483648);
+        assertEquals(-2147483648, testSettings.getDifficulty());
+        testSettings.setDifficulty(2147483647);
+        assertEquals(2147483647, testSettings.getDifficulty());
+    }
+
 }
