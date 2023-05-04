@@ -77,7 +77,7 @@ We believe that all of the minimum requirements have been fullfilled in their en
 
 ##### Partially Completed
 "Do all calculations in C++ and connect them to the app through Android's Native Development Kit. [20%]"  
-* 15%/20% Completed
+* 15/20 Completed
 * Although a bulk majority of backend and heavy calculations were done in C++, some of the calculations, including management of enemies, were still done in java. 
 "Add sound effects for specific activities in the game. [10%]" 
 * We have sound effects in the game for the major aspects of the the game. Improving the game experience may be accomplished by adding distinct, creature-specific audio for every monster-farmer interaction that occurs.
@@ -88,8 +88,7 @@ We believe that all of the minimum requirements have been fullfilled in their en
 ## Execution
 
 ### Project source
-[Links to all code needed to compile and run your project _from scratch_ .  If you are using some libraries, provide links to their code.]
-
+No External Libraries were utilized. We primarily imported local Android Studio libraries
 ### Installation
 [Clear, terse instructions on how to compile and run your app on lab machines.  Try this out on non-members, friends, etc.]
 1. Open up the terminal on your machine, type "androidstudio", and press enter.
@@ -112,11 +111,17 @@ We believe that all of the minimum requirements have been fullfilled in their en
 ### Extra features
 1. Visual effects when explosion is used 
 2. All illustrations are original
+3. We haven't yet launched our app on the Google Play Store, but we're working on developing an enhanced version this summer to ensure we deliver the best possible user experience for our customers.
+
 [Any extra features provided by your app that were not mentioned in the minimum requirements or possible features.  Did you put your app on the Google App store?  Did you implement a half-baked idea that was not envisioned at the start of the project?]
 
 ### Challenges
-1. Adjust to the large scale of the project - created a system to keep git repo organized
+1. Adjust to the large scale of the project - created a system to keep GIT repo organized
 2. Learning the tools and levels of abstraction in Android Studio
+3. Dealing with Java code and its minor differences from C++ code
+4. Dealing with android studio's security protocol when writing to files and extracting files
+5. Using GameFragments rather than Activities posed an issue when implementing sound into our game
+
 [Where there any specific challenges during the implementation of this project that deserve note.  Feel free to include ideas that you tried but failed to work, in terse fashion.]
 
 ### Supporting material
