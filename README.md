@@ -7,6 +7,10 @@
 4. When all files are loaded, build then run the app!
 5. Kick those Vegetables!!!
 
+### Supporting material
+1. [User Manual](https://docs.google.com/document/d/19Io7zJdGuWEEKzF4rUeU8P-vd8Ub-K8MtFWIdVDUoWU/edit?usp=sharing)
+2. [Demo Video](https://drive.google.com/file/d/1OVGnXJZQuWPhYetlUjdvDVafIMA1yicY/view?usp=share_link)
+
 ## Summary
 ### Category
 Animated Game
@@ -121,12 +125,6 @@ No External Libraries were utilized. We primarily imported local Android Studio 
 4. Dealing with android studio's security protocol when writing to files and extracting files
 5. Using GameFragments rather than Activities posed an issue when implementing sound into our game
 6. Initially, we aimed to display individual monster hit points, but due to a disconnect between the front and backend, the simplified monster class in the backend did not account for the individuality of each monster, preventing the front end from utilizing the desired feature.
-
-
-### Supporting material
-1. [User Manual](https://docs.google.com/document/d/19Io7zJdGuWEEKzF4rUeU8P-vd8Ub-K8MtFWIdVDUoWU/edit?usp=sharing)
-2. [Demo Video](https://drive.google.com/file/d/1OVGnXJZQuWPhYetlUjdvDVafIMA1yicY/view?usp=share_link)
-
 
 ### Release
 We have reached a consensus where we would all like for the project to be displayed publically. 
