@@ -1,5 +1,7 @@
 # EC327 Final Project - Group 4 - REVENGETABLES
 
+<img src="RevengetablesTitle.jpg" width="50%" height="50%">
+
 ## Download Instructions
 1. Create a new Android Studio project from VCS (Version Conrtrol).
 2. Copy and paste the HTTPS clone link of this reposiroty int the box labaled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
