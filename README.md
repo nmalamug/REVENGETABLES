@@ -3,9 +3,9 @@
 <img src="RevengetablesTitle.jpg" width="50%" height="50%">
 
 ## Download Instructions
-1. Create a new Android Studio project from VCS (Version Conrtrol).
-2. Copy and paste the HTTPS clone link of this reposiroty int the box labaled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
-3. Set up the emulator, reccomended settings are a pixel 6 with API 29 of later.
+1. Create a new Android Studio project from VCS (Version Control).
+2. Copy and paste the HTTPS clone link of this reposiroty int the box labeled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
+3. Set up the emulator, recommended settings are a pixel 6 with API 29 or later.
 4. When all files are loaded, build then run the app!
 5. Kick those Vegetables!!!
 
@@ -88,7 +88,7 @@ We believe that all of the minimum requirements have been fullfilled in their en
 
 "Add sound effects for specific activities in the game. [10%]" 
 * 8/10 Completed
-* We have sound effects in the game for the major aspects of the the game. Improving the game experience may be accomplished by adding distinct, creature-specific audio for every monster-farmer interaction that occurs.
+* We have sound effects in the game for the major aspects of the game. Improving the game experience may be accomplished by adding distinct, creature-specific audio for every monster-farmer interaction that occurs.
 
 
 ---
@@ -99,8 +99,8 @@ No External Libraries were utilized. We primarily imported local Android Studio 
 ### Installation
 1. Open up the terminal on your machine, type "androidstudio", and press enter.
 2. Create a new Android Studio project from VCS (Version Control).
-3. Copy and paste the HTTPS clone link of this repository int the box labeled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
-4. Set up the emulator, recommended settings are a pixel 6 with API 29 of later.
+3. Copy and paste the HTTPS clone link of this repository in the box labeled "URL": https://agile.bu.edu/gitlab/ec327_projects/group4project.git
+4. Set up the emulator, recommended settings are a pixel 6 with API 29 or later.
 5. When all files are loaded, build and then run the app!
 6. Kick those Vegetables!!!
 
@@ -129,5 +129,5 @@ No External Libraries were utilized. We primarily imported local Android Studio 
 6. Initially, we aimed to display individual monster hit points, but due to a disconnect between the front and backend, the simplified monster class in the backend did not account for the individuality of each monster, preventing the front end from utilizing the desired feature.
 
 ### Release
-We have reached a consensus where we would all like for the project to be displayed publically. 
+We have reached a consensus where we would all like for the project to be displayed publicly. 
 ### 
